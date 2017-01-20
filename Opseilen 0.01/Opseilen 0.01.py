@@ -48,7 +48,7 @@ class Game:
             if keys[pygame.K_LCTRL] and keys[pygame.K_w]:
                 return True
             if event.type == pygame.MOUSEBUTTONUP:
-                if self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0 == 1:
+                if self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S1 == 1:
                     self.S0 = 1
                     self.S1 = 0 
                 if self.M1.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0 == 1:
@@ -65,17 +65,14 @@ class Game:
 
 class Menu:
     def __init__(self, x, y, I):
-        self.x = x
-        self.y = y
         self.I = I
         self.I = pygame.transform.scale(self.I, (int(x), int(y)))
-        self.size = (x, y)
         self.rect = pygame.Rect((0,0), (x, y))
 
-        self.B1 = Button(self.x * 0.12, self.y * 0.29, self.x * 0.2, self.y * 0.14, I1)
-        self.B2 = Button(self.x * 0.12, self.y * 0.44, self.x * 0.2, self.y * 0.14, I2)
-        self.B3 = Button(self.x * 0.12, self.y * 0.59, self.x * 0.2, self.y * 0.14, I3)
-        self.B4 = Button(self.x * 0.12, self.y * 0.74, self.x * 0.2, self.y * 0.14, I4)
+        self.B1 = Button(x * 0.12, y * 0.29, x * 0.2, y * 0.14, I1)
+        self.B2 = Button(x * 0.12, y * 0.44, x * 0.2, y * 0.14, I2)
+        self.B3 = Button(x * 0.12, y * 0.59, x * 0.2, y * 0.14, I3)
+        self.B4 = Button(x * 0.12, y * 0.74, x * 0.2, y * 0.14, I4)
 
     def draw(self, surface):
         surface.blit(self.I, (self.rect))
@@ -86,11 +83,8 @@ class Menu:
 
 class Button:
     def __init__(self, x, y, sx, sy, I):
-        self.x = x
-        self.y = y
         self.I = I
         self.I = pygame.transform.scale(self.I, (int(sx), int(sy)))
-        self.size = (sx, sy)
         self.rect = pygame.Rect((x, y), (sx, sy))
 
     def draw(self, surface):
