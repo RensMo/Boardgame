@@ -26,11 +26,21 @@ def program():
     # Set up the default font
     font = pygame.font.Font(None, 30)
 
-    # Clear the screen
-    screen.fill((0, 0, 0))
-    entry_tile.Draw(screen)
+    #create player
+    player1 = Player("Rens", entry_tile)
+
+    clock = pygame.time.Clock()
 
     while not process_events():
+        clock.tick(10)
+
+        # Clear the screen
+        screen.fill((0, 0, 0))
+        entry_tile.Draw(screen)
+
+        player1.Update()
+        player1.Draw(screen)
+
         # Flip the screen
         pygame.display.flip()
 
