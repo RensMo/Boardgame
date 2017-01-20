@@ -35,6 +35,9 @@ class Game:
     def process_events(self):
         keys = pygame.key.get_pressed()
 
+        self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I4)
+        self.M1 = Menu(self.width, self.height, I0)
+
         for event in pygame.event.get():
             if event.type == VIDEORESIZE:
                 self.screen = pygame.display.set_mode(event.dict['size'], HWSURFACE | DOUBLEBUF | RESIZABLE)
@@ -45,7 +48,7 @@ class Game:
             if keys[pygame.K_LCTRL] and keys[pygame.K_w]:
                 return True
             if event.type == pygame.MOUSEBUTTONUP:
-                if self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S1 == 1:
+                if self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0 == 1:
                     self.S0 = 1
                     self.S1 = 0 
                 if self.M1.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0 == 1:
@@ -53,9 +56,6 @@ class Game:
                     self.S1 = 1
                 if self.M1.B4.rect.collidepoint(pygame.mouse.get_pos()) and self.S0 == 1:
                     return True
-                
-            self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I4)
-            self.M1 = Menu(self.width, self.height, I0)
 
         return False
 
@@ -90,7 +90,6 @@ class Button:
         self.y = y
         self.I = I
         self.I = pygame.transform.scale(self.I, (int(sx), int(sy)))
-        self.S = pygame.Surface((x, y), pygame.SRCALPHA)
         self.size = (sx, sy)
         self.rect = pygame.Rect((x, y), (sx, sy))
 
