@@ -28,9 +28,11 @@ class Game:
         self.P1 = Player("Rens", self.entry_tile)
 
     def draw(self):
-        if self.S0[0] == 1: #Menu
+        # Menu
+        if self.S0[0] == 1:
             self.M1.draw(self.screen)
-        if self.S0[1] == 1: #Play
+        # Play
+        if self.S0[1] == 1:
             self.screen.fill((pygame.Color("Light Green")))
             self.B1.draw(self.screen)
             # Draw grid
@@ -38,7 +40,8 @@ class Game:
              # Update Player
             self.P1.Update()
             self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05)
-        if self.S0[2] == 1: #Help
+        # Help
+        if self.S0[2] == 1:
             if self.help_pagenr == 0:
                 self.screen.fill((pygame.Color("Light Blue")))
             if self.help_pagenr == 1:
@@ -48,7 +51,8 @@ class Game:
             self.B2.draw(self.screen)
             self.H1.draw(self.screen)
             self.H2.draw(self.screen)
-        if self.S0[3] == 1: # Settings
+        # Settings
+        if self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
             self.B3.draw(self.screen)
 
