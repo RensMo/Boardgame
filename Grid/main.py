@@ -1,6 +1,3 @@
-""" Python test Rens
-19-01-2017"""
-
 import pygame
 from Tile import *
 from Player import *
@@ -19,7 +16,7 @@ def program():
     size = 600, 600
     screen = pygame.display.set_mode(size)
 
-    grid_width = 4
+    grid_width = 8
     grid_height = 12
     entry_tile = build_square_matrix(grid_width, grid_height)
 
