@@ -83,6 +83,7 @@ class Game:
                     self.S0 = [1, 0, 0, 0]
                 if self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
+                    self.help_pagenr = int(0)
                 if self.H1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     if self.help_pagenr < self.help_pages:
                         self.help_pagenr += 1
