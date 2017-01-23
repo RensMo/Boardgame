@@ -12,8 +12,9 @@ class Game:
         self.height = 720
         self.size = (self.width, self.height)
         self.caption = "Opseilen"
-
         self.S0 = [1, 0, 0, 0]
+        self.help_pages = 2
+        self.help_pagenr = 0
 
         pygame.init()
 
@@ -27,23 +28,27 @@ class Game:
         self.P1 = Player("Rens", self.entry_tile)
 
     def draw(self):
-        if self.S0[0] == 1:
+        if self.S0[0] == 1: #Menu
             self.M1.draw(self.screen)
-        if self.S0[1] == 1:
+        if self.S0[1] == 1: #Play
             self.screen.fill((pygame.Color("Light Green")))
             self.B1.draw(self.screen)
             # Draw grid
             self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05)
-
-            # Update Player
+             # Update Player
             self.P1.Update()
             self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05)
-        if self.S0[2] == 1:
-            self.screen.fill((pygame.Color("Light Blue")))
+        if self.S0[2] == 1: #Help
+            if self.help_pagenr == 0:
+                self.screen.fill((pygame.Color("Light Blue")))
+            if self.help_pagenr == 1:
+                self.screen.fill((pygame.Color("Purple")))
+            elif self.help_pagenr == 2:
+                self.screen.fill((pygame.Color("Red")))
             self.B2.draw(self.screen)
             self.H1.draw(self.screen)
             self.H2.draw(self.screen)
-        if self.S0[3] == 1:
+        if self.S0[3] == 1: # Settings
             self.screen.fill((pygame.Color("Yellow")))
             self.B3.draw(self.screen)
 
@@ -79,9 +84,11 @@ class Game:
                 if self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
                 if self.H1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
-                    self.S0 = [1, 0, 0, 0]
+                    if self.help_pagenr < self.help_pages:
+                        self.help_pagenr += 1
                 if self.H2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
-                    self.S0 = [1, 0, 0, 0]
+                    if self.help_pagenr > 0:
+                        self.help_pagenr -= 1
                 if self.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     self.S0 = [1, 0, 0, 0]
                 if self.M1.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
