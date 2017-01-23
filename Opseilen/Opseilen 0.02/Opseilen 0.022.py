@@ -4,9 +4,10 @@ from pygame.locals import *
 #LOAD IMAGES
 I0 = pygame.image.load("Assets/Background_S0.jpg")
 I1 = pygame.image.load("Assets/Play_Button.jpg")
-I2 = pygame.image.load("Assets/Instructions_Button.jpg")
+I2 = pygame.image.load("Assets/Help_Button.jpg")
 I3 = pygame.image.load("Assets/Settings_Button.jpg")
-I4 = pygame.image.load("Assets/Exit_Button.jpg")
+I4 = pygame.image.load("Assets/Quit_Button.jpg")
+I5 = pygame.image.load("Assets/Back_Button.jpg")
 
 class Game:
     def __init__(self):
@@ -40,9 +41,9 @@ class Game:
     def process_events(self):
         keys = pygame.key.get_pressed()
 
-        self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I4)
-        self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I4)
-        self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I4)
+        self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
+        self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
+        self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.M1 = Menu(self.width, self.height, I0)
 
         for event in pygame.event.get():
@@ -53,6 +54,8 @@ class Game:
             if event.type == pygame.QUIT:
                 return True
             if keys[pygame.K_LCTRL] and keys[pygame.K_w]:
+                return True
+            if keys[pygame.K_LALT] and keys[pygame.K_F4]:
                 return True
             if keys[pygame.K_ESCAPE]:
                 if self.S0[1] == 1 or self.S0[2] == 1 or self.S0[3] == 1:
@@ -87,10 +90,10 @@ class Menu:
         self.I = pygame.transform.scale(self.I, (int(x), int(y)))
         self.rect = pygame.Rect((0,0), (x, y))
 
-        self.B1 = Button(self.x * 0.12, self.y * 0.29, self.x * 0.2, self.y * 0.14, I1)
-        self.B2 = Button(self.x * 0.12, self.y * 0.44, self.x * 0.2, self.y * 0.14, I2)
-        self.B3 = Button(self.x * 0.12, self.y * 0.59, self.x * 0.2, self.y * 0.14, I3)
-        self.B4 = Button(self.x * 0.12, self.y * 0.74, self.x * 0.2, self.y * 0.14, I4)
+        self.B1 = Button(self.x * 0.12, self.y * 0.29, self.x * 0.23, self.y * 0.14, I1)
+        self.B2 = Button(self.x * 0.12, self.y * 0.44, self.x * 0.23, self.y * 0.14, I2)
+        self.B3 = Button(self.x * 0.12, self.y * 0.59, self.x * 0.23, self.y * 0.14, I3)
+        self.B4 = Button(self.x * 0.12, self.y * 0.74, self.x * 0.23, self.y * 0.14, I4)
 
     def draw(self, surface):
         surface.blit(self.I, (self.rect))
