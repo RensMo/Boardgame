@@ -44,6 +44,7 @@ class Game:
         if self.S0[2] == 1:
             if self.help_pagenr == 0:
                 self.screen.fill((pygame.Color("Light Blue")))
+                self.H3.draw(self.screen)
             if self.help_pagenr == 1:
                 self.screen.fill((pygame.Color("Purple")))
             elif self.help_pagenr == 2:
@@ -51,6 +52,7 @@ class Game:
             self.B2.draw(self.screen)
             self.H1.draw(self.screen)
             self.H2.draw(self.screen)
+
         # Settings
         if self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
@@ -64,8 +66,9 @@ class Game:
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
-        self.H1 = Button(self.width * 0.88, self.height * 0.84, self.width * 0.1, self.height * 0.07, I6)
-        self.H2 = Button(self.width * 0.77, self.height * 0.84, self.width * 0.1, self.height * 0.07, I7)
+        self.H1 = Button(self.width * 0.88, self.height * 0.90, self.width * 0.1, self.height * 0.07, I6)
+        self.H2 = Button(self.width * 0.77, self.height * 0.90, self.width * 0.1, self.height * 0.07, I7)
+        self.H3 = Button(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, I8)
         self.M1 = Menu(self.width, self.height, I0)
 
         for event in pygame.event.get():
