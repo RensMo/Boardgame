@@ -4,9 +4,10 @@ from pygame.locals import *
 #LOAD IMAGES
 I0 = pygame.image.load("Assets/Background_S0.jpg")
 I1 = pygame.image.load("Assets/Play_Button.jpg")
-I2 = pygame.image.load("Assets/Instructions_Button.jpg")
+I2 = pygame.image.load("Assets/Help_Button.jpg")
 I3 = pygame.image.load("Assets/Settings_Button.jpg")
-I4 = pygame.image.load("Assets/Exit_Button.jpg")
+I4 = pygame.image.load("Assets/Quit_Button.jpg")
+I5 = pygame.image.load("Assets/Back_Button.jpg")
 
 class Game:
     def __init__(self):
@@ -34,7 +35,7 @@ class Game:
     def process_events(self):
         keys = pygame.key.get_pressed()
 
-        self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I4)
+        self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.M1 = Menu(self.width, self.height, I0)
 
         for event in pygame.event.get():
