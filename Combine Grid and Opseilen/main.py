@@ -6,6 +6,7 @@ from Menu import *
 from Player import *
 from Tile import *
 from Text import *
+from Images import *
 
 class Game:
     def __init__(self):
@@ -16,6 +17,8 @@ class Game:
         self.S0 = [1, 0, 0, 0]
         self.help_pages = 2
         self.help_pagenr = 0
+        self.play_pages = 3
+        self.play_pagenr = 0
 
         pygame.init()
 
@@ -34,13 +37,25 @@ class Game:
             self.M1.draw(self.screen)
         # Play
         if self.S0[1] == 1:
-            self.screen.fill((pygame.Color("Light Green")))
-            self.B1.draw(self.screen)
-            # Draw grid
-            self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05)
-             # Update Player
-            self.P1.Update()
-            self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05)
+            if self.play_pagenr == 0:
+                self.screen.fill((pygame.Color("Light Blue")))
+                self.B1.draw(self.screen)
+                self.PL2.draw(self.screen)
+                self.PL3.draw(self.screen)
+                self.PL4.draw(self.screen)
+            if self.play_pagenr == 1:
+                self.screen.fill((pygame.Color("Purple")))
+                self.B1.draw(self.screen)
+            elif self.play_pagenr == 2:
+                self.screen.fill((pygame.Color("Light Green")))
+                self.B1.draw(self.screen)
+                # Draw grid
+                self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05)
+                # Update Player
+                self.P1.Update()
+                self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05)
+            self.Next2.draw(self.screen)
+            self.Prev2.draw(self.screen)
         # Help
         if self.S0[2] == 1:
             if self.help_pagenr == 0:
@@ -50,9 +65,9 @@ class Game:
             elif self.help_pagenr == 2:
                 self.screen.fill((pygame.Color("Red")))
             self.B2.draw(self.screen)
-            self.H1.draw(self.screen)
-            self.H2.draw(self.screen)
-            self.H3.draw(self.screen)
+            self.Next1.draw(self.screen)
+            self.Prev1.draw(self.screen)
+            self.Text1.draw(self.screen)
         # Settings
         if self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
@@ -65,13 +80,18 @@ class Game:
     def process_events(self):
         keys = pygame.key.get_pressed()
 
+        self.M1 = Menu(self.width, self.height, I0)
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
-        self.H1 = Button(self.width * 0.88, self.height * 0.90, self.width * 0.1, self.height * 0.07, I6)
-        self.H2 = Button(self.width * 0.77, self.height * 0.90, self.width * 0.1, self.height * 0.07, I7)
-        self.H3 = Text(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, I8)
-        self.M1 = Menu(self.width, self.height, I0)
+        self.Next1 = Button(self.width * 0.88, self.height * 0.90, self.width * 0.1, self.height * 0.07, I6)
+        self.Next2 = Button(self.width * 0.88, self.height * 0.90, self.width * 0.1, self.height * 0.07, I6)
+        self.Prev1 = Button(self.width * 0.77, self.height * 0.90, self.width * 0.1, self.height * 0.07, I7)
+        self.Prev2 = Button(self.width * 0.77, self.height * 0.90, self.width * 0.1, self.height * 0.07, I7)
+        self.Text1 = Text(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, I8)
+        self.PL2 = Button(self.width * 0.425, self.height * 0.2, self.width * 0.15, self.height * 0.15, I9)
+        self.PL3 = Button(self.width * 0.425, self.height * 0.41, self.width * 0.15, self.height * 0.16, I10)
+        self.PL4 = Button(self.width * 0.425, self.height * 0.62, self.width * 0.15, self.height * 0.17, I11)
 
         for event in pygame.event.get():
             if event.type == VIDEORESIZE:
@@ -88,17 +108,23 @@ class Game:
                 if self.S0[1] == 1 or self.S0[2] == 1 or self.S0[3] == 1:
                     self.S0 = [1, 0, 0, 0]
             if event.type == pygame.MOUSEBUTTONUP:
+                if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
+                    if self.play_pagenr < self.help_pages:
+                        self.play_pagenr += 1
+                if self.Prev2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
+                    if self.play_pagenr > 0:
+                        self.play_pagenr -= 1
+                if self.Next1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
+                    if self.help_pagenr < self.help_pages:
+                        self.help_pagenr += 1
+                if self.Prev1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
+                    if self.help_pagenr > 0:
+                        self.help_pagenr -= 1
                 if self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
                     self.S0 = [1, 0, 0, 0]
                 if self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.help_pagenr = int(0)
-                if self.H1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
-                    if self.help_pagenr < self.help_pages:
-                        self.help_pagenr += 1
-                if self.H2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
-                    if self.help_pagenr > 0:
-                        self.help_pagenr -= 1
                 if self.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     self.S0 = [1, 0, 0, 0]
                 if self.M1.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
