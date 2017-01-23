@@ -13,7 +13,7 @@ class Game:
         self.size = (self.width, self.height)
         self.caption = "Opseilen"
 
-        self.S0 = [1, 0]
+        self.S0 = [1, 0, 0, 0]
 
         pygame.init()
 
@@ -30,23 +30,29 @@ class Game:
         if self.S0[0] == 1:
             self.M1.draw(self.screen)
         if self.S0[1] == 1:
-            # Create background colour and back button
-            self.screen.fill((pygame.Color("Light Blue")))
+            self.screen.fill((pygame.Color("Light Green")))
             self.B1.draw(self.screen)
-
             # Draw grid
             self.entry_tile.Draw(self.screen)
 
             # Update Player
             self.P1.Update()
             self.P1.Draw(self.screen)
+        if self.S0[2] == 1:
+            self.screen.fill((pygame.Color("Light Blue")))
+            self.B2.draw(self.screen)
+        if self.S0[3] == 1:
+            self.screen.fill((pygame.Color("Yellow")))
+            self.B3.draw(self.screen)
 
         pygame.display.update()
 
     def process_events(self):
         keys = pygame.key.get_pressed()
 
-        self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I4)
+        self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
+        self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
+        self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.M1 = Menu(self.width, self.height, I0)
 
         for event in pygame.event.get():
@@ -58,11 +64,24 @@ class Game:
                 return True
             if keys[pygame.K_LCTRL] and keys[pygame.K_w]:
                 return True
+            if keys[pygame.K_LALT] and keys[pygame.K_F4]:
+                return True
+            if keys[pygame.K_ESCAPE]:
+                if self.S0[1] == 1 or self.S0[2] == 1 or self.S0[3] == 1:
+                    self.S0 = [1, 0, 0, 0]
             if event.type == pygame.MOUSEBUTTONUP:
                 if self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
-                    self.S0 = [1, 0]
+                    self.S0 = [1, 0, 0, 0]
+                if self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
+                    self.S0 = [1, 0, 0, 0]
+                if self.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    self.S0 = [1, 0, 0, 0]
                 if self.M1.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
-                    self.S0 = [0, 1]
+                    self.S0 = [0, 1, 0, 0]
+                if self.M1.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
+                    self.S0 = [0, 0, 1, 0]
+                if self.M1.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
+                    self.S0 = [0, 0, 0, 1]
                 if self.M1.B4.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
                     return True
 
