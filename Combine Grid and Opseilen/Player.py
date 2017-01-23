@@ -6,15 +6,14 @@ class Player:
         self.Tile = tile
         self.Colour = (255, 255, 255)
 
-    def Draw(self, screen):
-        margin = 5
-        width = 30
-        height = 30
+    def Draw(self, screen, width, height):
+        margin_x = 0.1 * width
+        margin_y = 0.1 * height
         pygame.draw.ellipse(screen, self.Colour,
-                         ((margin + width) * self.Tile.Position.X + margin,
-                          (margin + height) * self.Tile.Position.Y + margin,
-                          width,
-                          height))
+                            ((margin_x + width) * self.Tile.Position.X + margin_x,
+                             (margin_y + height) * self.Tile.Position.Y + margin_y,
+                             width,
+                             height))
 
     def Update(self):
         keys = pygame.key.get_pressed()

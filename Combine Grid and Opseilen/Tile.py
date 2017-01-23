@@ -15,20 +15,19 @@ class Tile:
         self.Right = None
         self.Position = position
 
-    def Draw(self, screen):
-        margin = 5
-        width = 30
-        height = 30
+    def Draw(self, screen, width, height):
+        margin_x = width * 0.10
+        margin_y = height * 0.10
         pygame.draw.rect(screen, self.Colour,
-                         ((margin + width) * self.Position.X + margin,
-                          (margin + height) * self.Position.Y + margin,
+                         ((margin_x + width) * self.Position.X + margin_x,
+                          (margin_y + height) * self.Position.Y + margin_y,
                           width,
                           height))
         if self.Right != None:
-            self.Right.Draw(screen)
+            self.Right.Draw(screen, width, height)
 
         if self.Position.X == 0 and self.Down != None:
-            self.Down.Draw(screen)
+            self.Down.Draw(screen, width, height)
 
 
 def build_square_matrix(width, height):

@@ -33,11 +33,11 @@ class Game:
             self.screen.fill((pygame.Color("Light Green")))
             self.B1.draw(self.screen)
             # Draw grid
-            self.entry_tile.Draw(self.screen)
+            self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05)
 
             # Update Player
             self.P1.Update()
-            self.P1.Draw(self.screen)
+            self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05)
         if self.S0[2] == 1:
             self.screen.fill((pygame.Color("Light Blue")))
             self.B2.draw(self.screen)
