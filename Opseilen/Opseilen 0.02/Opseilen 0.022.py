@@ -27,10 +27,10 @@ class Game:
         if self.S0[0] == 1:
             self.M1.draw(self.screen)
         if self.S0[1] == 1:
-            self.screen.fill((pygame.Color("Light Blue")))
+            self.screen.fill((pygame.Color("Light Green")))
             self.B1.draw(self.screen)
         if self.S0[2] == 1:
-            self.screen.fill((pygame.Color("Light Green")))
+            self.screen.fill((pygame.Color("Light Blue")))
             self.B2.draw(self.screen)
         if self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
