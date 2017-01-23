@@ -41,6 +41,8 @@ class Game:
         if self.S0[2] == 1:
             self.screen.fill((pygame.Color("Light Blue")))
             self.B2.draw(self.screen)
+            self.H1.draw(self.screen)
+            self.H2.draw(self.screen)
         if self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
             self.B3.draw(self.screen)
@@ -53,6 +55,8 @@ class Game:
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
+        self.H1 = Button(self.width * 0.88, self.height * 0.84, self.width * 0.1, self.height * 0.07, I6)
+        self.H2 = Button(self.width * 0.77, self.height * 0.84, self.width * 0.1, self.height * 0.07, I7)
         self.M1 = Menu(self.width, self.height, I0)
 
         for event in pygame.event.get():
@@ -73,6 +77,10 @@ class Game:
                 if self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
                     self.S0 = [1, 0, 0, 0]
                 if self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
+                    self.S0 = [1, 0, 0, 0]
+                if self.H1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
+                    self.S0 = [1, 0, 0, 0]
+                if self.H2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
                 if self.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     self.S0 = [1, 0, 0, 0]

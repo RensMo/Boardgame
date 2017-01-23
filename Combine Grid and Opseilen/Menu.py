@@ -8,6 +8,8 @@ I2 = pygame.image.load("Assets/Help_Button.jpg")
 I3 = pygame.image.load("Assets/Settings_Button.jpg")
 I4 = pygame.image.load("Assets/Quit_Button.jpg")
 I5 = pygame.image.load("Assets/Back_Button.jpg")
+I6 = pygame.image.load("Assets/Next_Button.jpg")
+I7 = pygame.image.load("Assets/Previous_Button.jpg")
 
 class Menu:
     def __init__(self, x, y, I):
