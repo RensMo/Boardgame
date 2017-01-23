@@ -23,7 +23,7 @@ def program():
     # Set up the default font
     font = pygame.font.Font(None, 30)
 
-    #create player
+    # create player
     player1 = Player("Rens", entry_tile)
 
     clock = pygame.time.Clock()

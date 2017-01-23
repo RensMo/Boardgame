@@ -3,6 +3,8 @@ from pygame.locals import *
 
 from Button import *
 from Menu import *
+from Player import *
+from Tile import *
 
 class Game:
     def __init__(self):
@@ -18,12 +20,26 @@ class Game:
         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
         pygame.display.set_caption(self.caption)
 
+        grid_width = 8
+        grid_height = 12
+        self.entry_tile = build_square_matrix(grid_width, grid_height)
+
+        self.P1 = Player("Rens", self.entry_tile)
+
     def draw(self):
         if self.S0[0] == 1:
             self.M1.draw(self.screen)
         if self.S0[1] == 1:
+            # Create background colour and back button
             self.screen.fill((pygame.Color("Light Blue")))
             self.B1.draw(self.screen)
+
+            # Draw grid
+            self.entry_tile.Draw(self.screen)
+
+            # Update Player
+            self.P1.Update()
+            self.P1.Draw(self.screen)
 
         pygame.display.update()
 
