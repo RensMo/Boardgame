@@ -26,9 +26,7 @@ class Game:
         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
         pygame.display.set_caption(self.caption)
 
-        grid_width = 8
-        grid_height = 15
-        self.entry_tile = build_matrix(grid_width, grid_height)
+        self.entry_tile = build_matrix()
 
         self.P1 = Player("Rens", self.entry_tile)
 
@@ -51,10 +49,10 @@ class Game:
                 self.screen.fill((pygame.Color("Light Green")))
                 self.B1.draw(self.screen)
                 # Draw grid
-                self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05)
+                self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.1, self.height *0.9)
                 # Update Player
                 self.P1.Update()
-                self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05)
+                self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.1, self.height *0.9)
             self.Next2.draw(self.screen)
             self.Prev2.draw(self.screen)
         # Help
