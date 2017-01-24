@@ -6,7 +6,7 @@ class Font:
     pygame.font.init()
     font = pygame.font.Font(None, 24)
 
-class Text:
+class Text: ###klopt nog niet
     def __init__(self, x, y, sx, sy, I):
         self.x = x
         self.y = y
