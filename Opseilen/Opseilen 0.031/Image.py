@@ -1,10 +1,11 @@
 import pygame
 
 ###BACKGROUNDS
-I0 = pygame.image.load("Assets/Background_S0.jpg")
-I8 = pygame.image.load("Assets/text_bg.png")
-I12 = pygame.image.load("Assets/Play/p1_bg.jpg")
-I13 = pygame.image.load("Assets/Play/p2_bg.jpg")
+BG0 = pygame.image.load("Assets/Background_S0.jpg")
+BG1 = pygame.image.load("Assets/Play/p1_bg.jpg")
+BG2 = pygame.image.load("Assets/Play/p2_bg.jpg")
+BG3 = pygame.image.load("Assets/Help/help_bg.jpg")
+
 
 ###BUTTONS
 I1 = pygame.image.load("Assets/Play_Button.jpg")
@@ -25,3 +26,8 @@ ID3 = pygame.image.load("Assets/Play/dice3.png")
 ID4 = pygame.image.load("Assets/Play/dice4.png")
 ID5 = pygame.image.load("Assets/Play/dice5.png")
 ID6 = pygame.image.load("Assets/Play/dice6.png")
+
+##HELP
+HELP1 = pygame.image.load("Assets/Help/h1.png")
+HELP2 = pygame.image.load("Assets/Help/h2.png")
+HELP3 = pygame.image.load("Assets/Help/h3.png")

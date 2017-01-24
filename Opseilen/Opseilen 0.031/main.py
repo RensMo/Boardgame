@@ -66,21 +66,13 @@ class Game:
             self.Prev2.draw(self.screen)
         # Help
         if self.S0[2] == 1:
+            self.Helpbg.draw(self.screen)
             if self.help_pagenr == 0:
-                self.screen.fill((pygame.Color("Light Blue")))
                 self.Text1.draw(self.screen)
-                basicfont = pygame.font.SysFont(None, 48)
-                text = basicfont.render('Hello World!', True,(255, 255, 255))
-                textrect = text.get_rect()
-                textrect.centerx = self.screen.get_rect().centerx
-                textrect.centery = self.screen.get_rect().centery
-                self.screen.blit(text, textrect)
             if self.help_pagenr == 1:
-                self.screen.fill((pygame.Color("Purple")))
-                self.Text1.draw(self.screen)
+                self.Text2.draw(self.screen)
             elif self.help_pagenr == 2:
-                self.screen.fill((pygame.Color("Red")))
-                self.Text1.draw(self.screen)
+                self.Text3.draw(self.screen)
             self.B2.draw(self.screen)
             self.Next1.draw(self.screen)
             self.Prev1.draw(self.screen)
@@ -97,9 +89,10 @@ class Game:
     def process_events(self):
         keys = pygame.key.get_pressed()
 
-        self.M1 = Menu(self.width, self.height, I0)
-        self.Pbg1 = Backg(self.width, self.height, I12)
-        self.Pbg2 = Backg(self.width, self.height, I13)
+        self.M1 = Menu(self.width, self.height, BG0)
+        self.Pbg1 = Backg(self.width, self.height, BG1)
+        self.Pbg2 = Backg(self.width, self.height, BG2)
+        self.Helpbg = Backg(self.width, self.height, BG3)
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
@@ -107,10 +100,12 @@ class Game:
         self.Next2 = Button(self.width * 0.88, self.height * 0.90, self.width * 0.1, self.height * 0.07, I6)
         self.Prev1 = Button(self.width * 0.77, self.height * 0.90, self.width * 0.1, self.height * 0.07, I7)
         self.Prev2 = Button(self.width * 0.77, self.height * 0.90, self.width * 0.1, self.height * 0.07, I7)
-        self.Text1 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, I8)
         self.PL2 = Button(self.width * 0.425, self.height * 0.22, self.width * 0.15, self.height * 0.15, I9)
         self.PL3 = Button(self.width * 0.425, self.height * 0.43, self.width * 0.15, self.height * 0.16, I10)
         self.PL4 = Button(self.width * 0.425, self.height * 0.64, self.width * 0.15, self.height * 0.17, I11)
+        self.Text1 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP1)
+        self.Text2 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP2)
+        self.Text3 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP3)
         self.screen_rect = self.screen.get_rect()
 
         for event in pygame.event.get():
