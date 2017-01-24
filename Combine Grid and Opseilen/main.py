@@ -60,14 +60,23 @@ class Game:
         if self.S0[2] == 1:
             if self.help_pagenr == 0:
                 self.screen.fill((pygame.Color("Light Blue")))
+                self.Text1.draw(self.screen)
+                basicfont = pygame.font.SysFont(None, 48)
+                text = basicfont.render('Hello World!', True,(255, 255, 255))
+                textrect = text.get_rect()
+                textrect.centerx = self.screen.get_rect().centerx
+                textrect.centery = self.screen.get_rect().centery
+                self.screen.blit(text, textrect)
             if self.help_pagenr == 1:
                 self.screen.fill((pygame.Color("Purple")))
+                self.Text1.draw(self.screen)
             elif self.help_pagenr == 2:
                 self.screen.fill((pygame.Color("Red")))
+                self.Text1.draw(self.screen)
             self.B2.draw(self.screen)
             self.Next1.draw(self.screen)
             self.Prev1.draw(self.screen)
-            self.Text1.draw(self.screen)
+
         # Settings
         if self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
