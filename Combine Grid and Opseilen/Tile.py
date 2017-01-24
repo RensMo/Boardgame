@@ -131,16 +131,3 @@ def build_matrix():
         under_line = prev_node
 
     return entry_point
-
-""""
-def printmatrix(matrix):
-    print(matrix.Position.X, matrix.Position.Y)
-    if matrix.Right.Position.X != 0 and matrix.Right.Position.X != 0.5:
-        printmatrix(matrix.Right)
-
-    if matrix.Position.X == 0 and matrix.Up != None:
-        printmatrix(matrix.Up)
-
-matrix = build_matrix()
-#printmatrix(matrix)
-"""
