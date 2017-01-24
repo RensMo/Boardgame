@@ -10,8 +10,8 @@ class Player:
         margin_x = 0.1 * width
         margin_y = 0.1 * height
         pygame.draw.ellipse(screen, self.Colour,
-                            ((margin_x + width) * self.Tile.Position.X + margin_x,
-                             (margin_y + height) * self.Tile.Position.Y + margin_y,
+                            (300 + (margin_x + width) * self.Tile.Position.X + margin_x,
+                             600 + (-margin_y - height) * self.Tile.Position.Y - margin_y,
                              width,
                              height))
 

@@ -147,7 +147,6 @@ class Game:
                     self.S0 = [0, 0, 0, 1]
                 if self.M1.B4.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
                     return True
-
         return False
 
     def game_loop(self):

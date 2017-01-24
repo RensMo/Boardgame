@@ -18,11 +18,13 @@ class Tile:
     def Draw(self, screen, width, height):
         margin_x = width * 0.10
         margin_y = height * 0.10
+
         pygame.draw.rect(screen, self.Colour,
-                         ((margin_x + width) * self.Position.X + margin_x,
-                          (margin_y + height) * self.Position.Y + margin_y,
+                         (300 + (margin_x + width) * self.Position.X + margin_x,
+                          600 + (-margin_y - height) * self.Position.Y - margin_y,
                           width,
                           height))
+
         if self.Right.Position.X != 0:
             self.Right.Draw(screen, width, height)
 
@@ -47,7 +49,6 @@ def build_matrix(width, height):
             else:
                 colour = (0, 0, 255)  # blue
 
-            # Create Node
             node = Tile(colour, Position(tile, line))
 
             if line == 0 and tile == 0:  # Define entry point
