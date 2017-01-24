@@ -130,9 +130,6 @@ class Game:
                 self.D1.click = False
                 if self.D1.rc == 1:
                     self.D1.rc = 2
-                if self.D1.rc == 3 and self.D1.vcc < 30:
-                    self.D1.rc = 0
-                    self.D1.vcc = 0
                 if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
                     if self.play_pagenr < self.help_pages:
                         self.play_pagenr += 1
