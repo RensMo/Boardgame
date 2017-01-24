@@ -64,8 +64,8 @@ class Game:
                 basicfont = pygame.font.SysFont(None, 48)
                 text = basicfont.render('Hello World!', True,(255, 255, 255))
                 textrect = text.get_rect()
-                textrect.centerx = self.screen.get_rect().centerx
-                textrect.centery = self.screen.get_rect().centery
+                textrect.centerx = self.screen.get_rect().width *0.11
+                textrect.centery = self.screen.get_rect().height *0.2
                 self.screen.blit(text, textrect)
             if self.help_pagenr == 1:
                 self.screen.fill((pygame.Color("Purple")))
