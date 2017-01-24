@@ -27,7 +27,7 @@ class Game:
 
         grid_width = 8
         grid_height = 15
-        self.entry_tile = build_square_matrix(grid_width, grid_height)
+        self.entry_tile = build_matrix(grid_width, grid_height)
 
         self.P1 = Player("Rens", self.entry_tile)
 
