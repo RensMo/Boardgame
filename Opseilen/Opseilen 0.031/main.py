@@ -69,14 +69,15 @@ class Game:
             self.Helpbg.draw(self.screen)
             if self.help_pagenr == 0:
                 self.Text1.draw(self.screen)
+                self.Next1.draw(self.screen)
             if self.help_pagenr == 1:
                 self.Text2.draw(self.screen)
+                self.Next1.draw(self.screen)
+                self.Prev1.draw(self.screen)
             elif self.help_pagenr == 2:
                 self.Text3.draw(self.screen)
+                self.Prev1.draw(self.screen)
             self.B2.draw(self.screen)
-            self.Next1.draw(self.screen)
-            self.Prev1.draw(self.screen)
-
         # Settings
         if self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
