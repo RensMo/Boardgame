@@ -27,7 +27,7 @@ class Game:
 
         grid_width = 8
         grid_height = 15
-        self.entry_tile = build_square_matrix(grid_width, grid_height)
+        self.entry_tile = build_matrix(grid_width, grid_height)
 
         self.P1 = Player("Rens", self.entry_tile)
 
@@ -147,7 +147,6 @@ class Game:
                     self.S0 = [0, 0, 0, 1]
                 if self.M1.B4.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
                     return True
-
         return False
 
     def game_loop(self):
