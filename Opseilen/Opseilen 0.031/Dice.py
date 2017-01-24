@@ -80,9 +80,9 @@ class Dice:
         if self.DiceRolled == 1 and self.vcc2 < 30:
             self.I = self.cI
             self.I = pygame.transform.rotate(self.I, int(self.endrotate))
-        if self.D1.rc == 3 and self.D1.vcc < 30:
-                    self.D1.rc = 0
-                    self.D1.vcc = 0
+        if self.rc == 3 and self.vcc < 30:
+                    self.rc = 0
+                    self.vcc = 0
         self.rect.move_ip(self.rvx, self.rvy)
         self.rect.clamp_ip(screen_rect)
 
