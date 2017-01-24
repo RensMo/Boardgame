@@ -1,4 +1,5 @@
 import pygame
+from Image import *
 
 class Font:
     pygame.init()

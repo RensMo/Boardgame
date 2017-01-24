@@ -3,7 +3,8 @@ import pygame
 ###BACKGROUNDS
 I0 = pygame.image.load("Assets/Background_S0.jpg")
 I8 = pygame.image.load("Assets/text_bg.png")
-I12 = pygame.image.load("Assets/Play/play1_bg.jpg")
+I12 = pygame.image.load("Assets/Play/p1_bg.jpg")
+I13 = pygame.image.load("Assets/Play/p2_bg.jpg")
 
 ###BUTTONS
 I1 = pygame.image.load("Assets/Play_Button.jpg")

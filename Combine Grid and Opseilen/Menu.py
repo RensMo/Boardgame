@@ -1,7 +1,7 @@
 import pygame
 
 from Button import *
-from Images import *
+from Image import *
 
 class Menu:
     def __init__(self, x, y, I):
@@ -22,3 +22,15 @@ class Menu:
         self.B2.draw(surface)
         self.B3.draw(surface)
         self.B4.draw(surface)
+
+class Backg:
+    def __init__(self, x, y, I):
+        self.x = x
+        self.y = y
+        self.I = I
+        self.I = pygame.transform.scale(self.I, (int(x), int(y)))
+        self.rect = pygame.Rect((0, 0), (x, y))
+
+    def draw(self, surface):
+        surface.blit(self.I, (self.rect))
+
