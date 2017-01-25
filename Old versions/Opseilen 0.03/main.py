@@ -16,7 +16,7 @@ class Game:
         self.width = 1280
         self.height = 720
         self.size = (self.width, self.height)
-        self.caption = "Opseilen"
+        self.caption = "Old versions"
         self.S0 = [1, 0, 0, 0]
         self.help_pages = 2
         self.help_pagenr = 0

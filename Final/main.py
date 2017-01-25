@@ -16,7 +16,7 @@ class Game:
         self.width = 1280
         self.height = 720
         self.size = (self.width, self.height)
-        self.caption = "Opseilen"
+        self.caption = "Old versions"
         self.S0 = [1, 0, 0, 0]
         self.help_pages = 2
         self.help_pagenr = 0
@@ -29,9 +29,7 @@ class Game:
         pygame.display.set_caption(self.caption)
         self.clock = pygame.time.Clock()
 
-        grid_width = 8
-        grid_height = 15
-        self.entry_tile = build_square_matrix(grid_width, grid_height)
+        self.entry_tile = build_matrix()
 
         self.P1 = Player("Rens", self.entry_tile)
         self.D1 = Dice(self.width * 0.5, self.height * 0.5, self.width * 0.1, self.width * 0.1, ID1)
@@ -55,10 +53,10 @@ class Game:
                 self.screen.fill((pygame.Color("Light Green")))
                 self.B1.draw(self.screen)
                 # Draw grid
-                self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05)
+                self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.1, self.height *0.9)
                 # Update Player
                 self.P1.Update()
-                self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05)
+                self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.1, self.height *0.9)
                 self.D1.update(self.screen_rect)
                 self.D1.draw(self.screen)
                 self.D1.vel(self.width, self.height)

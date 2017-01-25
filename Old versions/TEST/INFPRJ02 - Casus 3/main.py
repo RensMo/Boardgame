@@ -1,20 +1,21 @@
+import random
+
 import pygame
 from pygame.locals import *
 
-#LOAD IMAGES
-I0 = pygame.image.load("Assets/Background_S0.jpg")
-I1 = pygame.image.load("Assets/Play_Button.jpg")
-I2 = pygame.image.load("Assets/Help_Button.jpg")
-I3 = pygame.image.load("Assets/Settings_Button.jpg")
-I4 = pygame.image.load("Assets/Quit_Button.jpg")
-I5 = pygame.image.load("Assets/Back_Button.jpg")
+from Button import *
+from Dice import *
+from Menu import *
+from Player import *
+from Tile import *
+
 
 class Game:
     def __init__(self):
         self.width = 1280
         self.height = 720
         self.size = (self.width, self.height)
-        self.caption = "Opseilen"
+        self.caption = "Old versions"
 
         self.S0 = [1, 0, 0, 0]
 
@@ -22,6 +23,14 @@ class Game:
 
         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
         pygame.display.set_caption(self.caption)
+        self.clock = pygame.time.Clock()
+
+        grid_width = 8
+        grid_height = 15
+        self.entry_tile = build_square_matrix(grid_width, grid_height)
+
+        self.P1 = Player("Rens", self.entry_tile)
+        self.D1 = Dice(self.width * 0.5, self.height * 0.5, self.width * 0.1, self.width * 0.1)
 
     def draw(self):
         if self.S0[0] == 1:
@@ -29,9 +38,20 @@ class Game:
         if self.S0[1] == 1:
             self.screen.fill((pygame.Color("Light Green")))
             self.B1.draw(self.screen)
+            # Draw grid
+            self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05)
+
+            # Update Player
+            self.P1.Update()
+            self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05)
+            self.D1.update(self.screen_rect)
+            self.D1.draw(self.screen)
+            self.D1.vel(self.width, self.height)
         if self.S0[2] == 1:
             self.screen.fill((pygame.Color("Light Blue")))
             self.B2.draw(self.screen)
+            self.H1.draw(self.screen)
+            self.H2.draw(self.screen)
         if self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
             self.B3.draw(self.screen)
@@ -44,7 +64,10 @@ class Game:
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
+        self.H1 = Button(self.width * 0.88, self.height * 0.84, self.width * 0.1, self.height * 0.07, I6)
+        self.H2 = Button(self.width * 0.77, self.height * 0.84, self.width * 0.1, self.height * 0.07, I7)
         self.M1 = Menu(self.width, self.height, I0)
+        self.screen_rect = self.screen.get_rect()
 
         for event in pygame.event.get():
             if event.type == VIDEORESIZE:
@@ -60,10 +83,25 @@ class Game:
             if keys[pygame.K_ESCAPE]:
                 if self.S0[1] == 1 or self.S0[2] == 1 or self.S0[3] == 1:
                     self.S0 = [1, 0, 0, 0]
-            if event.type == pygame.MOUSEBUTTONUP:
+            if keys[pygame.K_r]:
+                self.D1
+                self.D1 = Dice(self.width * 0.5, self.height * 0.5, self.width * 0.1, self.width * 0.1)
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and self.D1.rc == 0:
+                self.D1.check_click(event.pos)
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                self.D1.click = False
+                if self.D1.rc == 1:
+                    self.D1.rc = 2
+                if self.D1.rc == 3 and self.D1.vcc < 30:
+                    self.D1.rc = 0
+                    self.D1.vcc = 0
                 if self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
                     self.S0 = [1, 0, 0, 0]
                 if self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
+                    self.S0 = [1, 0, 0, 0]
+                if self.H1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
+                    self.S0 = [1, 0, 0, 0]
+                if self.H2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
                 if self.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     self.S0 = [1, 0, 0, 0]
@@ -81,42 +119,7 @@ class Game:
     def game_loop(self):
         while not self.process_events():
             self.draw()
-
-class Menu:
-    def __init__(self, x, y, I):
-        self.x = x
-        self.y = y
-        self.I = I
-        self.I = pygame.transform.scale(self.I, (int(x), int(y)))
-        self.rect = pygame.Rect((0,0), (x, y))
-
-        self.B1 = Button(self.x * 0.12, self.y * 0.29, self.x * 0.23, self.y * 0.14, I1)
-        self.B2 = Button(self.x * 0.12, self.y * 0.44, self.x * 0.23, self.y * 0.14, I2)
-        self.B3 = Button(self.x * 0.12, self.y * 0.59, self.x * 0.23, self.y * 0.14, I3)
-        self.B4 = Button(self.x * 0.12, self.y * 0.74, self.x * 0.23, self.y * 0.14, I4)
-
-    def draw(self, surface):
-        surface.blit(self.I, (self.rect))
-        self.B1.draw(surface)
-        self.B2.draw(surface)
-        self.B3.draw(surface)
-        self.B4.draw(surface)
-
-class Button:
-    def __init__(self, x, y, sx, sy, I):
-        self.x = x
-        self.y = y
-        self.I = I
-        self.I = pygame.transform.scale(self.I, (int(sx), int(sy)))
-        self.rect = pygame.Rect((x, y), (sx, sy))
-        self.srect = pygame.Surface((int(sx), int(sy)))
-
-    def draw(self, surface):
-        surface.blit(self.I, (self.rect))
-        if self.rect.collidepoint(pygame.mouse.get_pos()):
-            self.srect.fill(pygame.Color("Black"))
-            self.srect.set_alpha(68)
-            surface.blit(self.srect, (self.x, self.y))
+            self.clock.tick(60)
 
 def run():
     game = Game()
