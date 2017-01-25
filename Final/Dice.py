@@ -81,8 +81,16 @@ class Dice:
             self.I = self.cI
             self.I = pygame.transform.rotate(self.I, int(self.endrotate))
         if self.rc == 3 and self.vcc < 30:
-                    self.rc = 0
-                    self.vcc = 0
+            self.vxy = 0
+            self.vx = 0
+            self.vy = 0
+            self.rvx = 0
+            self.rvy = 0
+            self.vc = 0
+            self.rc = 0
+            self.rcc = 0
+            self.vcc = 0
+            self.vcc2 = 0
         self.rect.move_ip(self.rvx, self.rvy)
         self.rect.clamp_ip(screen_rect)
 
