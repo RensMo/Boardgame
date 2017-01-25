@@ -57,6 +57,8 @@ class Game:
                 # Update Player
                 self.P1.Update()
                 self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.1, self.height *0.9)
+                self.CD_L.draw(self.screen)
+                self.TD_L.draw(self.screen)
                 self.D1.update(self.screen_rect)
                 self.D1.draw(self.screen)
                 self.D1.vel(self.width, self.height)
@@ -106,6 +108,10 @@ class Game:
         self.Text1 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP1)
         self.Text2 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP2)
         self.Text3 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP3)
+        self.CD = Textbg(self.width * 0.77, self.height * 0.455, self.width * 0.19, self.height * 0.05, I12)
+        self.CD_L = Textbg(self.width * 0.77, self.height * 0.455, self.width * 0.19, self.height * 0.05, I13)
+        self.TD = Textbg(self.width * 0.77, self.height * 0.755, self.width * 0.19, self.height * 0.05, I14)
+        self.TD_L = Textbg(self.width * 0.77, self.height * 0.755, self.width * 0.19, self.height * 0.05, I15)
         self.screen_rect = self.screen.get_rect()
 
         for event in pygame.event.get():
