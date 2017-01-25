@@ -116,9 +116,9 @@ class Game:
         self.CD_L = Textbg(self.width * 0.77, self.height * 0.455, self.width * 0.19, self.height * 0.05, I13)
         self.TD = Textbg(self.width * 0.77, self.height * 0.755, self.width * 0.19, self.height * 0.05, I14)
         self.TD_L = Textbg(self.width * 0.77, self.height * 0.755, self.width * 0.19, self.height * 0.05, I15)
-        self.AR_L = Textbg(self.width * 0.75, self.height * 0.88, self.width * 0.07, self.height * 0.085, I16)
-        self.AR_R = Textbg(self.width * 0.90, self.height * 0.88, self.width * 0.07, self.height * 0.085, I17)
-        self.AR_U = Textbg(self.width * 0.825, self.height * 0.82, self.width * 0.07, self.height * 0.085, I18)
+        self.AR_L = Textbg(self.width * 0.75, self.height * 0.88, self.width * 0.065, self.height * 0.085, I16)
+        self.AR_R = Textbg(self.width * 0.91, self.height * 0.88, self.width * 0.065, self.height * 0.085, I17)
+        self.AR_U = Textbg(self.width * 0.83, self.height * 0.82, self.width * 0.065, self.height * 0.085, I18)
 
         self.screen_rect = self.screen.get_rect()
 
