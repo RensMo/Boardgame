@@ -53,10 +53,10 @@ class Game:
                 self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
                 # Draw grid
-                self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.22, self.height * 0.9)
+                self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.2197, self.height * 0.9)
                 # Update Player
                 self.P1.Update()
-                self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.22, self.height *0.9)
+                self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.2197, self.height *0.9)
                 self.D1.update(self.screen_rect)
                 self.D1.draw(self.screen)
                 self.D1.vel(self.width, self.height)
