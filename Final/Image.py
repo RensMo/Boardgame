@@ -27,6 +27,7 @@ I15 = pygame.image.load("Assets/Play/chdirection_light.png")
 I16 = pygame.image.load("Assets/Play/arrow_l.png")
 I17 = pygame.image.load("Assets/Play/arrow_r.png")
 I18 = pygame.image.load("Assets/Play/arrow_u.png")
+I19 = pygame.image.load("Assets/Play/question.png")
 
 ID1 = pygame.image.load("Assets/Play/dice1.png")
 ID2 = pygame.image.load("Assets/Play/dice2.png")
