@@ -46,9 +46,12 @@ class Game:
                 self.PL2.draw(self.screen)
                 self.PL3.draw(self.screen)
                 self.PL4.draw(self.screen)
+                self.Next2.draw(self.screen)
             if self.play_pagenr == 1:
                 self.Pbg2.draw(self.screen)
                 self.B1.draw(self.screen)
+                self.Next2.draw(self.screen)
+                self.Prev2.draw(self.screen)
             elif self.play_pagenr == 2:
                 self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
@@ -59,11 +62,12 @@ class Game:
                 self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.2197, self.height *0.9)
                 self.CD_L.draw(self.screen)
                 self.TD_L.draw(self.screen)
+                self.AR_L.draw(self.screen)
+                self.AR_R.draw(self.screen)
+                self.AR_U.draw(self.screen)
                 self.D1.update(self.screen_rect)
                 self.D1.draw(self.screen)
                 self.D1.vel(self.width, self.height)
-            self.Next2.draw(self.screen)
-            self.Prev2.draw(self.screen)
         # Help
         if self.S0[2] == 1:
             self.Helpbg.draw(self.screen)
@@ -112,6 +116,10 @@ class Game:
         self.CD_L = Textbg(self.width * 0.77, self.height * 0.455, self.width * 0.19, self.height * 0.05, I13)
         self.TD = Textbg(self.width * 0.77, self.height * 0.755, self.width * 0.19, self.height * 0.05, I14)
         self.TD_L = Textbg(self.width * 0.77, self.height * 0.755, self.width * 0.19, self.height * 0.05, I15)
+        self.AR_L = Textbg(self.width * 0.75, self.height * 0.88, self.width * 0.07, self.height * 0.085, I16)
+        self.AR_R = Textbg(self.width * 0.90, self.height * 0.88, self.width * 0.07, self.height * 0.085, I17)
+        self.AR_U = Textbg(self.width * 0.825, self.height * 0.82, self.width * 0.07, self.height * 0.085, I18)
+
         self.screen_rect = self.screen.get_rect()
 
         for event in pygame.event.get():
