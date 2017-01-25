@@ -5,7 +5,7 @@ BG0 = pygame.image.load("Assets/Background_S0.jpg")
 BG1 = pygame.image.load("Assets/Play/p1_bg.jpg")
 BG2 = pygame.image.load("Assets/Play/p2_bg.jpg")
 BG3 = pygame.image.load("Assets/Help/help_bg.jpg")
-
+BG4 = pygame.image.load("Assets/Play/p3_bg.jpg")
 
 ###BUTTONS
 I1 = pygame.image.load("Assets/Play_Button.jpg")

@@ -50,7 +50,7 @@ class Game:
                 self.Pbg2.draw(self.screen)
                 self.B1.draw(self.screen)
             elif self.play_pagenr == 2:
-                self.screen.fill((pygame.Color("Light Green")))
+                self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
                 # Draw grid
                 self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.1, self.height *0.9)
@@ -91,6 +91,7 @@ class Game:
         self.M1 = Menu(self.width, self.height, BG0)
         self.Pbg1 = Backg(self.width, self.height, BG1)
         self.Pbg2 = Backg(self.width, self.height, BG2)
+        self.Pbg3 = Backg(self.width, self.height, BG4)
         self.Helpbg = Backg(self.width, self.height, BG3)
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
