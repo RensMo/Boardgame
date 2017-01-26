@@ -35,7 +35,7 @@ class Game:
         self.entry_tile = build_matrix()
 
         self.P1 = Player("", self.entry_tile)
-        self.D1 = Dice(self.width * 0.5, self.height * 0.5, self.width * 0.1, self.width * 0.1, ID1)
+        self.D1 = Dice(self.width * 0.81, self.height * 0.51, self.width * 0.1, self.width * 0.1, ID1)
         self.T1_1 = IText(self.width * 0.031, self.height * 0.145, "#1", 40, 0)
         self.T1_2 = IText(self.width * 0.095, self.height * 0.145, "", 40, 390)
         self.T2_1 = IText(self.width * 0.031, self.height * 0.245, "#2", 40, 0)
@@ -192,20 +192,22 @@ class Game:
                 self.screen = pygame.display.set_mode(event.dict['size'], HWSURFACE | DOUBLEBUF | RESIZABLE)
                 self.width = event.dict['size'][0]
                 self.height = event.dict['size'][1]
-            if event.type == pygame.QUIT:
+                if self.D1.rc == 0:
+                    self.D1 = Dice(self.width * 0.81, self.height * 0.51, self.width * 0.1, self.width * 0.1, ID1)
+            elif event.type == pygame.QUIT:
                 return True
-            if keys[pygame.K_LCTRL] and keys[pygame.K_w]:
+            elif keys[pygame.K_LCTRL] and keys[pygame.K_w]:
                 return True
-            if keys[pygame.K_LALT] and keys[pygame.K_F4]:
+            elif keys[pygame.K_LALT] and keys[pygame.K_F4]:
                 return True
-            if keys[pygame.K_ESCAPE]:
+            elif keys[pygame.K_ESCAPE]:
                 if self.S0[1] == 1 or self.S0[2] == 1 or self.S0[3] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.play_pagenr = int(0)
                     self.help_pagenr = int(0)
-            if keys[pygame.K_r]:
-                self.D1 = Dice(self.width * 0.5, self.height * 0.5, self.width * 0.1, self.width * 0.1, ID1)
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            elif keys[pygame.K_r]:
+                self.D1 = Dice(self.width * 0.81, self.height * 0.51, self.width * 0.1, self.width * 0.1, ID1)
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if self.D1.rc == 0:
                     self.D1.check_click(event.pos)
                 if self.T1_2.rect.collidepoint(pygame.mouse.get_pos()):
@@ -224,7 +226,7 @@ class Game:
                     self.T4_2.focus = 1
                 if not self.T4_2.rect.collidepoint(pygame.mouse.get_pos()):
                     self.T4_2.focus = 0
-            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 self.D1.click = False
                 if self.D1.rc == 1:
                     self.D1.rc = 2
