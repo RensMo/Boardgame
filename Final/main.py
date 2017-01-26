@@ -229,9 +229,6 @@ class Game:
                 if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr < self.play_pages:
                         self.play_pagenr += 1
-                        if self.play_pagenr == 2:
-                            self.P1.Name = self.T1_2
-                            print(self.P1.Name)
                 if self.Prev2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr > 0:
                         self.play_pagenr -= 1
