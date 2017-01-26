@@ -1,13 +1,13 @@
 import pygame
 
 class IText:
-    def __init__(self, x, y, btext, size, width):
+    def __init__(self, x, y, btext, size, width, color=pygame.Color("black")):
         self.x = x
         self.y = y
         self.size = size
         self.width = width
         self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", self.size)
-        self.color = pygame.Color("Black")
+        self.color = color
         self.btext = btext
         self.atext = ""
         self.etext = self.font.render(self.btext + self.atext, 1, (self.color))

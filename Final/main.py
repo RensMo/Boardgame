@@ -137,7 +137,7 @@ class Game:
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
             #Boardgame
-            if self.play_pagenr == 2:
+            if self.play_pagenr == 2 or self.play_pagenr == 3:
                 #Draw board
                 self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
@@ -161,13 +161,13 @@ class Game:
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
 
                 #Draw player names top right
-                p1name = IText(self.width * 0.75, self.height * 0.18,  self.P1.Name, int(self.width * 0.03), 0)
+                p1name = IText(self.width * 0.75, self.height * 0.18,  self.P1.Name, int(self.width * 0.03), 0, pygame.Color("green"))
                 p1name.draw(self.screen)
-                p2name = IText(self.width * 0.75, self.height * 0.22, self.P2.Name, int(self.width * 0.03), 0)
+                p2name = IText(self.width * 0.75, self.height * 0.22, self.P2.Name, int(self.width * 0.03), 0, pygame.Color("green"))
                 p2name.draw(self.screen)
-                p3name = IText(self.width * 0.75, self.height * 0.26, self.P3.Name, int(self.width * 0.03), 0)
+                p3name = IText(self.width * 0.75, self.height * 0.26, self.P3.Name, int(self.width * 0.03), 0, pygame.Color("green"))
                 p3name.draw(self.screen)
-                p4name = IText(self.width * 0.75, self.height * 0.30, self.P4.Name, int(self.width * 0.03), 0)
+                p4name = IText(self.width * 0.75, self.height * 0.30, self.P4.Name, int(self.width * 0.03), 0, pygame.Color("green"))
                 p4name.draw(self.screen)
 
                 self.CD_L.draw(self.screen)
@@ -180,26 +180,10 @@ class Game:
                 self.D1.vel(self.width, self.height)
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
-            #Questions
-            elif self.play_pagenr == 3:
-                self.Pbg3.draw(self.screen)
-                self.B1.draw(self.screen)
-                # Draw grid
-                self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.2197, self.height * 0.9)
-                # Update Player
-                self.P1.Update()
-                self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.2197, self.height *0.9)
-                self.CD_L.draw(self.screen)
-                self.TD_L.draw(self.screen)
-                self.AR_L.draw(self.screen)
-                self.AR_R.draw(self.screen)
-                self.AR_U.draw(self.screen)
-                self.D1.update(self.screen_rect)
-                self.D1.draw(self.screen, self.width * 0.1, self.width * 0.1)
-                self.D1.vel(self.width, self.height)
-                self.Next2.draw(self.screen)
-                self.Prev2.draw(self.screen)
-                self.Q.draw(self.screen)
+
+                #Questions
+                if self.play_pagenr == 3:
+                    self.Q.draw(self.screen)
         # Help
         if self.S0[2] == 1:
             self.Helpbg.draw(self.screen)
