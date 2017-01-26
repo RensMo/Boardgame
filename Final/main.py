@@ -76,7 +76,7 @@ class Game:
             #Pick player settings
             if self.play_pagenr == 1:
                 self.Pbg2.draw(self.screen)
-                if self.players == 2:
+                if self.players >= 2:
                     self.T1_1.draw(self.screen)
                     self.T1_2.draw(self.screen)
                     self.T2_1.draw(self.screen)
@@ -161,14 +161,15 @@ class Game:
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
 
                 #Draw player names top right
-                p1name = IText(self.width * 0.75, self.height * 0.18,  self.P1.Name, int(self.width * 0.03), 0, pygame.Color("green"))
+                p1name = IText(self.width * 0.75, self.height * 0.18,  self.P1.Name, int(self.width * 0.03), 0, self.P1.Colour)
                 p1name.draw(self.screen)
-                p2name = IText(self.width * 0.75, self.height * 0.22, self.P2.Name, int(self.width * 0.03), 0, pygame.Color("green"))
+                p2name = IText(self.width * 0.75, self.height * 0.22, self.P2.Name, int(self.width * 0.03), 0, self.P2.Colour)
                 p2name.draw(self.screen)
-                p3name = IText(self.width * 0.75, self.height * 0.26, self.P3.Name, int(self.width * 0.03), 0, pygame.Color("green"))
+                p3name = IText(self.width * 0.75, self.height * 0.26, self.P3.Name, int(self.width * 0.03), 0, self.P3.Colour)
                 p3name.draw(self.screen)
-                p4name = IText(self.width * 0.75, self.height * 0.30, self.P4.Name, int(self.width * 0.03), 0, pygame.Color("green"))
+                p4name = IText(self.width * 0.75, self.height * 0.30, self.P4.Name, int(self.width * 0.03), 0, self.P4.Colour)
                 p4name.draw(self.screen)
+                print(self.P4.Colour)
 
                 self.CD_L.draw(self.screen)
                 self.TD_L.draw(self.screen)
@@ -302,11 +303,15 @@ class Game:
                     if self.play_pagenr < self.play_pages:
                         if self.players >= 2:
                             self.P1.Name = self.T1_2.atext
+                            self.P1.Colour = self.P1C.color
                             self.P2.Name = self.T2_2.atext
+                            self.P2.Colour = self.P2C.color
                             if self.players >= 3:
                                 self.P3.Name = self.T3_2.atext
+                                self.P3.Colour = self.P3C.color
                                 if self.players >= 4:
                                     self.P4.Name = self.T4_2.atext
+                                    self.P3.Colour = self.P4C.color
                         self.play_pagenr += 1
                 if self.Prev2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr > 0:
