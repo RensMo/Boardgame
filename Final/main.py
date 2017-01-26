@@ -160,11 +160,14 @@ class Game:
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
 
                 #Draw player names top right
-                """
-                IText(self.width * 0.75, self.height * 0.18, self.P1.Name, 40, 0).draw(self.screen)
-                IText(self.width * 0.75, self.height * 0.22, self.P2.Name, 40, 0).draw(self.screen)
-                IText(self.width * 0.75, self.height * 0.26, self.P3.Name, 40, 0).draw(self.screen)
-                IText(self.width * 0.75, self.height * 0.30, self.P4.Name, 40, 0).draw(self.screen)"""
+                p1name = IText(self.width * 0.75, self.height * 0.18,  self.P1.Name, int(self.width * 0.03), 0)
+                p1name.draw(self.screen)
+                p2name = IText(self.width * 0.75, self.height * 0.22, self.P2.Name, int(self.width * 0.03), 0)
+                p2name.draw(self.screen)
+                p3name = IText(self.width * 0.75, self.height * 0.26, self.P3.Name, int(self.width * 0.03), 0)
+                p3name.draw(self.screen)
+                p4name = IText(self.width * 0.75, self.height * 0.30, self.P4.Name, int(self.width * 0.03), 0)
+                p4name.draw(self.screen)
 
                 self.CD_L.draw(self.screen)
                 self.TD_L.draw(self.screen)
@@ -217,8 +220,6 @@ class Game:
 
 
         pygame.display.update()
-
-
 
     def process_events(self):
         keys = pygame.key.get_pressed()
@@ -314,10 +315,14 @@ class Game:
                     self.D1.rc = 2
                 if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr < self.play_pages:
+                        if self.players >= 2:
+                            self.P1.Name = self.T1_2.atext
+                            self.P2.Name = self.T2_2.atext
+                            if self.players >= 3:
+                                self.P3.Name = self.T3_2.atext
+                                if self.players >= 4:
+                                    self.P4.Name = self.T4_2.atext
                         self.play_pagenr += 1
-                        if self.play_pagenr == 2:
-                            self.P1.Name = self.T1_2
-                            print(self.P1.Name)
                 if self.Prev2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr > 0:
                         self.play_pagenr -= 1
