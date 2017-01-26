@@ -14,9 +14,14 @@ class IText:
         self.shifted = False
         self.maxlength = 16
         self.focus = 0
-        self.rect = pygame.Rect((self.x, self.y), (self.width + self.size * len(self.atext), self.size))
+        self.rect = pygame.Rect((self.x, self.y), (self.width, self.size))
 
-    def update(self, events):
+    def update(self, events, x, y, size, width):
+        self.x = x
+        self.y = y
+        self.size = size
+        self.width = width
+        self.rect = pygame.Rect((self.x, self.y), (self.width, self.size))
         if self.focus == 0:
             self.color = pygame.Color("Black")
         if self.focus == 1:
