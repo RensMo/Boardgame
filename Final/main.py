@@ -11,6 +11,7 @@ from Text import *
 from Image import *
 from Dice import *
 from IText import *
+from PColor import *
 
 class Game:
     def __init__(self):
@@ -43,8 +44,7 @@ class Game:
         self.T3_2 = IText(self.width * 0.095, self.height * 0.345, "", 40, 390)
         self.T4_1 = IText(self.width * 0.031, self.height * 0.445, "#4", 40, 0)
         self.T4_2 = IText(self.width * 0.095, self.height * 0.445, "", 40, 390)
-
-
+        self.P1C = PColor(self.width * 0.55, self.height * 0.2)
 
     def draw(self):
         # Menu
@@ -66,6 +66,8 @@ class Game:
                     self.T1_2.draw(self.screen)
                     self.T2_1.draw(self.screen)
                     self.T2_2.draw(self.screen)
+                    self.P1C.update(self.width * 0.55, self.height * 0.2)
+                    self.P1C.draw(self.screen)
                 if self.players == 3:
                     self.T1_1.draw(self.screen)
                     self.T1_2.draw(self.screen)
@@ -269,6 +271,12 @@ class Game:
                     if self.play_pagenr < self.help_pages:
                         self.play_pagenr += 1
                         self.players = 4
+                if self.P1C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P1C.cc > 0:
+                        self.P1C.cc -= 1
+                if self.P1C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P1C.cc < 3:
+                        self.P1C.cc += 1
 
         return False
 
