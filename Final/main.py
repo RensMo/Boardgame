@@ -45,6 +45,9 @@ class Game:
         self.T4_1 = IText(self.width * 0.031, self.height * 0.445, "#4", 40, 0)
         self.T4_2 = IText(self.width * 0.095, self.height * 0.445, "", 40, 390)
         self.P1C = PColor(self.width * 0.55, self.height * 0.2)
+        self.P2C = PColor(self.width * 0.55, self.height * 0.2)
+        self.P3C = PColor(self.width * 0.55, self.height * 0.2)
+        self.P4C = PColor(self.width * 0.55, self.height * 0.2)
 
     def draw(self):
         # Menu
@@ -66,8 +69,10 @@ class Game:
                     self.T1_2.draw(self.screen)
                     self.T2_1.draw(self.screen)
                     self.T2_2.draw(self.screen)
-                    self.P1C.update(self.width * 0.55, self.height * 0.2)
+                    self.P1C.update(self.width * 0.43, self.height * 0.145)
                     self.P1C.draw(self.screen)
+                    self.P2C.update(self.width * 0.43, self.height * 0.245)
+                    self.P2C.draw(self.screen)
                 if self.players == 3:
                     self.T1_1.draw(self.screen)
                     self.T1_2.draw(self.screen)
@@ -75,6 +80,12 @@ class Game:
                     self.T2_2.draw(self.screen)
                     self.T3_1.draw(self.screen)
                     self.T3_2.draw(self.screen)
+                    self.P1C.update(self.width * 0.43, self.height * 0.145)
+                    self.P1C.draw(self.screen)
+                    self.P2C.update(self.width * 0.43, self.height * 0.245)
+                    self.P2C.draw(self.screen)
+                    self.P3C.update(self.width * 0.43, self.height * 0.345)
+                    self.P3C.draw(self.screen)
                 if self.players == 4:
                     self.T1_1.draw(self.screen)
                     self.T1_2.draw(self.screen)
@@ -84,6 +95,14 @@ class Game:
                     self.T3_2.draw(self.screen)
                     self.T4_1.draw(self.screen)
                     self.T4_2.draw(self.screen)
+                    self.P1C.update(self.width * 0.43, self.height * 0.145)
+                    self.P1C.draw(self.screen)
+                    self.P2C.update(self.width * 0.43, self.height * 0.245)
+                    self.P2C.draw(self.screen)
+                    self.P3C.update(self.width * 0.43, self.height * 0.345)
+                    self.P3C.draw(self.screen)
+                    self.P4C.update(self.width * 0.43, self.height * 0.445)
+                    self.P4C.draw(self.screen)
                 self.B1.draw(self.screen)
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
@@ -121,6 +140,8 @@ class Game:
                 self.D1.update(self.screen_rect)
                 self.D1.draw(self.screen, self.width * 0.1, self.width * 0.1)
                 self.D1.vel(self.width, self.height)
+                self.Next2.draw(self.screen)
+                self.Prev2.draw(self.screen)
                 self.Q.draw(self.screen)
         # Help
         if self.S0[2] == 1:
@@ -279,6 +300,25 @@ class Game:
                 if self.P1C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P1C.cc < 3:
                         self.P1C.cc += 1
+                if self.P2C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P2C.cc > 0:
+                        self.P2C.cc -= 1
+                if self.P2C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P2C.cc < 3:
+                        self.P2C.cc += 1
+                if self.P3C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P3C.cc > 0:
+                        self.P3C.cc -= 1
+                if self.P3C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P3C.cc < 3:
+                        self.P3C.cc += 1
+                if self.P4C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P4C.cc > 0:
+                        self.P4C.cc -= 1
+                if self.P4C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P4C.cc < 3:
+                        self.P4C.cc += 1
+
 
         return False
 
