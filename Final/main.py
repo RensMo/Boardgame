@@ -318,8 +318,8 @@ class Game:
                 if self.P4C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4C.cc < 3:
                         self.P4C.cc += 1
-
-
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 3 and self.D1.rect.collidepoint(pygame.mouse.get_pos()) and self.D1.rc == 0:
+                self.D1.rc = 4
         return False
 
     def game_loop(self):
