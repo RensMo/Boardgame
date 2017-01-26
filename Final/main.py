@@ -195,6 +195,15 @@ class Game:
                     self.S0 = [0, 0, 0, 1]
                 if self.M1.B4.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
                     return True
+                if self.PL2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
+                    if self.play_pagenr < self.help_pages:
+                        self.play_pagenr += 1
+                if self.PL3.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
+                    if self.play_pagenr < self.help_pages:
+                        self.play_pagenr += 1
+                if self.PL4.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
+                    if self.play_pagenr < self.help_pages:
+                        self.play_pagenr += 1
 
         return False
 
