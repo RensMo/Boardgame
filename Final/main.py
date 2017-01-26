@@ -18,7 +18,7 @@ class Game:
         self.width = 1280
         self.height = 720
         self.size = (self.width, self.height)
-        self.caption = "Old versions"
+        self.caption = "Opseilen"
         self.S0 = [1, 0, 0, 0]
         self.help_pages = 2
         self.help_pagenr = 0
@@ -34,7 +34,17 @@ class Game:
 
         self.entry_tile = build_matrix()
 
+        self.tile_width = 0.028
+        self.tile_height = 0.05
+        self.grid_pos_x = 0.2197
+        self.grid_pos_y = 0.9
+
+
         self.P1 = Player("", self.entry_tile)
+        self.P2 = Player("", self.entry_tile)
+        self.P3 = Player("", self.entry_tile)
+        self.P4 = Player("", self.entry_tile)
+
         self.D1 = Dice(self.width * 0.5, self.height * 0.5, self.width * 0.1, self.width * 0.1, ID1)
         self.T1_1 = IText(self.width * 0.031, self.height * 0.145, "#1", 40, 0)
         self.T1_2 = IText(self.width * 0.095, self.height * 0.145, "", 40, 390)
@@ -52,6 +62,7 @@ class Game:
             self.M1.draw(self.screen)
         # Play
         if self.S0[1] == 1:
+            #Choose Players
             if self.play_pagenr == 0:
                 self.Pbg1.draw(self.screen)
                 self.B1.draw(self.screen)
@@ -59,6 +70,7 @@ class Game:
                 self.PL3.draw(self.screen)
                 self.PL4.draw(self.screen)
                 self.Next2.draw(self.screen)
+            #Pick player settings
             if self.play_pagenr == 1:
                 self.Pbg2.draw(self.screen)
                 if self.players == 2:
@@ -87,14 +99,36 @@ class Game:
                 self.B1.draw(self.screen)
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
+            #Boardgame
             if self.play_pagenr == 2:
+                #Draw board
                 self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
-                # Draw grid
-                self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.2197, self.height * 0.9)
-                # Update Player
+                self.entry_tile.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
+                                     self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+
+                #Draw Players
                 self.P1.Update()
-                self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.2197, self.height *0.9)
+                self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
+                             self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                self.P2.Update()
+                self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
+                             self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                if self.players >= 3:
+                    self.P3.Update()
+                    self.P3.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
+                                 self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                    if self.players == 4:
+                        self.P4.Update()
+                        self.P4.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
+                                     self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+
+                #Draw player names top right
+                P1Name = IText(self.width * 0.75, self.height * 0.18, self.P1.Name, 40, 0).draw(self.screen)
+                P2Name = IText(self.width * 0.75, self.height * 0.22, self.P2.Name, 40, 0).draw(self.screen)
+                P3Name = IText(self.width * 0.75, self.height * 0.26, self.P3.Name, 40, 0).draw(self.screen)
+                P4Name = IText(self.width * 0.75, self.height * 0.30, self.P4.Name, 40, 0).draw(self.screen)
+
                 self.CD_L.draw(self.screen)
                 self.TD_L.draw(self.screen)
                 self.AR_L.draw(self.screen)
@@ -105,6 +139,7 @@ class Game:
                 self.D1.vel(self.width, self.height)
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
+            #Questions
             elif self.play_pagenr == 3:
                 self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
@@ -121,6 +156,8 @@ class Game:
                 self.D1.update(self.screen_rect)
                 self.D1.draw(self.screen)
                 self.D1.vel(self.width, self.height)
+
+                #Questions
                 self.Q.draw(self.screen)
         # Help
         if self.S0[2] == 1:
@@ -230,10 +267,14 @@ class Game:
                     self.D1.rc = 2
                 if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr < self.play_pages:
+                        if self.play_pagenr == 1:
+                            self.P1.Name = self.T1_2.atext
+                            self.P2.Name = self.T2_2.atext
+                            if self.players >= 3:
+                                self.P3.Name = self.T3_2.atext
+                                if self.players >= 4:
+                                    self.P4.Name = self.T4_2.atext
                         self.play_pagenr += 1
-                        if self.play_pagenr == 2:
-                            self.P1.Name = self.T1_2
-                            print(self.P1.Name)
                 if self.Prev2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr > 0:
                         self.play_pagenr -= 1
