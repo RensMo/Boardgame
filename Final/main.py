@@ -23,6 +23,7 @@ class Game:
         self.help_pagenr = 0
         self.play_pages = 3
         self.play_pagenr = 0
+        self.players = 0
 
         pygame.init()
 
@@ -32,9 +33,18 @@ class Game:
 
         self.entry_tile = build_matrix()
 
-        self.P1 = Player("Rens", self.entry_tile)
+        self.P1 = Player("", self.entry_tile)
         self.D1 = Dice(self.width * 0.5, self.height * 0.5, self.width * 0.1, self.width * 0.1, ID1)
-        self.T1 = IText(self.width * 0.5, self.height * 0.5, "", 50, 100)
+        self.T1_1 = IText(self.width * 0.031, self.height * 0.145, "#1", 40, 0)
+        self.T1_2 = IText(self.width * 0.095, self.height * 0.145, "", 40, 390)
+        self.T2_1 = IText(self.width * 0.031, self.height * 0.245, "#2", 40, 0)
+        self.T2_2 = IText(self.width * 0.095, self.height * 0.245, "", 40, 390)
+        self.T3_1 = IText(self.width * 0.031, self.height * 0.345, "#3", 40, 0)
+        self.T3_2 = IText(self.width * 0.095, self.height * 0.345, "", 40, 390)
+        self.T4_1 = IText(self.width * 0.031, self.height * 0.445, "#4", 40, 0)
+        self.T4_2 = IText(self.width * 0.095, self.height * 0.445, "", 40, 390)
+
+
 
     def draw(self):
         # Menu
@@ -51,6 +61,27 @@ class Game:
                 self.Next2.draw(self.screen)
             if self.play_pagenr == 1:
                 self.Pbg2.draw(self.screen)
+                if self.players == 2:
+                    self.T1_1.draw(self.screen)
+                    self.T1_2.draw(self.screen)
+                    self.T2_1.draw(self.screen)
+                    self.T2_2.draw(self.screen)
+                if self.players == 3:
+                    self.T1_1.draw(self.screen)
+                    self.T1_2.draw(self.screen)
+                    self.T2_1.draw(self.screen)
+                    self.T2_2.draw(self.screen)
+                    self.T3_1.draw(self.screen)
+                    self.T3_2.draw(self.screen)
+                if self.players == 4:
+                    self.T1_1.draw(self.screen)
+                    self.T1_2.draw(self.screen)
+                    self.T2_1.draw(self.screen)
+                    self.T2_2.draw(self.screen)
+                    self.T3_1.draw(self.screen)
+                    self.T3_2.draw(self.screen)
+                    self.T4_1.draw(self.screen)
+                    self.T4_2.draw(self.screen)
                 self.B1.draw(self.screen)
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
@@ -107,7 +138,7 @@ class Game:
         if self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
             self.B3.draw(self.screen)
-            self.T1.draw(self.screen)
+
 
         pygame.display.update()
 
@@ -145,7 +176,14 @@ class Game:
         self.AR_U = Button(self.width * 0.83, self.height * 0.82, self.width * 0.065, self.height * 0.085, I18)
 
         self.screen_rect = self.screen.get_rect()
-        self.T1.update(events)
+        self.T1_1.update(events)
+        self.T1_2.update(events)
+        self.T2_1.update(events)
+        self.T2_2.update(events)
+        self.T3_1.update(events)
+        self.T3_2.update(events)
+        self.T4_1.update(events)
+        self.T4_2.update(events)
 
         for event in events:
             if event.type == VIDEORESIZE:
@@ -168,10 +206,22 @@ class Game:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if self.D1.rc == 0:
                     self.D1.check_click(event.pos)
-                if self.T1.rect.collidepoint(pygame.mouse.get_pos()):
-                    self.T1.focus = 1
-                if not self.T1.rect.collidepoint(pygame.mouse.get_pos()):
-                    self.T1.focus = 0
+                if self.T1_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T1_2.focus = 1
+                if not self.T1_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T1_2.focus = 0
+                if self.T2_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T2_2.focus = 1
+                if not self.T2_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T2_2.focus = 0
+                if self.T3_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T3_2.focus = 1
+                if not self.T3_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T3_2.focus = 0
+                if self.T4_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T4_2.focus = 1
+                if not self.T4_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T4_2.focus = 0
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 self.D1.click = False
                 if self.D1.rc == 1:
@@ -179,6 +229,9 @@ class Game:
                 if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr < self.play_pages:
                         self.play_pagenr += 1
+                        if self.play_pagenr == 2:
+                            self.P1.Name = self.T1_2
+                            print(self.P1.Name)
                 if self.Prev2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr > 0:
                         self.play_pagenr -= 1
@@ -207,12 +260,15 @@ class Game:
                 if self.PL2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
                     if self.play_pagenr < self.help_pages:
                         self.play_pagenr += 1
+                        self.players = 2
                 if self.PL3.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
                     if self.play_pagenr < self.help_pages:
                         self.play_pagenr += 1
+                        self.players = 3
                 if self.PL4.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
                     if self.play_pagenr < self.help_pages:
                         self.play_pagenr += 1
+                        self.players = 4
 
         return False
 
