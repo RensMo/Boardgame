@@ -34,6 +34,7 @@ class Game:
 
         self.P1 = Player("Rens", self.entry_tile)
         self.D1 = Dice(self.width * 0.5, self.height * 0.5, self.width * 0.1, self.width * 0.1, ID1)
+        self.T1 = IText(self.width * 0.5, self.height * 0.5, "", 50, 100)
 
     def draw(self):
         # Menu
@@ -106,6 +107,7 @@ class Game:
         if self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
             self.B3.draw(self.screen)
+            self.T1.draw(self.screen)
 
         pygame.display.update()
 
@@ -113,6 +115,7 @@ class Game:
 
     def process_events(self):
         keys = pygame.key.get_pressed()
+        events = pygame.event.get()
 
         self.M1 = Menu(self.width, self.height, BG0)
         self.Pbg1 = Backg(self.width, self.height, BG1)
@@ -142,8 +145,9 @@ class Game:
         self.AR_U = Button(self.width * 0.83, self.height * 0.82, self.width * 0.065, self.height * 0.085, I18)
 
         self.screen_rect = self.screen.get_rect()
+        self.T1.update(events)
 
-        for event in pygame.event.get():
+        for event in events:
             if event.type == VIDEORESIZE:
                 self.screen = pygame.display.set_mode(event.dict['size'], HWSURFACE | DOUBLEBUF | RESIZABLE)
                 self.width = event.dict['size'][0]
@@ -161,8 +165,13 @@ class Game:
                     self.help_pagenr = int(0)
             if keys[pygame.K_r]:
                 self.D1 = Dice(self.width * 0.5, self.height * 0.5, self.width * 0.1, self.width * 0.1, ID1)
-            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and self.D1.rc == 0:
-                self.D1.check_click(event.pos)
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                if self.D1.rc == 0:
+                    self.D1.check_click(event.pos)
+                if self.T1.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T1.focus = 1
+                if not self.T1.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T1.focus = 0
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 self.D1.click = False
                 if self.D1.rc == 1:
