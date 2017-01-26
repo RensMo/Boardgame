@@ -59,11 +59,11 @@ class Dice:
             self.rvy = -self.rvy
         if self.rvx > 80:
             self.rvx = 80
-        if self.rvx < -80:
+        elif self.rvx < -80:
             self.rvx = -80
         if self.rvy > 80:
             self.rvy = 80
-        if self.rvy < -80:
+        elif self.rvy < -80:
             self.rvy = -80
 
     def update(self, screen_rect):
@@ -75,11 +75,11 @@ class Dice:
         if self.rc == 3:
             if self.rvx > 0:
                 self.rvx -= 1
-            if self.rvx < 0:
+            elif self.rvx < 0:
                 self.rvx += 1
             if self.rvy > 0:
                 self.rvy -= 1
-            if self.rvy < 0:
+            elif self.rvy < 0:
                 self.rvy += 1
         if self.vcc > 30:
             self.I = random.choice(self.rI)
@@ -94,7 +94,6 @@ class Dice:
             self.vy = 0
             self.rvx = 0
             self.rvy = 0
-            self.vc = 0
             self.rc = 0
             self.rcc = 0
             self.vcc = 0
