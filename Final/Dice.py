@@ -20,7 +20,6 @@ class Dice:
         self.vy = 0
         self.rvx = 0
         self.rvy = 0
-        self.vc = 0
         self.rc = 0
         self.rcc = 0
         self.vcc = 0
@@ -40,9 +39,11 @@ class Dice:
         self.vx = self.vxy[0]
         self.vy = self.vxy[1]
 
-        self.vc += 1
-        if self.vxy == (0,0):
-            self.vc = 0
+        if self.rc == 4:
+            self.rvx = 50
+            self.rvy = 50
+            self.vcc = abs(self.rvx) + abs(self.rvy)
+            self.rc = 3
         if self.rc == 2:
             self.rcc += 1
             if self.rcc == 3:
