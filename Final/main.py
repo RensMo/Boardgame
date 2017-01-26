@@ -178,14 +178,14 @@ class Game:
         self.AR_U = Button(self.width * 0.83, self.height * 0.82, self.width * 0.065, self.height * 0.085, I18)
 
         self.screen_rect = self.screen.get_rect()
-        self.T1_1.update(events)
-        self.T1_2.update(events)
-        self.T2_1.update(events)
-        self.T2_2.update(events)
-        self.T3_1.update(events)
-        self.T3_2.update(events)
-        self.T4_1.update(events)
-        self.T4_2.update(events)
+        self.T1_1.update(events, self.width * 0.031, self.height * 0.145, 40, 0)
+        self.T1_2.update(events, self.width * 0.095, self.height * 0.145, 40, 390)
+        self.T2_1.update(events, self.width * 0.031, self.height * 0.245, 40, 0)
+        self.T2_2.update(events, self.width * 0.095, self.height * 0.245, 40, 390)
+        self.T3_1.update(events, self.width * 0.031, self.height * 0.345, 40, 0)
+        self.T3_2.update(events, self.width * 0.095, self.height * 0.345, 40, 390)
+        self.T4_1.update(events, self.width * 0.031, self.height * 0.445, 40, 0)
+        self.T4_2.update(events, self.width * 0.095, self.height * 0.445, 40, 390)
 
         for event in events:
             if event.type == VIDEORESIZE:
@@ -231,6 +231,9 @@ class Game:
                 if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr < self.play_pages:
                         self.play_pagenr += 1
+                        if self.play_pagenr == 2:
+                            self.P1.Name = self.T1_2
+                            print(self.P1.Name)
                 if self.Prev2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr != 3:
                     if self.play_pagenr > 0:
                         self.play_pagenr -= 1
