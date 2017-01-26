@@ -64,7 +64,7 @@ class Game:
         if self.S0[0] == 1:
             self.M1.draw(self.screen)
         # Play
-        if self.S0[1] == 1:
+        elif self.S0[1] == 1:
             #Choose Players
             if self.play_pagenr == 0:
                 self.Pbg1.draw(self.screen)
@@ -74,7 +74,7 @@ class Game:
                 self.PL4.draw(self.screen)
                 self.Next2.draw(self.screen)
             #Pick player settings
-            if self.play_pagenr == 1:
+            elif self.play_pagenr == 1:
                 self.Pbg2.draw(self.screen)
                 if self.players >= 2:
                     self.T1_1.draw(self.screen)
@@ -107,7 +107,7 @@ class Game:
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
             #Boardgame
-            if self.play_pagenr == 2 or self.play_pagenr == 3:
+            elif self.play_pagenr == 2 or self.play_pagenr == 3:
                 #Draw board
                 self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
@@ -166,12 +166,12 @@ class Game:
                 if self.play_pagenr == 3:
                     self.Q.draw(self.screen)
         # Help
-        if self.S0[2] == 1:
+        elif self.S0[2] == 1:
             self.Helpbg.draw(self.screen)
             if self.help_pagenr == 0:
                 self.Text1.draw(self.screen)
                 self.Next1.draw(self.screen)
-            if self.help_pagenr == 1:
+            elif self.help_pagenr == 1:
                 self.Text2.draw(self.screen)
                 self.Next1.draw(self.screen)
                 self.Prev1.draw(self.screen)
@@ -180,7 +180,7 @@ class Game:
                 self.Prev1.draw(self.screen)
             self.B2.draw(self.screen)
         # Settings
-        if self.S0[3] == 1:
+        elif self.S0[3] == 1:
             self.screen.fill((pygame.Color("Yellow")))
             self.B3.draw(self.screen)
 
@@ -260,19 +260,19 @@ class Game:
                     self.D1.check_click(event.pos)
                 if self.T1_2.rect.collidepoint(pygame.mouse.get_pos()):
                     self.T1_2.focus = 1
-                if not self.T1_2.rect.collidepoint(pygame.mouse.get_pos()):
+                elif not self.T1_2.rect.collidepoint(pygame.mouse.get_pos()):
                     self.T1_2.focus = 0
                 if self.T2_2.rect.collidepoint(pygame.mouse.get_pos()):
                     self.T2_2.focus = 1
-                if not self.T2_2.rect.collidepoint(pygame.mouse.get_pos()):
+                elif not self.T2_2.rect.collidepoint(pygame.mouse.get_pos()):
                     self.T2_2.focus = 0
                 if self.T3_2.rect.collidepoint(pygame.mouse.get_pos()):
                     self.T3_2.focus = 1
-                if not self.T3_2.rect.collidepoint(pygame.mouse.get_pos()):
+                elif not self.T3_2.rect.collidepoint(pygame.mouse.get_pos()):
                     self.T3_2.focus = 0
                 if self.T4_2.rect.collidepoint(pygame.mouse.get_pos()):
                     self.T4_2.focus = 1
-                if not self.T4_2.rect.collidepoint(pygame.mouse.get_pos()):
+                elif not self.T4_2.rect.collidepoint(pygame.mouse.get_pos()):
                     self.T4_2.focus = 0
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 self.D1.click = False
@@ -292,74 +292,74 @@ class Game:
                                     self.P4.Name = self.T4_2.atext
                                     self.P4.Colour = self.P4C.color
                         self.play_pagenr += 1
-                if self.Prev2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1: #and self.play_pagenr != 3
+                elif self.Prev2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1: #and self.play_pagenr != 3
                     if self.play_pagenr > 0:
                         self.play_pagenr -= 1
-                if self.Next1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
+                elif self.Next1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     if self.help_pagenr < self.help_pages:
                         self.help_pagenr += 1
-                if self.Prev1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
+                elif self.Prev1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     if self.help_pagenr > 0:
                         self.help_pagenr -= 1
-                if self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
+                elif self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.play_pagenr = int(0)
-                if self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
+                elif self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.help_pagenr = int(0)
-                if self.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     self.S0 = [1, 0, 0, 0]
-                if self.M1.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
+                elif self.M1.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
                     self.S0 = [0, 1, 0, 0]
-                if self.M1.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
+                elif self.M1.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
                     self.S0 = [0, 0, 1, 0]
-                if self.M1.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
+                elif self.M1.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
                     self.S0 = [0, 0, 0, 1]
-                if self.M1.B4.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
+                elif self.M1.B4.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
                     return True
-                if self.PL2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
+                elif self.PL2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
                     if self.play_pagenr < self.help_pages:
                         self.play_pagenr += 1
                         self.players = 2
-                if self.PL3.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
+                elif self.PL3.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
                     if self.play_pagenr < self.help_pages:
                         self.play_pagenr += 1
                         self.players = 3
-                if self.PL4.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
+                elif self.PL4.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 0:
                     if self.play_pagenr < self.help_pages:
                         self.play_pagenr += 1
                         self.players = 4
-                if self.P1C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                elif self.P1C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P1C.cc > 0:
                         self.P1C.cc -= 1
-                if self.P1C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                elif self.P1C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P1C.cc < 3:
                         self.P1C.cc += 1
-                if self.P2C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                elif self.P2C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P2C.cc > 0:
                         self.P2C.cc -= 1
-                if self.P2C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                elif self.P2C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P2C.cc < 3:
                         self.P2C.cc += 1
-                if self.P3C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                elif self.P3C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P3C.cc > 0:
                         self.P3C.cc -= 1
-                if self.P3C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                elif self.P3C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P3C.cc < 3:
                         self.P3C.cc += 1
-                if self.P4C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                elif self.P4C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4C.cc > 0:
                         self.P4C.cc -= 1
-                if self.P4C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                elif self.P4C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4C.cc < 3:
                         self.P4C.cc += 1
                 #Player move with direction pad demo
-                if self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
+                elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
                     self.P1.Tile = self.P1.Tile.Left
-                if self.AR_U.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
+                elif self.AR_U.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
                     if self.P1.Tile.Up != None:
                         self.P1.Tile = self.P1.Tile.Up
-                if self.AR_R.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
+                elif self.AR_R.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
                     self.P1.Tile = self.P1.Tile.Right
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 3 and self.D1.rect.collidepoint(pygame.mouse.get_pos()) and self.D1.rc == 0:
                 self.D1.rc = 4
