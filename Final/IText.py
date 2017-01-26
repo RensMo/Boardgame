@@ -22,6 +22,7 @@ class IText:
         self.size = size
         self.width = width
         self.rect = pygame.Rect((self.x, self.y), (self.width, self.size))
+        self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", self.size)
         if self.focus == 0:
             self.color = pygame.Color("Black")
         if self.focus == 1:

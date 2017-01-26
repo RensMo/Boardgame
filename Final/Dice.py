@@ -20,7 +20,6 @@ class Dice:
         self.vy = 0
         self.rvx = 0
         self.rvy = 0
-        self.vc = 0
         self.rc = 0
         self.rcc = 0
         self.vcc = 0
@@ -40,9 +39,11 @@ class Dice:
         self.vx = self.vxy[0]
         self.vy = self.vxy[1]
 
-        self.vc += 1
-        if self.vxy == (0,0):
-            self.vc = 0
+        if self.rc == 4:
+            self.rvx = random.randint(-80, -40)
+            self.rvy = random.randint(40, 80)
+            self.vcc = abs(self.rvx) + abs(self.rvy)
+            self.rc = 3
         if self.rc == 2:
             self.rcc += 1
             if self.rcc == 3:
@@ -56,6 +57,14 @@ class Dice:
             self.rvx = -self.rvx
         if self.rect.top == 0 or self.rect.bottom == height:
             self.rvy = -self.rvy
+        if self.rvx > 80:
+            self.rvx = 80
+        if self.rvx < -80:
+            self.rvx = -80
+        if self.rvy > 80:
+            self.rvy = 80
+        if self.rvy < -80:
+            self.rvy = -80
 
     def update(self, screen_rect):
         self.vcc2 = abs(self.rvx) + abs(self.rvy)

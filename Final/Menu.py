@@ -33,4 +33,3 @@ class Backg:
 
     def draw(self, surface):
         surface.blit(self.I, (self.rect))
-

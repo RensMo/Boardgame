@@ -18,7 +18,7 @@ class Game:
         self.width = 1280
         self.height = 720
         self.size = (self.width, self.height)
-        self.caption = "Old versions"
+        self.caption = "Opseilen2"
         self.S0 = [1, 0, 0, 0]
         self.help_pages = 2
         self.help_pagenr = 0
@@ -34,16 +34,25 @@ class Game:
 
         self.entry_tile = build_matrix()
 
+        self.tile_width = 0.028
+        self.tile_height = 0.05
+        self.grid_pos_x = 0.2197
+        self.grid_pos_y = 0.9
+
         self.P1 = Player("", self.entry_tile)
+        self.P2 = Player("", self.entry_tile)
+        self.P3 = Player("", self.entry_tile)
+        self.P4 = Player("", self.entry_tile)
+
         self.D1 = Dice(self.width * 0.81, self.height * 0.51, self.width * 0.1, self.width * 0.1, ID1)
-        self.T1_1 = IText(self.width * 0.031, self.height * 0.145, "#1", 40, 0)
-        self.T1_2 = IText(self.width * 0.095, self.height * 0.145, "", 40, 390)
-        self.T2_1 = IText(self.width * 0.031, self.height * 0.245, "#2", 40, 0)
-        self.T2_2 = IText(self.width * 0.095, self.height * 0.245, "", 40, 390)
-        self.T3_1 = IText(self.width * 0.031, self.height * 0.345, "#3", 40, 0)
-        self.T3_2 = IText(self.width * 0.095, self.height * 0.345, "", 40, 390)
-        self.T4_1 = IText(self.width * 0.031, self.height * 0.445, "#4", 40, 0)
-        self.T4_2 = IText(self.width * 0.095, self.height * 0.445, "", 40, 390)
+        self.T1_1 = IText(self.width * 0.031, self.height * 0.145, "#1", int(self.width * 0.03), 0)
+        self.T1_2 = IText(self.width * 0.095, self.height * 0.145, "", int(self.width * 0.03), self.width * 0.3)
+        self.T2_1 = IText(self.width * 0.031, self.height * 0.245, "#2", int(self.width * 0.03), 0)
+        self.T2_2 = IText(self.width * 0.095, self.height * 0.245, "", int(self.width * 0.03), self.width * 0.3)
+        self.T3_1 = IText(self.width * 0.031, self.height * 0.345, "#3", int(self.width * 0.03), 0)
+        self.T3_2 = IText(self.width * 0.095, self.height * 0.345, "", int(self.width * 0.03), self.width * 0.3)
+        self.T4_1 = IText(self.width * 0.031, self.height * 0.445, "#4", int(self.width * 0.03), 0)
+        self.T4_2 = IText(self.width * 0.095, self.height * 0.445, "", int(self.width * 0.03), self.width * 0.3)
         self.P1C = PColor(self.width * 0.55, self.height * 0.2)
         self.P2C = PColor(self.width * 0.55, self.height * 0.2)
         self.P3C = PColor(self.width * 0.55, self.height * 0.2)
@@ -55,6 +64,7 @@ class Game:
             self.M1.draw(self.screen)
         # Play
         if self.S0[1] == 1:
+            #Choose Players
             if self.play_pagenr == 0:
                 self.Pbg1.draw(self.screen)
                 self.B1.draw(self.screen)
@@ -62,6 +72,7 @@ class Game:
                 self.PL3.draw(self.screen)
                 self.PL4.draw(self.screen)
                 self.Next2.draw(self.screen)
+            #Pick player settings
             if self.play_pagenr == 1:
                 self.Pbg2.draw(self.screen)
                 if self.players == 2:
@@ -124,14 +135,36 @@ class Game:
                 self.B1.draw(self.screen)
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
+            #Boardgame
             if self.play_pagenr == 2:
+                #Draw board
                 self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
-                # Draw grid
-                self.entry_tile.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.2197, self.height * 0.9)
-                # Update Player
+                self.entry_tile.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
+                                     self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+
+                #Draw Players
                 self.P1.Update()
-                self.P1.Draw(self.screen, self.width * 0.028, self.height * 0.05, self.width * 0.2197, self.height *0.9)
+                self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
+                             self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                self.P2.Update()
+                self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
+                             self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                if self.players >= 3:
+                    self.P3.Update()
+                    self.P3.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
+                                 self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                    if self.players == 4:
+                        self.P4.Update()
+                        self.P4.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
+                                     self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+
+                #Draw player names top right
+                P1Name = IText(self.width * 0.75, self.height * 0.18, self.P1.Name, 40, 0).draw(self.screen)
+                P2Name = IText(self.width * 0.75, self.height * 0.22, self.P2.Name, 40, 0).draw(self.screen)
+                P3Name = IText(self.width * 0.75, self.height * 0.26, self.P3.Name, 40, 0).draw(self.screen)
+                P4Name = IText(self.width * 0.75, self.height * 0.30, self.P4.Name, 40, 0).draw(self.screen)
+
                 self.CD_L.draw(self.screen)
                 self.TD_L.draw(self.screen)
                 self.AR_L.draw(self.screen)
@@ -142,6 +175,7 @@ class Game:
                 self.D1.vel(self.width, self.height)
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
+            #Questions
             elif self.play_pagenr == 3:
                 self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
@@ -225,14 +259,14 @@ class Game:
         self.CA4_R = Textbg(self.width * 0.58, self.height * 0.447, self.width * 0.028, self.height * 0.036, I21)
 
         self.screen_rect = self.screen.get_rect()
-        self.T1_1.update(events, self.width * 0.031, self.height * 0.145, 40, 0)
-        self.T1_2.update(events, self.width * 0.095, self.height * 0.145, 40, 390)
-        self.T2_1.update(events, self.width * 0.031, self.height * 0.245, 40, 0)
-        self.T2_2.update(events, self.width * 0.095, self.height * 0.245, 40, 390)
-        self.T3_1.update(events, self.width * 0.031, self.height * 0.345, 40, 0)
-        self.T3_2.update(events, self.width * 0.095, self.height * 0.345, 40, 390)
-        self.T4_1.update(events, self.width * 0.031, self.height * 0.445, 40, 0)
-        self.T4_2.update(events, self.width * 0.095, self.height * 0.445, 40, 390)
+        self.T1_1.update(events, self.width * 0.031, self.height * 0.145, int(self.width * 0.03), 0)
+        self.T1_2.update(events, self.width * 0.095, self.height * 0.145, int(self.width * 0.03), self.width * 0.3)
+        self.T2_1.update(events, self.width * 0.031, self.height * 0.245, int(self.width * 0.03), 0)
+        self.T2_2.update(events, self.width * 0.095, self.height * 0.245, int(self.width * 0.03), self.width * 0.3)
+        self.T3_1.update(events, self.width * 0.031, self.height * 0.345, int(self.width * 0.03), 0)
+        self.T3_2.update(events, self.width * 0.095, self.height * 0.345, int(self.width * 0.03), self.width * 0.3)
+        self.T4_1.update(events, self.width * 0.031, self.height * 0.445, int(self.width * 0.03), 0)
+        self.T4_2.update(events, self.width * 0.095, self.height * 0.445, int(self.width * 0.03), self.width * 0.3)
 
         for event in events:
             if event.type == VIDEORESIZE:
@@ -344,8 +378,8 @@ class Game:
                 if self.P4C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4C.cc < 3:
                         self.P4C.cc += 1
-
-
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 3 and self.D1.rect.collidepoint(pygame.mouse.get_pos()) and self.D1.rc == 0:
+                self.D1.rc = 4
         return False
 
     def game_loop(self):
