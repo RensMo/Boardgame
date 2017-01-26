@@ -10,6 +10,7 @@ from Tile import *
 from Text import *
 from Image import *
 from Dice import *
+from IText import *
 
 class Game:
     def __init__(self):
