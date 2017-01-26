@@ -11,7 +11,6 @@ class Dice:
         self.I = I
         self.I = pygame.transform.scale(self.I, (int(sx), int(sy)))
         self.rect = pygame.Rect((x, y), (sx, sy))
-        self.srect = pygame.Surface((int(sx), int(sy)))
         self.rI = [ID1, ID2, ID3, ID4, ID5, ID6]
         self.cI = random.choice(self.rI)
         self.DiceRolled = 0
@@ -94,5 +93,7 @@ class Dice:
         self.rect.move_ip(self.rvx, self.rvy)
         self.rect.clamp_ip(screen_rect)
 
-    def draw(self, surface):
+    def draw(self, surface, sx, sy):
+        self.I = pygame.transform.scale(self.I, (int(sx), int(sy)))
+        self.rect = pygame.Rect((self.rect.left, self.rect.top), (sx, sy))
         surface.blit(self.I, (self.rect))
