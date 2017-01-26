@@ -101,7 +101,7 @@ class Game:
                 self.AR_R.draw(self.screen)
                 self.AR_U.draw(self.screen)
                 self.D1.update(self.screen_rect)
-                self.D1.draw(self.screen)
+                self.D1.draw(self.screen, self.width * 0.1, self.width * 0.1)
                 self.D1.vel(self.width, self.height)
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
