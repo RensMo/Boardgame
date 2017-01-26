@@ -12,6 +12,7 @@ from Image import *
 from Dice import *
 from IText import *
 from PColor import *
+from PCat import *
 
 class Game:
     def __init__(self):
