@@ -160,10 +160,11 @@ class Game:
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
 
                 #Draw player names top right
-                P1Name = IText(self.width * 0.75, self.height * 0.18, self.P1.Name, 40, 0).draw(self.screen)
-                P2Name = IText(self.width * 0.75, self.height * 0.22, self.P2.Name, 40, 0).draw(self.screen)
-                P3Name = IText(self.width * 0.75, self.height * 0.26, self.P3.Name, 40, 0).draw(self.screen)
-                P4Name = IText(self.width * 0.75, self.height * 0.30, self.P4.Name, 40, 0).draw(self.screen)
+                """
+                IText(self.width * 0.75, self.height * 0.18, self.P1.Name, 40, 0).draw(self.screen)
+                IText(self.width * 0.75, self.height * 0.22, self.P2.Name, 40, 0).draw(self.screen)
+                IText(self.width * 0.75, self.height * 0.26, self.P3.Name, 40, 0).draw(self.screen)
+                IText(self.width * 0.75, self.height * 0.30, self.P4.Name, 40, 0).draw(self.screen)"""
 
                 self.CD_L.draw(self.screen)
                 self.TD_L.draw(self.screen)
