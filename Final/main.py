@@ -127,25 +127,39 @@ class Game:
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                 # At turn
                 if self.turn == 0:
+                    def getstart(category):
+                        to_right = 0
+                        if category == "Entertainment":
+                            to_right = random.randrange(0, 2)
+                        elif category == "Geography":
+                            to_right = random.randrange(2, 4)
+                        elif category == "History":
+                            to_right = random.randrange(4, 6)
+                        elif category == "Sport":
+                            to_right = random.randrange(6, 8)
+                        start = self.entry_tile
+                        for i in range(to_right):
+                            start = start.Right
+                        return start
+
                     if self.players >= 2:
-                        self.P1.Tile = self.entry_tile
-                        self.P2.Tile = self.entry_tile.Right.Right
+                        self.P1.Tile = getstart(self.P1.StartCat)
+                        self.P2.Tile = getstart(self.P2.StartCat)
                         if self.players >= 3:
-                            self.P3.Tile = self.entry_tile.Right.Right.Right.Right
+                            self.P3.Tile = getstart(self.P3.StartCat)
                             if self.players == 4:
-                                self.P4.Tile = self.entry_tile.Right.Right.Right.Right.Right.Right
+                                self.P4.Tile = getstart(self.P4.StartCat)
 
                 # Update and draw Players
                 self.P1.Update()
                 self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                              self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                p1name = IText(self.width * 0.75, self.height * 0.20, "#1 " + self.P1.Name, int(self.width * 0.03), 0,
-                               self.P1.Colour)
+                p1name = IText(self.width * 0.75, self.height * 0.20, "#1 " + self.P1.Name, int(self.width * 0.03), 0, 0, self.P1.Colour)
                 p1name.draw(self.screen)
                 self.P2.Update()
                 self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                              self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                p2name = IText(self.width * 0.75, self.height * 0.255, "#2 " + self.P2.Name, int(self.width * 0.03), 0,
+                p2name = IText(self.width * 0.75, self.height * 0.255, "#2 " + self.P2.Name, int(self.width * 0.03), 0, 0,
                                self.P2.Colour)
                 p2name.draw(self.screen)
                 if self.players >= 3:
@@ -153,14 +167,14 @@ class Game:
                     self.P3.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                  self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                     p3name = IText(self.width * 0.75, self.height * 0.310, "#3 " + self.P3.Name, int(self.width * 0.03),
-                                   0, self.P3.Colour)
+                                   0, 0, self.P3.Colour)
                     p3name.draw(self.screen)
                     if self.players == 4:
                         self.P4.Update()
                         self.P4.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                         p4name = IText(self.width * 0.75, self.height * 0.365, "#4 " + self.P4.Name, int(self.width * 0.03),
-                                   0, self.P4.Colour)
+                                   0, 0, self.P4.Colour)
                         p4name.draw(self.screen)
 
                 # throw dice text
