@@ -365,7 +365,6 @@ class Game:
                 elif self.P4C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4C.cc < 3:
                         self.P4C.cc += 1
-
                 elif self.P1CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P1CA.cc > 0:
                         self.P1CA.cc -= 1
@@ -390,10 +389,6 @@ class Game:
                 elif self.P4CA.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4CA.cc < 3:
                         self.P4CA.cc += 1
-
-
-
-
                 #Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
                     self.P1.Tile = self.P1.Tile.Left
