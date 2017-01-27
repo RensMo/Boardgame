@@ -58,6 +58,10 @@ class Game:
         self.P2C = PColor(self.width * 0.55, self.height * 0.2)
         self.P3C = PColor(self.width * 0.55, self.height * 0.2)
         self.P4C = PColor(self.width * 0.55, self.height * 0.2)
+        self.P1CA = PCat(self.width * 0.67, self.height * 0.145, self.width * 0.18, self.height * 0.05)
+        self.P2CA = PCat(self.width * 0.67, self.height * 0.245, self.width * 0.18, self.height * 0.05)
+        self.P3CA = PCat(self.width * 0.67, self.height * 0.345, self.width * 0.18, self.height * 0.05)
+        self.P4CA = PCat(self.width * 0.67, self.height * 0.445, self.width * 0.18, self.height * 0.05)
 
     def draw(self):
         # Menu
@@ -89,6 +93,10 @@ class Game:
                     self.CA1_R.draw(self.screen)
                     self.CA2_L.draw(self.screen)
                     self.CA2_R.draw(self.screen)
+                    self.P1CA.update(self.width * 0.67, self.height * 0.145, self.width * 0.18, self.height * 0.05)
+                    self.P1CA.draw(self.screen)
+                    self.P2CA.update(self.width * 0.67, self.height * 0.245, self.width * 0.18, self.height * 0.05)
+                    self.P2CA.draw(self.screen)
                     if self.players >= 3:
                         self.T3_1.draw(self.screen)
                         self.T3_2.draw(self.screen)
@@ -96,6 +104,8 @@ class Game:
                         self.P3C.draw(self.screen)
                         self.CA3_L.draw(self.screen)
                         self.CA3_R.draw(self.screen)
+                        self.P3CA.update(self.width * 0.67, self.height * 0.345, self.width * 0.18, self.height * 0.05)
+                        self.P3CA.draw(self.screen)
                         if self.players == 4:
                             self.T4_1.draw(self.screen)
                             self.T4_2.draw(self.screen)
@@ -103,6 +113,8 @@ class Game:
                             self.P4C.draw(self.screen)
                             self.CA4_L.draw(self.screen)
                             self.CA4_R.draw(self.screen)
+                            self.P4CA.update(self.width * 0.67, self.height * 0.445, self.width * 0.18, self.height * 0.05)
+                            self.P4CA.draw(self.screen)
                 self.B1.draw(self.screen)
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
@@ -353,6 +365,35 @@ class Game:
                 elif self.P4C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4C.cc < 3:
                         self.P4C.cc += 1
+
+                elif self.P1CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P1CA.cc > 0:
+                        self.P1CA.cc -= 1
+                elif self.P1CA.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P1CA.cc < 3:
+                        self.P1CA.cc += 1
+                elif self.P2CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P2CA.cc > 0:
+                        self.P2CA.cc -= 1
+                elif self.P2CA.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P2CA.cc < 3:
+                        self.P2CA.cc += 1
+                elif self.P3CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P3CA.cc > 0:
+                        self.P3CA.cc -= 1
+                elif self.P3CA.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P3CA.cc < 3:
+                        self.P3CA.cc += 1
+                elif self.P4CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P4CA.cc > 0:
+                        self.P4CA.cc -= 1
+                elif self.P4CA.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                    if self.P4CA.cc < 3:
+                        self.P4CA.cc += 1
+
+
+
+
                 #Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
                     self.P1.Tile = self.P1.Tile.Left
