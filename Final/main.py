@@ -207,11 +207,14 @@ class Game:
                         p4name.draw(self.screen)
 
                 # Next Turn
-                if turn_end == True
+                if self.turn == 0:
+                    self.turn += 1
+                """
+                if turn_end == True:
                     if self.turn == self.players:
                         self.turn = 1
                     else:
-                        self.turn += 1
+                        self.turn += 1"""
                 # Questions screen
                 if self.play_pagenr == 3:
                     self.Q.draw(self.screen)
