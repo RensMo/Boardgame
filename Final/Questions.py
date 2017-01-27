@@ -1,4 +1,4 @@
-
+import pygame
 import mysql
 from mysql.connector import errorcode
 
@@ -41,16 +41,20 @@ class sql:
 sqlI = sql()
 quest = sqlI.query("""select Question,Category,Right_answer, Wrong_answer, Wrong_answer2 from Vragen ORDER BY RAND() LIMIT 1""")
 
-class questions:
-    def __init__(self):
+class Questions:
+    def __init__(self, x, y, size):
         self.Questions = quest[0][0]
         self.categ = quest[0][1]
         self.ranswer = quest[0][2]
-        self.wanswer = quest[0][3]
-        self.wansert = quest[0][4]
+        self.wanswer1 = quest[0][3]
+        self.wanswer2 = quest[0][4]
+        self.x = x
+        self.y = y
+        self.size = size
+        self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", self.size)
 
-
-questions()
-
-
-
+    def draw(self, surface):
+        surface.blit(self.Questions, (self.x, self.y))
+        surface.blit(self.ranswer, (self.x, self.y + self.y * 0.1))
+        surface.blit(self.wanswer1, (self.x, self.y + self.y * 0.1))
+        surface.blit(self.wanswer2, (self.x, self.y + self.y * 0.1))
