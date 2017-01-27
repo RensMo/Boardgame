@@ -46,14 +46,14 @@ class Game:
         self.P4 = Player("", self.entry_tile.Right.Right.Right.Right.Right.Right)
 
         self.D1 = Dice(self.width * 0.81, self.height * 0.51, self.width * 0.1, self.width * 0.1, ID1)
-        self.T1_1 = IText(self.width * 0.031, self.height * 0.145, "#1", int(self.width * 0.03), 0)
-        self.T1_2 = IText(self.width * 0.095, self.height * 0.145, "", int(self.width * 0.03), self.width * 0.3)
-        self.T2_1 = IText(self.width * 0.031, self.height * 0.245, "#2", int(self.width * 0.03), 0)
-        self.T2_2 = IText(self.width * 0.095, self.height * 0.245, "", int(self.width * 0.03), self.width * 0.3)
-        self.T3_1 = IText(self.width * 0.031, self.height * 0.345, "#3", int(self.width * 0.03), 0)
-        self.T3_2 = IText(self.width * 0.095, self.height * 0.345, "", int(self.width * 0.03), self.width * 0.3)
-        self.T4_1 = IText(self.width * 0.031, self.height * 0.445, "#4", int(self.width * 0.03), 0)
-        self.T4_2 = IText(self.width * 0.095, self.height * 0.445, "", int(self.width * 0.03), self.width * 0.3)
+        self.T1_1 = IText(self.width * 0.031, self.height * 0.145, "#1", int(self.width * 0.03), 0, 0)
+        self.T1_2 = IText(self.width * 0.095, self.height * 0.145, "", int(self.width * 0.03), self.width * 0.3, 1)
+        self.T2_1 = IText(self.width * 0.031, self.height * 0.245, "#2", int(self.width * 0.03), 0, 0)
+        self.T2_2 = IText(self.width * 0.095, self.height * 0.245, "", int(self.width * 0.03), self.width * 0.3, 1)
+        self.T3_1 = IText(self.width * 0.031, self.height * 0.345, "#3", int(self.width * 0.03), 0, 0)
+        self.T3_2 = IText(self.width * 0.095, self.height * 0.345, "", int(self.width * 0.03), self.width * 0.3, 1)
+        self.T4_1 = IText(self.width * 0.031, self.height * 0.445, "#4", int(self.width * 0.03), 0, 0)
+        self.T4_2 = IText(self.width * 0.095, self.height * 0.445, "", int(self.width * 0.03), self.width * 0.3, 1)
         self.P1C = PColor(self.width * 0.55, self.height * 0.2)
         self.P2C = PColor(self.width * 0.55, self.height * 0.2)
         self.P3C = PColor(self.width * 0.55, self.height * 0.2)
@@ -284,20 +284,28 @@ class Game:
                 if self.D1.rc == 0:
                     self.D1.check_click(event.pos)
                 if self.T1_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T1_1.focus = 1
                     self.T1_2.focus = 1
                 elif not self.T1_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T1_1.focus = 0
                     self.T1_2.focus = 0
                 if self.T2_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T2_1.focus = 1
                     self.T2_2.focus = 1
                 elif not self.T2_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T2_1.focus = 0
                     self.T2_2.focus = 0
                 if self.T3_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T3_1.focus = 1
                     self.T3_2.focus = 1
                 elif not self.T3_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T3_1.focus = 0
                     self.T3_2.focus = 0
                 if self.T4_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T4_1.focus = 1
                     self.T4_2.focus = 1
                 elif not self.T4_2.rect.collidepoint(pygame.mouse.get_pos()):
+                    self.T4_1.focus = 0
                     self.T4_2.focus = 0
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 self.D1.click = False
