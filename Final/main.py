@@ -7,7 +7,6 @@ from Button import *
 from Menu import *
 from Player import *
 from Tile import *
-from Text import *
 from Image import *
 from Dice import *
 from IText import *
