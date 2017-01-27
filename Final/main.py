@@ -45,7 +45,7 @@ class Game:
         self.P3 = Player("", self.entry_tile.Right.Right.Right.Right)
         self.P4 = Player("", self.entry_tile.Right.Right.Right.Right.Right.Right)
 
-        self.D1 = Dice(self.width * 0.81, self.height * 0.51, self.width * 0.1, self.width * 0.1, ID1)
+        self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
         self.T1_1 = IText(self.width * 0.031, self.height * 0.145, "#1", int(self.width * 0.03), 0, 0)
         self.T1_2 = IText(self.width * 0.095, self.height * 0.145, "", int(self.width * 0.03), self.width * 0.3, 1)
         self.T2_1 = IText(self.width * 0.031, self.height * 0.245, "#2", int(self.width * 0.03), 0, 0)
@@ -266,7 +266,7 @@ class Game:
                 self.width = event.dict['size'][0]
                 self.height = event.dict['size'][1]
                 if self.D1.rc == 0:
-                    self.D1 = Dice(self.width * 0.81, self.height * 0.51, self.width * 0.1, self.width * 0.1, ID1)
+                    self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
             elif event.type == pygame.QUIT:
                 return True
             elif keys[pygame.K_LCTRL] and keys[pygame.K_w]:
@@ -279,7 +279,7 @@ class Game:
                     self.play_pagenr = int(0)
                     self.help_pagenr = int(0)
             elif keys[pygame.K_r]:
-                self.D1 = Dice(self.width * 0.81, self.height * 0.51, self.width * 0.1, self.width * 0.1, ID1)
+                self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if self.D1.rc == 0:
                     self.D1.check_click(event.pos)
