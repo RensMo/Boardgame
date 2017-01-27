@@ -130,13 +130,13 @@ class Game:
                     def getstart(category):
                         to_right = 0
                         if category == "Entertainment":
-                            to_right = random.randrange(0, 2)
+                            to_right = 0
                         elif category == "Geography":
-                            to_right = random.randrange(2, 4)
+                            to_right = 1
                         elif category == "History":
-                            to_right = random.randrange(4, 6)
+                            to_right = 2
                         elif category == "Sport":
-                            to_right = random.randrange(6, 8)
+                            to_right = 3
                         start = self.entry_tile
                         for i in range(to_right):
                             start = start.Right
