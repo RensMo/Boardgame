@@ -120,13 +120,11 @@ class Game:
                 self.Prev2.draw(self.screen)
             # Boardgame
             elif self.play_pagenr == 2 or self.play_pagenr == 3:
-
                 # Draw board
                 self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
                 self.entry_tile.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-
                 # At turn
                 if self.turn == 0:
                     def getstart(category):
@@ -156,26 +154,26 @@ class Game:
                 self.P1.Update()
                 self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                              self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                p1name = IText(self.width * 0.75, self.height * 0.18, "#1 " + self.P1.Name, int(self.width * 0.03), 0, 0, self.P1.Colour)
+                p1name = IText(self.width * 0.75, self.height * 0.20, "#1 " + self.P1.Name, int(self.width * 0.03), 0, 0, self.P1.Colour)
                 p1name.draw(self.screen)
                 self.P2.Update()
                 self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                              self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                p2name = IText(self.width * 0.75, self.height * 0.24, "#2 " + self.P2.Name, int(self.width * 0.03), 0, 0,
+                p2name = IText(self.width * 0.75, self.height * 0.255, "#2 " + self.P2.Name, int(self.width * 0.03), 0, 0,
                                self.P2.Colour)
                 p2name.draw(self.screen)
                 if self.players >= 3:
                     self.P3.Update()
                     self.P3.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                  self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                    p3name = IText(self.width * 0.75, self.height * 0.30, "#3 " + self.P3.Name, int(self.width * 0.03),
+                    p3name = IText(self.width * 0.75, self.height * 0.310, "#3 " + self.P3.Name, int(self.width * 0.03),
                                    0, 0, self.P3.Colour)
                     p3name.draw(self.screen)
                     if self.players == 4:
                         self.P4.Update()
                         self.P4.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                        p4name = IText(self.width * 0.75, self.height * 0.36, "#4 " + self.P4.Name, int(self.width * 0.03),
+                        p4name = IText(self.width * 0.75, self.height * 0.365, "#4 " + self.P4.Name, int(self.width * 0.03),
                                    0, 0, self.P4.Colour)
                         p4name.draw(self.screen)
 
@@ -256,7 +254,7 @@ class Game:
         self.TD_L = Textbg(self.width * 0.77, self.height * 0.755, self.width * 0.19, self.height * 0.05, I15)
         self.AR_L = Button(self.width * 0.76, self.height * 0.88, self.width * 0.065, self.height * 0.085, I16)
         self.AR_R = Button(self.width * 0.90, self.height * 0.88, self.width * 0.065, self.height * 0.085, I17)
-        self.AR_U = Button(self.width * 0.83, self.height * 0.82, self.width * 0.065, self.height * 0.085, I18)
+        self.AR_U = Button(self.width * 0.83, self.height * 0.83, self.width * 0.065, self.height * 0.085, I18)
         self.CA1_L = Textbg(self.width * 0.46, self.height * 0.147, self.width * 0.028, self.height * 0.051, I20)
         self.CA1_R = Textbg(self.width * 0.58, self.height * 0.147, self.width * 0.028, self.height * 0.051, I21)
         self.CA2_L = Textbg(self.width * 0.46, self.height * 0.247, self.width * 0.028, self.height * 0.051, I20)

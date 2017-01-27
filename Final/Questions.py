@@ -1,33 +1,60 @@
+import pygame
 import mysql
 from mysql.connector import errorcode
 
-def question(category):
-    db = {
-    'user': 'Boardgame',
-    'password': 'groep12017',
-    'host': 'rens.xyz',
-    'database': 'Boardgame',
-    'raise_on_warnings': True,
+db = {
+'user': 'Boardgame',
+'password': 'groep12017',
+'host': '5.79.70.63',
+'database': 'Boardgame',
+'raise_on_warnings': True,
+}
+
+cnx = mysql.connector.connect(**db)
+cursor = cnx.cursor()
+
+if cnx.is_connected():
+    print("Connected to MYSQL database")
+
+
+class sql:
+
+    dbinfo = {
+        'user': 'Boardgame',
+        'password': 'groep12017',
+        'host': '5.79.70.63',
+        'database': 'Boardgame',
+        'raise_on_warnings': True,
     }
 
-    cnx = mysql.connector.connect(**db)
-    cursor = cnx.cursor()
+    def __init__(self):
+        self.db = mysql.connector.connect(**self.dbinfo)
 
-    if cnx.is_connected():
-        print("Connected to MYSQL database")
+    def query(self,sql):
+        cursor = self.db.cursor()
+        cursor.execute(sql)
+        return cursor.fetchall()
 
+    def rows(self):
+        return self.db.cursor().rowcount
 
-    cursor.execute("""select Question,Category,Right_answer, Wrong_answer, Wrong_answer2 from Vragen ORDER BY RAND() LIMIT 1""")
+sqlI = sql()
+quest = sqlI.query("""select Question,Category,Right_answer, Wrong_answer, Wrong_answer2 from Vragen ORDER BY RAND() LIMIT 1""")
 
-    result = cursor.fetchall()
-    cursor.close()
-    cnx.close()
+class Questions:
+    def __init__(self, x, y, size):
+        self.Questions = quest[0][0]
+        self.categ = quest[0][1]
+        self.ranswer = quest[0][2]
+        self.wanswer1 = quest[0][3]
+        self.wanswer2 = quest[0][4]
+        self.x = x
+        self.y = y
+        self.size = size
+        self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", self.size)
 
-    question = result[0][0]
-    right_answer = result[0][2]
-    wrong_answer1 = result[0][3]
-    wrong_answer2 = result[0][4]
-
-    print(question, right_answer, wrong_answer1, wrong_answer2)
-
-question("Geography")
+    def draw(self, surface):
+        surface.blit(self.Questions, (self.x, self.y))
+        surface.blit(self.ranswer, (self.x, self.y + self.y * 0.1))
+        surface.blit(self.wanswer1, (self.x, self.y + self.y * 0.1))
+        surface.blit(self.wanswer2, (self.x, self.y + self.y * 0.1))
