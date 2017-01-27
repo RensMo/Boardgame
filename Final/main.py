@@ -136,21 +136,21 @@ class Game:
                 self.P2.Update()
                 self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                              self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                p2name = IText(self.width * 0.75, self.height * 0.22, "#2 " + self.P2.Name, int(self.width * 0.03), 0,
+                p2name = IText(self.width * 0.75, self.height * 0.24, "#2 " + self.P2.Name, int(self.width * 0.03), 0,
                                self.P2.Colour)
                 p2name.draw(self.screen)
                 if self.players >= 3:
                     self.P3.Update()
                     self.P3.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                  self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                    p3name = IText(self.width * 0.75, self.height * 0.26, "#3 " + self.P3.Name, int(self.width * 0.03),
+                    p3name = IText(self.width * 0.75, self.height * 0.30, "#3 " + self.P3.Name, int(self.width * 0.03),
                                    0, self.P3.Colour)
                     p3name.draw(self.screen)
                     if self.players == 4:
                         self.P4.Update()
                         self.P4.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                        p4name = IText(self.width * 0.75, self.height * 0.30, "#4 " + self.P4.Name, int(self.width * 0.03),
+                        p4name = IText(self.width * 0.75, self.height * 0.36, "#4 " + self.P4.Name, int(self.width * 0.03),
                                    0, self.P4.Colour)
                         p4name.draw(self.screen)
 

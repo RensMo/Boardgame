@@ -9,8 +9,9 @@ class Position:
         self.Y = y
 
 class Tile:
-    def __init__(self, colour, position):
+    def __init__(self, colour, position, category):
         self.Colour = colour
+        self.Category = None
         self.Up = None
         self.Down = None
         self.Left = None
@@ -49,18 +50,22 @@ def build_matrix():
     for line in range(bot_height):
         for tile in range(width):
             # Assign colours
-            if line == 0:
-                colour = (169, 169, 169)  # grey (bottom area)
-            elif tile <= 1 * (width // 4) - 1:
+            if tile <= 1 * (width // 4) - 1:
                 colour = (255, 0, 0)  # red
+                category = "Entertainment"
             elif tile <= 2 * (width // 4) - 1:
                 colour = (0, 255, 0)  # green
+                category = "Geography"
             elif tile <= 3 * (width // 4) - 1:
                 colour = (255, 255, 0)  # yellow
+                category = "History"
             else:
                 colour = (0, 0, 255)  # blue
+                category = "Sport"
+            if line == 0:
+                colour = (169, 169, 169)  # grey (bottom area)
 
-            node = Tile(colour, Position(tile, line))
+            node = Tile(colour, Position(tile, line), category)
 
             if line == 0 and tile == 0:  # Define entry point
                 entry_point = node
@@ -90,18 +95,22 @@ def build_matrix():
     for line in range(bot_height, bot_height + top_height):
         for tile in range(0, width, 2):
             # Assign colours
-            if line == bot_height + top_height - 1:
-                colour = (0, 0, 0)  # Black (Finish point!)
-            elif tile <= 1 * (width // 4) - 1:
+            if tile <= 1 * (width // 4) - 1:
                 colour = (255, 0, 0)  # red
+                category = "Entertainment"
             elif tile <= 2 * (width // 4) - 1:
                 colour = (0, 255, 0)  # green
+                category = "Geography"
             elif tile <= 3 * (width // 4) - 1:
                 colour = (255, 255, 0)  # yellow
+                category = "History"
             else:
                 colour = (0, 0, 255)  # blue
+                category = "Sport"
+            if line == bot_height + top_height - 1:
+                colour = (0, 0, 0)  # Black (Finish point!)
 
-            node = Tile(colour, Position(tile + 0.5, line))
+            node = Tile(colour, Position(tile + 0.5, line), category)
 
             if line == bot_height:
                 node.Down = under_line
