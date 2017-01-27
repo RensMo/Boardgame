@@ -26,6 +26,7 @@ class Game:
         self.play_pagenr = 0
         self.players = 0
         self.turn = 0
+        self.action = 0
 
         pygame.init()
 
@@ -171,11 +172,21 @@ class Game:
                 elif self.turn == 4:
                     currentplayer = self.P4
 
+                """
                 # Player throws the dice
+                if self.action == 0:
+                    return
 
                 # Player gets question
+                if self.action == 1:
+                    return
 
                 # Player chooses moving position
+                if self.action == 2:
+                    turn_end = True
+                    self.action = 0
+                    return
+                """
 
                 # End turn
 
