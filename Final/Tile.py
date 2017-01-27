@@ -9,9 +9,9 @@ class Position:
         self.Y = y
 
 class Tile:
-    def __init__(self, colour, position):
+    def __init__(self, colour, position, category):
         self.Colour = colour
-        self.Category = None
+        self.Category = category
         self.Up = None
         self.Down = None
         self.Left = None
