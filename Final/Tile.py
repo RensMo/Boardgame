@@ -1,7 +1,6 @@
 import pygame
+import random
 from Node import *
-
-#githuphup
 
 class Position:
     def __init__(self, x, y):
@@ -26,18 +25,21 @@ class Tile:
                          (pos_x + (margin_x + width) * self.Position.X + margin_x,
                           pos_y + (-margin_y - height) * self.Position.Y - margin_y,
                           width,
-                          height))
+                          height), 2)
 
         if self.Right.Position.X != 0 and self.Right.Position.X != 0.5:
             self.Right.Draw(screen, width, height, pos_x, pos_y)
 
         if (self.Position.X == 0 or self.Position.X == 0.5) and self.Up != None:
-            self.Up.Draw(screen, width, height, pos_x, pos_y)
+            if self.Up.Position.X > 0.5:
+                self.Up.Left.Draw(screen, width, height, pos_x, pos_y)
+            else:
+                self.Up.Draw(screen, width, height, pos_x, pos_y)
 
 
 def build_matrix():
     width = 8
-    bot_height = 11
+    mid_height = 11
 
     top_height = 6
 
@@ -46,8 +48,25 @@ def build_matrix():
     prev_node = None
     most_left_node = None
 
-    #bottom part matrix
-    for line in range(bot_height):
+    # bottom matrix
+    for tile in range(0, width, 2):
+        colour = (169, 169, 169)  # grey (bottom area)
+        node = Tile(colour, Position(tile + 0.5, 0), None)
+        if tile == 0:
+            entry_point = node
+            prev_node = node
+        if tile == 2 or tile == 4:
+            prev_node.Right = node
+            node.Left = prev_node
+            prev_node = node
+        if tile == 6:
+            prev_node.Right = node
+            node.Left = prev_node
+            node.Right = entry_point
+            entry_point.Left = node
+
+    # mid part matrix
+    for line in range(1, mid_height):
         for tile in range(width):
             # Assign colours
             if tile <= 1 * (width // 4) - 1:
@@ -62,13 +81,8 @@ def build_matrix():
             else:
                 colour = (0, 0, 255)  # blue
                 category = "Sport"
-            if line == 0:
-                colour = (169, 169, 169)  # grey (bottom area)
 
             node = Tile(colour, Position(tile, line), category)
-
-            if line == 0 and tile == 0:  # Define entry point
-                entry_point = node
 
             if tile == 0:
                 prev_node = node
@@ -84,7 +98,19 @@ def build_matrix():
                 prev_node.Right = node
                 prev_node = node
 
-            if line > 0:
+            if line == 1:
+                if tile == 0:
+                    under_line = entry_point
+                node.Down = under_line
+                if tile % 2 != 0:
+                    random_nr = random.randint(0, 1)
+                    if random_nr == 1:
+                        under_line.Up = node.Left
+                    else:
+                        under_line.Up = node
+                    under_line = under_line.Right
+
+            if line > 1:
                 node.Down = under_line  # Define .Down
                 under_line.Up = node  # Define .up
                 under_line = under_line.Right
@@ -92,7 +118,7 @@ def build_matrix():
         under_line = prev_node
 
     # top part matrix
-    for line in range(bot_height, bot_height + top_height):
+    for line in range(mid_height, mid_height + top_height):
         for tile in range(0, width, 2):
             # Assign colours
             if tile <= 1 * (width // 4) - 1:
@@ -107,13 +133,19 @@ def build_matrix():
             else:
                 colour = (0, 0, 255)  # blue
                 category = "Sport"
-            if line == bot_height + top_height - 1:
+            if line == mid_height + top_height - 1:
                 colour = (0, 0, 0)  # Black (Finish point!)
+                category = "Finish"
 
             node = Tile(colour, Position(tile + 0.5, line), category)
 
-            if line == bot_height:
-                node.Down = under_line
+            if line == mid_height:
+                random_nr = random.randint(0, 1)
+                if random_nr == 1:
+                    node.Down = under_line
+                else:
+                    node.Down = under_line.Right
+
                 under_line.Up = node
                 under_line.Right.Up = node
                 under_line = under_line.Right.Right
@@ -131,7 +163,7 @@ def build_matrix():
                 prev_node.Right = node
                 prev_node = node
 
-            if line > bot_height:
+            if line > mid_height:
                 node.Down = under_line
                 under_line.Up = node
                 under_line = under_line.Right
