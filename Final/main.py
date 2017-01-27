@@ -120,11 +120,21 @@ class Game:
                 self.Prev2.draw(self.screen)
             # Boardgame
             elif self.play_pagenr == 2 or self.play_pagenr == 3:
-                # Draw board
+                # Draw everything on the board
                 self.Pbg3.draw(self.screen)
                 self.B1.draw(self.screen)
                 self.entry_tile.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                self.TD_L.draw(self.screen)             # throw dice text
+                self.CD_L.draw(self.screen)             # choose direction text
+                self.AR_L.draw(self.screen)             # direction buttons
+                self.AR_R.draw(self.screen)
+                self.AR_U.draw(self.screen)
+                self.D1.update(self.screen_rect)        # Dice
+                self.D1.draw(self.screen, self.width * 0.1, self.width * 0.1)
+                self.D1.vel(self.width, self.height)
+                self.Next2.draw(self.screen)            # Next and previous button
+                self.Prev2.draw(self.screen)
 
                 # At turn 0, place players
                 if self.turn == 0:
@@ -150,6 +160,24 @@ class Game:
                             self.P3.Tile = getstart(self.P3.StartCat)
                             if self.players == 4:
                                 self.P4.Tile = getstart(self.P4.StartCat)
+
+                # Turns
+                elif self.turn == 1:
+                    currentplayer = self.P1
+                elif self.turn == 2:
+                    currentplayer = self.P2
+                elif self.turn == 3:
+                    currentplayer = self.P3
+                elif self.turn == 4:
+                    currentplayer = self.P4
+
+                # Player throws the dice
+
+                # Player gets question
+
+                # Player chooses moving position
+
+                # End turn
 
                 # Update and draw Players
                 self.P1.Update()
@@ -178,30 +206,12 @@ class Game:
                                    0, 0, self.P4.Colour)
                         p4name.draw(self.screen)
 
-                # throw dice text
-                self.TD_L.draw(self.screen)
-
-                # choose direction text
-                self.CD_L.draw(self.screen)
-
-                # direction buttons
-                self.AR_L.draw(self.screen)
-                self.AR_R.draw(self.screen)
-                self.AR_U.draw(self.screen)
-
-                # Dice
-                self.D1.update(self.screen_rect)
-                self.D1.draw(self.screen, self.width * 0.1, self.width * 0.1)
-                self.D1.vel(self.width, self.height)
-
-                # Next and previous button
-                self.Next2.draw(self.screen)
-                self.Prev2.draw(self.screen)
-
-                if self.turn == self.players:
-                    self.turn = 1
-                else:
-                    self.turn += 1
+                # Next Turn
+                if turn_end == True
+                    if self.turn == self.players:
+                        self.turn = 1
+                    else:
+                        self.turn += 1
                 # Questions screen
                 if self.play_pagenr == 3:
                     self.Q.draw(self.screen)
