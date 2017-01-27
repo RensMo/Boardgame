@@ -11,8 +11,9 @@ class Dice:
         self.I = I
         self.I = pygame.transform.scale(self.I, (int(sx), int(sy)))
         self.rect = pygame.Rect((x, y), (sx, sy))
-        self.rI = [ID1, ID2, ID3, ID4, ID5, ID6]
-        self.rcI = random.randint(0,5)
+        self.rI = ["", ID1, ID2, ID3, ID4, ID5, ID6]
+        self.rrI = [ID1, ID2, ID3, ID4, ID5, ID6]
+        self.rcI = random.randint(1,6)
         self.cI = self.rI[self.rcI]
         self.DiceRolled = 0
 
@@ -83,7 +84,7 @@ class Dice:
             elif self.rvy < 0:
                 self.rvy += 1
         if self.vcc > 30:
-            self.I = random.choice(self.rI)
+            self.I = random.choice(self.rrI)
             self.I = pygame.transform.rotate(self.I, int(self.rotate))
             self.DiceRolled = 1
         if self.DiceRolled == 1 and self.vcc2 < 30:
