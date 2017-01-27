@@ -12,7 +12,8 @@ class Dice:
         self.I = pygame.transform.scale(self.I, (int(sx), int(sy)))
         self.rect = pygame.Rect((x, y), (sx, sy))
         self.rI = [ID1, ID2, ID3, ID4, ID5, ID6]
-        self.cI = random.choice(self.rI)
+        self.rcI = random.randint(0,5)
+        self.cI = self.rI[self.rcI]
         self.DiceRolled = 0
 
         self.vxy = 0
