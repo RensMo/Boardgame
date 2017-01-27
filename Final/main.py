@@ -220,8 +220,10 @@ class Game:
             self.B2.draw(self.screen)
         # Settings
         elif self.S0[3] == 1:
-            self.screen.fill((pygame.Color("Yellow")))
-            self.B3.draw(self.screen)
+            self.M1.draw(self.screen)
+            self.Sbg.draw(self.screen)
+            self.Cross.draw(self.screen)
+            self.Credits.draw(self.screen)
 
         pygame.display.update()
 
@@ -235,6 +237,7 @@ class Game:
         self.Pbg3 = Backg(self.width, self.height, BG4)
         self.Helpbg = Backg(self.width, self.height, BG3)
         self.Q = Backg(self.width, self.height, I19)
+        self.Sbg = Backg(self.width, self.height, BG5)
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
@@ -263,6 +266,9 @@ class Game:
         self.CA3_R = Textbg(self.width * 0.58, self.height * 0.347, self.width * 0.028, self.height * 0.051, I21)
         self.CA4_L = Textbg(self.width * 0.46, self.height * 0.447, self.width * 0.028, self.height * 0.051, I20)
         self.CA4_R = Textbg(self.width * 0.58, self.height * 0.447, self.width * 0.028, self.height * 0.051, I21)
+        self.Cross = Button2(self.width * 0.63, self.height * 0.185, self.width * 0.044, self.height * 0.075, S1)
+        self.Credits = Button2(self.width * 0.36, self.height * 0.7, self.width * 0.13, self.height * 0.07, S2)
+
 
         self.screen_rect = self.screen.get_rect()
         self.T1_1.update(events, self.width * 0.031, self.height * 0.145, int(self.width * 0.03), 0)
@@ -358,7 +364,7 @@ class Game:
                 elif self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.help_pagenr = int(0)
-                elif self.B3.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.Cross.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     self.S0 = [1, 0, 0, 0]
                 elif self.M1.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
                     self.S0 = [0, 1, 0, 0]

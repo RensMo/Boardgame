@@ -6,6 +6,7 @@ BG1 = pygame.image.load("Assets/Play/p1_bg.jpg")
 BG2 = pygame.image.load("Assets/Play/p2_bg.jpg")
 BG3 = pygame.image.load("Assets/Help/help_bg.jpg")
 BG4 = pygame.image.load("Assets/Play/p3_bg.jpg")
+BG5 = pygame.image.load("Assets/Settings/settings_bg.png")
 
 ###BUTTONS
 I1 = pygame.image.load("Assets/Play_Button.jpg")
@@ -46,3 +47,12 @@ ID6 = pygame.image.load("Assets/Play/dice6.png")
 HELP1 = pygame.image.load("Assets/Help/h1.png")
 HELP2 = pygame.image.load("Assets/Help/h2.png")
 HELP3 = pygame.image.load("Assets/Help/h3.png")
+
+##SETTINGS
+S1 = pygame.image.load("Assets/Settings/cross.png")
+S2 = pygame.image.load("Assets/Settings/credits.png")
+S3 = pygame.image.load("Assets/Settings/toggle_on.png")
+S4 = pygame.image.load("Assets/Settings/toggle_off.png")
+S5 = pygame.image.load("Assets/Settings/res_800.png")
+S6 = pygame.image.load("Assets/Settings/res_1280.png")
+S7 = pygame.image.load("Assets/Settings/res_1366.png")
