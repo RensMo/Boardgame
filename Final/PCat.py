@@ -8,8 +8,10 @@ class PCat:
         self.sx = sx
         self.sy = sy
         self.cats = [IC1, IC2, IC3, IC4]
+        self.cats2 = ["Entertainment", "History", "Geography", "Sport"]
         self.cc = 0
         self.I = self.cats[self.cc]
+        self.category = self.cats2[self.cc]
         self.I = pygame.transform.scale(self.I, (int(self.sx), int(self.sy)))
         self.irect = pygame.Rect((x,y), (self.sx, self.sy))
         self.rect1 = pygame.Rect((x,y), (self.sx * 0.5, self.sy))
@@ -21,6 +23,7 @@ class PCat:
         self.sx = sx
         self.sy = sy
         self.I = self.cats[self.cc]
+        self.category = self.cats2[self.cc]
         self.I = pygame.transform.scale(self.I, (int(self.sx), int(self.sy)))
         self.irect = pygame.Rect((x,y), (self.sx, self.sy))
         self.rect1 = pygame.Rect((x,y), (self.sx * 0.5, self.sy))

@@ -6,6 +6,7 @@ class Player:
         self.Name = name
         self.Tile = tile
         self.Colour = (255, 255, 255)
+        self.StartCat = None
 
     def Draw(self, screen, width, height, pos_x, pos_y):
         margin_x = 0.1 * width
