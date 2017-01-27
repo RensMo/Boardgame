@@ -341,49 +341,49 @@ class Game:
                     if self.play_pagenr < self.help_pages:
                         self.play_pagenr += 1
                         self.players = 4
-                elif self.P1C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                if self.P1C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P1C.cc > 0:
                         self.P1C.cc -= 1
                 elif self.P1C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P1C.cc < 3:
                         self.P1C.cc += 1
-                elif self.P2C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                if self.P2C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P2C.cc > 0:
                         self.P2C.cc -= 1
                 elif self.P2C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P2C.cc < 3:
                         self.P2C.cc += 1
-                elif self.P3C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                if self.P3C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P3C.cc > 0:
                         self.P3C.cc -= 1
                 elif self.P3C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P3C.cc < 3:
                         self.P3C.cc += 1
-                elif self.P4C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                if self.P4C.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4C.cc > 0:
                         self.P4C.cc -= 1
                 elif self.P4C.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4C.cc < 3:
                         self.P4C.cc += 1
-                elif self.P1CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                if self.P1CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P1CA.cc > 0:
                         self.P1CA.cc -= 1
                 elif self.P1CA.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P1CA.cc < 3:
                         self.P1CA.cc += 1
-                elif self.P2CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                if self.P2CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P2CA.cc > 0:
                         self.P2CA.cc -= 1
                 elif self.P2CA.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P2CA.cc < 3:
                         self.P2CA.cc += 1
-                elif self.P3CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                if self.P3CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P3CA.cc > 0:
                         self.P3CA.cc -= 1
                 elif self.P3CA.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P3CA.cc < 3:
                         self.P3CA.cc += 1
-                elif self.P4CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
+                if self.P4CA.rect1.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4CA.cc > 0:
                         self.P4CA.cc -= 1
                 elif self.P4CA.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
