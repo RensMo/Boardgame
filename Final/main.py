@@ -125,7 +125,8 @@ class Game:
                 self.B1.draw(self.screen)
                 self.entry_tile.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                # At turn
+
+                # At turn 0, place players
                 if self.turn == 0:
                     def getstart(category):
                         to_right = 0

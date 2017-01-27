@@ -25,7 +25,7 @@ class Tile:
                          (pos_x + (margin_x + width) * self.Position.X + margin_x,
                           pos_y + (-margin_y - height) * self.Position.Y - margin_y,
                           width,
-                          height))
+                          height), 2)
 
         if self.Right.Position.X != 0 and self.Right.Position.X != 0.5:
             self.Right.Draw(screen, width, height, pos_x, pos_y)
