@@ -165,16 +165,16 @@ class Game:
                 self.AR_R.draw(self.screen)
                 self.AR_U.draw(self.screen)
 
-                #Dice
+                # Dice
                 self.D1.update(self.screen_rect)
                 self.D1.draw(self.screen, self.width * 0.1, self.width * 0.1)
                 self.D1.vel(self.width, self.height)
 
-                #Next and previous button
+                # Next and previous button
                 self.Next2.draw(self.screen)
                 self.Prev2.draw(self.screen)
 
-                #Questions screen
+                # Questions screen
                 if self.play_pagenr == 3:
                     self.Q.draw(self.screen)
         # Help
