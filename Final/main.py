@@ -12,6 +12,7 @@ from Dice import *
 from IText import *
 from PColor import *
 from PCat import *
+from Settings import *
 
 class Game:
     def __init__(self):
@@ -24,6 +25,8 @@ class Game:
         self.help_pagenr = 0
         self.play_pages = 3
         self.play_pagenr = 0
+        self.settings_pages = 1
+        self.settings_pagenr = 0
         self.players = 0
         self.turn = 0
         self.action = 0
@@ -63,6 +66,10 @@ class Game:
         self.P2CA = PCat(self.width * 0.67, self.height * 0.245, self.width * 0.18, self.height * 0.05)
         self.P3CA = PCat(self.width * 0.67, self.height * 0.345, self.width * 0.18, self.height * 0.05)
         self.P4CA = PCat(self.width * 0.67, self.height * 0.445, self.width * 0.18, self.height * 0.05)
+        self.TO1 = Toggle1(self.width * 0.572, self.height * 0.381, self.width * 0.068, self.height * 0.05)
+        self.TO2 = Toggle1(self.width * 0.572, self.height * 0.442, self.width * 0.068, self.height * 0.05)
+        self.TO3 = Toggle2(self.width * 0.572, self.height * 0.61, self.width * 0.068, self.height * 0.05)
+        self.RES = Resolution(self.width * 0.54, self.height * 0.553, self.width * 0.1, self.height * 0.05)
 
     def draw(self):
         # Menu
@@ -245,10 +252,24 @@ class Game:
             self.B2.draw(self.screen)
         # Settings
         elif self.S0[3] == 1:
-            self.M1.draw(self.screen)
-            self.Sbg.draw(self.screen)
-            self.Cross.draw(self.screen)
-            self.Credits.draw(self.screen)
+            if self.settings_pagenr == 0:
+                self.M1.draw(self.screen)
+                self.Sbg.draw(self.screen)
+                self.Cross1.draw(self.screen)
+                self.Credits.draw(self.screen)
+                self.TO1.update(self.width * 0.572, self.height * 0.381, self.width * 0.068, self.height * 0.05)
+                self.TO1.draw(self.screen)
+                self.TO2.update(self.width * 0.572, self.height * 0.442, self.width * 0.068, self.height * 0.05)
+                self.TO2.draw(self.screen)
+                self.TO3.update(self.width * 0.572, self.height * 0.61, self.width * 0.068, self.height * 0.05)
+                self.TO3.draw(self.screen)
+                self.RES.update(self.width * 0.54, self.height * 0.553, self.width * 0.1, self.height * 0.05)
+                self.RES.draw(self.screen)
+            elif self.settings_pagenr == 1:
+                self.M1.draw(self.screen)
+                self.Cbg.draw(self.screen)
+                self.Cross2.draw(self.screen)
+
 
         pygame.display.update()
 
@@ -263,6 +284,7 @@ class Game:
         self.Helpbg = Backg(self.width, self.height, BG3)
         self.Q = Backg(self.width, self.height, I19)
         self.Sbg = Backg(self.width, self.height, BG5)
+        self.Cbg = Backg(self.width, self.height, BG6)
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
@@ -291,7 +313,8 @@ class Game:
         self.CA3_R = Textbg(self.width * 0.58, self.height * 0.347, self.width * 0.028, self.height * 0.051, I21)
         self.CA4_L = Textbg(self.width * 0.46, self.height * 0.447, self.width * 0.028, self.height * 0.051, I20)
         self.CA4_R = Textbg(self.width * 0.58, self.height * 0.447, self.width * 0.028, self.height * 0.051, I21)
-        self.Cross = Button2(self.width * 0.63, self.height * 0.185, self.width * 0.044, self.height * 0.075, S1)
+        self.Cross1 = Button2(self.width * 0.63, self.height * 0.185, self.width * 0.044, self.height * 0.075, S1)
+        self.Cross2 = Button2(self.width * 0.63, self.height * 0.0745, self.width * 0.044, self.height * 0.075, S1)
         self.Credits = Button2(self.width * 0.36, self.height * 0.7, self.width * 0.13, self.height * 0.07, S2)
 
 
@@ -389,7 +412,7 @@ class Game:
                 elif self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.help_pagenr = int(0)
-                elif self.Cross.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.Cross1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr != 1:
                     self.S0 = [1, 0, 0, 0]
                 elif self.M1.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[0] == 1:
                     self.S0 = [0, 1, 0, 0]
@@ -459,6 +482,38 @@ class Game:
                 elif self.P4CA.rect2.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     if self.P4CA.cc < 3:
                         self.P4CA.cc += 1
+
+                # SETTINGS toggles for setting options
+                if self.TO1.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    if self.TO1.cc > 0:
+                        self.TO1.cc -= 1
+                elif self.TO1.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    if self.TO1.cc < 1:
+                        self.TO1.cc += 1
+                if self.TO2.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    if self.TO2.cc > 0:
+                        self.TO2.cc -= 1
+                elif self.TO2.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    if self.TO2.cc < 1:
+                        self.TO2.cc += 1
+                if self.TO3.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    if self.TO3.cc > 0:
+                        self.TO3.cc -= 1
+                elif self.TO3.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    if self.TO3.cc < 1:
+                        self.TO3.cc += 1
+                if self.RES.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    if self.RES.cc > 0:
+                        self.RES.cc -= 1
+                elif self.RES.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    if self.RES.cc < 2:
+                        self.RES.cc += 1
+                if self.Credits.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    if self.settings_pagenr < self.settings_pages:
+                        self.settings_pagenr += 1
+                elif self.Cross2.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 1:
+                    self.settings_pagenr = 0
+
                 # Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
                     self.P1.Tile = self.P1.Tile.Left
