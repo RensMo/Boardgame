@@ -35,6 +35,7 @@ class Game:
         self.players = 0
         self.turn = 0
         self.action = 0
+        self.sound = pygame.mixer.Sound('Assets/click.wav')
 
         self.steps = 0
         self.stepcount = 0
@@ -42,6 +43,7 @@ class Game:
         self.turn_end = False
 
         pygame.init()
+        pygame.mixer.init()
 
         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
         pygame.display.set_caption(self.caption)
