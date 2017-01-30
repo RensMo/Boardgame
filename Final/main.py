@@ -435,7 +435,6 @@ class Game:
                 elif self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.play_pagenr = int(0)
-                    self.sound.play()
                 elif self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.help_pagenr = int(0)
