@@ -1,9 +1,10 @@
 import pygame
 
 class Player:
-    def __init__(self, name, tile):
+    def __init__(self, name, tile, score):
         self.Name = name
         self.Tile = tile
+        self.Score = score
         self.Colour = (255, 255, 255)
 
     def Draw(self, screen, width, height):
