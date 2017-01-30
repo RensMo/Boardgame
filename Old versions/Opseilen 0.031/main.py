@@ -3,6 +3,7 @@ import random
 import pygame
 from pygame.locals import *
 
+
 from Button import *
 from Menu import *
 from Player import *
@@ -48,6 +49,8 @@ class Game:
                 self.PL2.draw(self.screen)
                 self.PL3.draw(self.screen)
                 self.PL4.draw(self.screen)
+
+
             if self.play_pagenr == 1:
                 self.Pbg2.draw(self.screen)
                 self.B1.draw(self.screen)

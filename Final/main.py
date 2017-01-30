@@ -1,4 +1,5 @@
 import random
+import time
 
 import pygame
 from pygame.locals import *
@@ -7,6 +8,7 @@ from Button import *
 from Menu import *
 from Player import *
 from Tile import *
+from Sounds import *
 from Image import *
 from Dice import *
 from IText import *
@@ -14,11 +16,14 @@ from PColor import *
 from PCat import *
 from Settings import *
 
+
 class Game:
     def __init__(self):
-        self.width = 1280
-        self.height = 720
-        self.size = (self.width, self.height)
+        self.res = [(800,600),(1280,720),(1366,768)]
+        self.resc = 1
+        self.size = self.res[self.resc]
+        self.width = self.size[0]
+        self.height = self.size[1]
         self.caption = "Opseilen"
         self.S0 = [1, 0, 0, 0]
         self.help_pages = 2
@@ -294,6 +299,7 @@ class Game:
         keys = pygame.key.get_pressed()
         events = pygame.event.get()
 
+
         self.M1 = Menu(self.width, self.height, BG0)
         self.Pbg1 = Backg(self.width, self.height, BG1)
         self.Pbg2 = Backg(self.width, self.height, BG2)
@@ -350,6 +356,7 @@ class Game:
                 self.screen = pygame.display.set_mode(event.dict['size'], HWSURFACE | DOUBLEBUF | RESIZABLE)
                 self.width = event.dict['size'][0]
                 self.height = event.dict['size'][1]
+                self.size = (self.width, self.height)
                 if self.D1.rc == 0:
                     self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
             elif event.type == pygame.QUIT:
@@ -501,36 +508,48 @@ class Game:
                         self.P4CA.cc += 1
 
                 # SETTINGS toggles for setting options
-                if self.TO1.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                if self.TO1.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO1.cc > 0:
                         self.TO1.cc -= 1
-                elif self.TO1.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.TO1.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO1.cc < 1:
                         self.TO1.cc += 1
-                if self.TO2.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                if self.TO2.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO2.cc > 0:
                         self.TO2.cc -= 1
-                elif self.TO2.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                        pygame.mixer.music.unpause()
+                elif self.TO2.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO2.cc < 1:
                         self.TO2.cc += 1
-                if self.TO3.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                        pygame.mixer.music.pause()
+                if self.TO3.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO3.cc > 0:
                         self.TO3.cc -= 1
-                elif self.TO3.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                        self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | FULLSCREEN)
+                elif self.TO3.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO3.cc < 1:
                         self.TO3.cc += 1
+                        self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
                 if self.RES.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.RES.cc > 0:
                         self.RES.cc -= 1
+                        self.resc -= 1
+                        self.size = self.res[self.resc]
+                        self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
+                        self.TO3.cc = 1
                 elif self.RES.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.RES.cc < 2:
                         self.RES.cc += 1
+                        self.resc += 1
+                        self.size = self.res[self.resc]
+                        self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
+                        self.TO3.cc = 1
                 if self.Credits.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.settings_pagenr < self.settings_pages:
                         self.settings_pagenr += 1
                 elif self.Cross2.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 1:
                     self.settings_pagenr = 0
-
+                    
                 # Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
                     #self.P1.Tile = self.P1.Tile.Left
