@@ -35,7 +35,7 @@ class Game:
         self.players = 0
         self.turn = 0
         self.action = 0
-        self.sound = pygame.mixer.Sound()
+        self.sound = pygame.mixer.Sound('click.wav')
 
         self.steps = 0
         self.stepcount = 0
@@ -43,6 +43,7 @@ class Game:
         self.turn_end = False
 
         pygame.init()
+        pygame.mixer.init()
 
         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
         pygame.display.set_caption(self.caption)
@@ -434,6 +435,7 @@ class Game:
                 elif self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.play_pagenr = int(0)
+                    self.sound.play()
                 elif self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.help_pagenr = int(0)
