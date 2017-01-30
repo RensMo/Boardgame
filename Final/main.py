@@ -7,7 +7,7 @@ from Button import *
 from Menu import *
 from Player import *
 from Tile import *
-#from Sounds import *
+from Sounds import *
 from Image import *
 from Dice import *
 from IText import *
@@ -34,7 +34,7 @@ class Game:
         self.players = 0
         self.turn = 0
         self.action = 0
-        #self.sound = pygame.mixer.Sound('Assets/click.wav')
+        self.sound = pygame.mixer.Sound('Assets/click.wav')
 
         self.steps = 0
         self.stepcount = 0
@@ -561,14 +561,14 @@ class Game:
                     self.settings_pagenr = 0
                     
                 # Player move with direction pad demo
-                elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2 and self.action == 2:
+                elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 2 and self.action == 2:
                     #self.P1.Tile = self.P1.Tile.Left
                     self.stepdirection = "Left"
-                elif self.AR_U.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2 and self.action == 2:
+                elif self.AR_U.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 2 and self.action == 2:
                     if self.P1.Tile.Up != None:
                         #self.P1.Tile = self.P1.Tile.Up
                         self.stepdirection = "Up"
-                elif self.AR_R.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2 and self.action == 2:
+                elif self.AR_R.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 2 and self.action == 2:
                     #self.P1.Tile = self.P1.Tile.Right
                     self.stepdirection = "Right"
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 3 and self.D1.rect.collidepoint(pygame.mouse.get_pos()) and self.D1.rc == 0:
