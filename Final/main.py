@@ -500,9 +500,11 @@ class Game:
                 if self.TO2.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO2.cc > 0:
                         self.TO2.cc -= 1
+                        pygame.mixer.music.unpause()
                 elif self.TO2.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO2.cc < 1:
                         self.TO2.cc += 1
+                        pygame.mixer.music.pause()
                 if self.TO3.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO3.cc > 0:
                         self.TO3.cc -= 1
