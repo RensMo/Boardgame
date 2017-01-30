@@ -1,4 +1,5 @@
 import MySQLdb
+import pygame
 
 def question(category):
     query = """select * from Vragen WHERE Category = '%s'  ORDER BY RAND() LIMIT 1  """ % (category)
@@ -19,7 +20,7 @@ def question(category):
     return result
 
 
-res =  question()
+res = question("Sport")
 questions = res[0][1]
 answer = res[0][3]
 wrongans = res[0][4]
@@ -28,18 +29,18 @@ print(questions)
 
 class Questions:
     def __init__(self, x, y, size):
-        self.Questions = res[0][1]
-        self.categ = res[0][2]
-        self.ranswer = res[0][3]
-        self.wanswer1 = res[0][4]
-        self.wanswer2 = res[0][5]
+        self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", size)
+        self.Questions = self.font.render(res[0][1], 1, (0,0,0))
+        self.categ = self.font.render(res[0][2], 1, (0,0,0))
+        self.ranswer = self.font.render(res[0][3], 1, (0,0,0))
+        self.wanswer1 = self.font.render(res[0][4], 1, (0,0,0))
+        self.wanswer2 = self.font.render(res[0][5], 1, (0,0,0))
         self.x = x
         self.y = y
         self.size = size
-        self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", self.size)
 
     def draw(self, surface):
         surface.blit(self.Questions, (self.x, self.y))
-        surface.blit(self.ranswer, (self.x, self.y + self.y * 0.1))
-        surface.blit(self.wanswer1, (self.x, self.y + self.y * 0.1))
-        surface.blit(self.wanswer2, (self.x, self.y + self.y * 0.1))
+        surface.blit(self.ranswer, (self.x, self.y + self.y * 0.5))
+        surface.blit(self.wanswer1, (self.x, self.y + self.y * 0.5))
+        surface.blit(self.wanswer2, (self.x, self.y + self.y * 0.5))
