@@ -17,7 +17,6 @@ from PCat import *
 from Settings import *
 
 
-
 class Game:
     def __init__(self):
         self.width = 1280
@@ -280,6 +279,7 @@ class Game:
     def process_events(self):
         keys = pygame.key.get_pressed()
         events = pygame.event.get()
+
 
         self.M1 = Menu(self.width, self.height, BG0)
         self.Pbg1 = Backg(self.width, self.height, BG1)
