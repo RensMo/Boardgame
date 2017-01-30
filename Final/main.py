@@ -43,10 +43,14 @@ class Game:
 
         self.blink = False
 
+        self.currentplayer = None
+
         self.sameposition = False
         self.downplayer = None
         self.stepcount_down = 0
-        self.steps_down = 0
+
+        self.counter_limit = 500
+        self.counter = 0
 
         pygame.init()
         pygame.mixer.init()
@@ -190,12 +194,12 @@ class Game:
                 # Turns
                 elif self.turn >= 1:
                     players_array = [None, self.P1, self.P2, self.P3, self.P4]
-                    currentplayer = players_array[self.turn]
+                    self.currentplayer = players_array[self.turn]
 
                     # Player throws the dice
                     if self.action == 0:
                         if self.blink == True:
-                            self.CD.draw(self.screen) #should be switched with TD
+                            self.CD.draw(self.screen) #should be switched with TD...
                             self.blink = False
                         else:
                             self.blink = True
@@ -203,8 +207,19 @@ class Game:
                         if self.D1.rcI > 0 and self.D1.DiceRolled == 1:
                             steps_array = [0, 1, 1, 2, 2, 3, 3]
                             self.steps = steps_array[self.D1.rcI]
-                            self.action += 2
-                            self.D1.DiceRolled = 0
+                            # Same position player from last turn?, go down!
+                            if self.sameposition == True:
+                                if self.D1.vcc2 == 0:
+                                    if (self.stepcount_down < self.D1.rcI) and (getattr(self.downplayer.Tile, "Down") != None):
+                                        self.downplayer.Tile = getattr(self.downplayer.Tile, "Down")
+                                        self.stepcount_down += 1
+                                    else:
+                                        self.sameposition = False
+                                        self.turn_end = True
+                                        self.stepcount_down
+                            else:
+                                self.action += 2  # MUST BE 1 AFTER QUESTIONS ARE FINISHED
+
 
                     # Player gets question
                     #elif self.action == 1:
@@ -216,30 +231,26 @@ class Game:
                     # Player chooses moving position
                     elif self.action == 2:
                         if self.blink == True:
-                            self.TD.draw(self.screen) #Should be switched to CD
+                            self.TD.draw(self.screen) #Should be switched to CD...
                             self.blink = False
                         else:
                             self.blink = True
 
-                        if self.stepcount <= self.steps and self.stepdirection != None:
-                            currentplayer.Tile = getattr(currentplayer.Tile, self.stepdirection)
-                            self.stepcount += 1
+                        if (self.stepcount < self.steps) and (self.stepdirection != None) and self.D1.vcc2 == 0:
+                            print(1)
+                            if self.currentplayer.Tile.Position.Y == 0 and (self.stepdirection != "Up"):
+                                print(2)
+                            elif (getattr(self.currentplayer.Tile, self.stepdirection) != None):
+                                print(3)
+                                self.currentplayer.Tile = getattr(self.currentplayer.Tile, self.stepdirection)
+                                self.stepcount += 1
 
                         if self.stepcount == self.steps:
-                            for i in range(1, self.players):
-                                if i != self.turn and players_array[i].Tile.Position == currentplayer.Tile.Position:
+                            for i in range(1, self.players + 1):
+                                if i != self.turn and players_array[i].Tile.Position == self.currentplayer.Tile.Position:
                                     self.sameposition = True
                                     self.downplayer = players_array[i]
-                                    break
-                            if self.sameposition == True:
-                                if self.D1.rcI > 0 and self.D1.DiceRolled == 1:
-                                    if self.stepcount_down <= self.D1.rcI and self.stepdirection != None:
-                                        self.downplayer.Tile = getattr(self.downplayer.Tile, "Down")
-                                        self.stepcount_down += 1
-                                    else:
-                                        self.turn_end = True
-                            else:
-                                self.turn_end = True
+                            self.turn_end = True
 
                 # Prepare for next turn:
 
@@ -255,32 +266,29 @@ class Game:
                     self.stepdirection = None
                     self.turn_end = False
                     self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
-                    if self.turn == self.players:
-                        self.turn = 1
-                    else:
-                        self.turn += 1
+                    if self.sameposition == False:
+                        if self.turn == self.players:
+                            self.turn = 1
+                        else:
+                            self.turn += 1
 
                 # Update and draw Players
-                self.P1.Update()
                 self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                              self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                 p1name = IText(self.width * 0.75, self.height * 0.20, "#1 " + self.P1.Name, int(self.width * 0.03), 0, 0, self.P1.Colour)
                 p1name.draw(self.screen)
-                self.P2.Update()
                 self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                              self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                 p2name = IText(self.width * 0.75, self.height * 0.255, "#2 " + self.P2.Name, int(self.width * 0.03), 0, 0,
                                self.P2.Colour)
                 p2name.draw(self.screen)
                 if self.players >= 3:
-                    self.P3.Update()
                     self.P3.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                  self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                     p3name = IText(self.width * 0.75, self.height * 0.310, "#3 " + self.P3.Name, int(self.width * 0.03),
                                    0, 0, self.P3.Colour)
                     p3name.draw(self.screen)
                     if self.players == 4:
-                        self.P4.Update()
                         self.P4.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                         p4name = IText(self.width * 0.75, self.height * 0.365, "#4 " + self.P4.Name, int(self.width * 0.03),

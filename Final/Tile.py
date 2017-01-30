@@ -53,13 +53,19 @@ def build_matrix():
         colour = (169, 169, 169)  # grey (bottom area)
         node = Tile(colour, Position(tile + 0.5, 0), None)
         if tile == 0:
+            node.Category = "Entertainment"
             entry_point = node
             prev_node = node
         if tile == 2 or tile == 4:
+            if tile == 2:
+                node.Category = "Geography"
+            if tile == 4:
+                node.Category = "History"
             prev_node.Right = node
             node.Left = prev_node
             prev_node = node
         if tile == 6:
+            node.Category = "History"
             prev_node.Right = node
             node.Left = prev_node
             node.Right = entry_point
