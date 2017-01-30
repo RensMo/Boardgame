@@ -43,6 +43,11 @@ class Game:
 
         self.blink = False
 
+        self.sameposition = False
+        self.downplayer = None
+        self.stepcount_down = 0
+        self.steps_down = 0
+
         pygame.init()
         pygame.mixer.init()
 
@@ -199,6 +204,7 @@ class Game:
                             steps_array = [0, 1, 1, 2, 2, 3, 3]
                             self.steps = steps_array[self.D1.rcI]
                             self.action += 2
+                            self.D1.DiceRolled = 0
 
                     # Player gets question
                     #elif self.action == 1:
@@ -218,8 +224,22 @@ class Game:
                         if self.stepcount <= self.steps and self.stepdirection != None:
                             currentplayer.Tile = getattr(currentplayer.Tile, self.stepdirection)
                             self.stepcount += 1
+
                         if self.stepcount == self.steps:
-                            self.turn_end = True
+                            for i in range(1, self.players):
+                                if i != self.turn and players_array[i].Tile.Position == currentplayer.Tile.Position:
+                                    self.sameposition = True
+                                    self.downplayer = players_array[i]
+                                    break
+                            if self.sameposition == True:
+                                if self.D1.rcI > 0 and self.D1.DiceRolled == 1:
+                                    if self.stepcount_down <= self.D1.rcI and self.stepdirection != None:
+                                        self.downplayer.Tile = getattr(self.downplayer.Tile, "Down")
+                                        self.stepcount_down += 1
+                                    else:
+                                        self.turn_end = True
+                            else:
+                                self.turn_end = True
 
                 # Prepare for next turn:
 
