@@ -31,6 +31,11 @@ class Game:
         self.turn = 0
         self.action = 0
 
+        self.steps = 0
+        self.stepcount = 0
+        self.stepdirection = None
+        self.turn_end = False
+
         pygame.init()
 
         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
@@ -170,32 +175,53 @@ class Game:
                                 self.P4.Tile = getstart(self.P4.StartCat)
 
                 # Turns
-                elif self.turn == 1:
-                    currentplayer = self.P1
-                elif self.turn == 2:
-                    currentplayer = self.P2
-                elif self.turn == 3:
-                    currentplayer = self.P3
-                elif self.turn == 4:
-                    currentplayer = self.P4
+                elif 1 >= self.turn:
+                    players_array = [None, self.P1, self.P2, self.P3, self.P4]
+                    currentplayer = players_array[self.turn]
 
-                """
-                # Player throws the dice
-                if self.action == 0:
-                    return
+                    # Player throws the dice
+                    if self.action == 0:
+                        if self.D1.rcI > 0 and self.D1.DiceRolled == 1:
+                            steps_array = [1, 1, 2, 2, 3, 3]
+                            self.steps = steps_array[self.D1.rcI]
+                            self.action += 2
 
-                # Player gets question
-                if self.action == 1:
-                    return
+                    # Player gets question
+                    #elif self.action == 1:
+                        #if answer_right == True:
+                        #    self.action += 1
+                        #elif answer_right == False:
+                        #    self.action += 2
 
-                # Player chooses moving position
-                if self.action == 2:
-                    turn_end = True
+                    # Player chooses moving position
+                    elif self.action == 2:
+                        if self.stepcount <= self.steps and self.stepdirection != None:
+                            #print(self.stepdirection)
+                            currentplayer.Tile = getattr(currentplayer.Tile, self.stepdirection)
+                            self.stepcount += 1
+                        if self.stepcount == self.steps:
+                            self.action += 1
+
+                    elif self.action == 3:
+                        self.turn_end = True
+
+                # Prepare for next turn:
+                # First players turn.
+                if self.turn == 0:
+                    self.turn = 1
+
+                # Next players turn
+                if self.turn_end == True:
                     self.action = 0
-                    return
-                """
+                    self.steps = 0
+                    self.stepcount = 0
+                    self.stepdirection = None
+                    self.turn_end = False
+                    if self.turn == self.players:
+                        self.turn = 1
+                    else:
+                        self.turn += 1
 
-                # End turn
 
                 # Update and draw Players
                 self.P1.Update()
@@ -224,15 +250,6 @@ class Game:
                                    0, 0, self.P4.Colour)
                         p4name.draw(self.screen)
 
-                # Next Turn
-                if self.turn == 0:
-                    self.turn += 1
-                """
-                if turn_end == True:
-                    if self.turn == self.players:
-                        self.turn = 1
-                    else:
-                        self.turn += 1"""
                 # Questions screen
                 if self.play_pagenr == 3:
                     self.Q.draw(self.screen)
@@ -516,12 +533,15 @@ class Game:
 
                 # Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
-                    self.P1.Tile = self.P1.Tile.Left
+                    #self.P1.Tile = self.P1.Tile.Left
+                    self.stepdirection = "Left"
                 elif self.AR_U.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
                     if self.P1.Tile.Up != None:
-                        self.P1.Tile = self.P1.Tile.Up
+                        #self.P1.Tile = self.P1.Tile.Up
+                        self.stepdirection = "Up"
                 elif self.AR_R.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
-                    self.P1.Tile = self.P1.Tile.Right
+                    #self.P1.Tile = self.P1.Tile.Right
+                    self.stepdirection = "Right"
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 3 and self.D1.rect.collidepoint(pygame.mouse.get_pos()) and self.D1.rc == 0:
                 self.D1.rc = 4
         return False
