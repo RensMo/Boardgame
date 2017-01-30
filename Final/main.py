@@ -35,6 +35,7 @@ class Game:
         self.players = 0
         self.turn = 0
         self.action = 0
+        self.sound = pygame.mixer.Sound()
 
         pygame.init()
 
