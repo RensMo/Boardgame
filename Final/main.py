@@ -7,12 +7,15 @@ from Button import *
 from Menu import *
 from Player import *
 from Tile import *
+from Sounds import *
 from Image import *
 from Dice import *
 from IText import *
 from PColor import *
 from PCat import *
 from Settings import *
+
+
 
 class Game:
     def __init__(self):
