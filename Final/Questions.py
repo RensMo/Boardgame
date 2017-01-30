@@ -41,6 +41,6 @@ class Questions:
 
     def draw(self, surface):
         surface.blit(self.Questions, (self.x, self.y))
-        surface.blit(self.ranswer, (self.x, self.y + self.y * 0.5))
-        surface.blit(self.wanswer1, (self.x, self.y + self.y * 0.5))
-        surface.blit(self.wanswer2, (self.x, self.y + self.y * 0.5))
+        surface.blit(self.ranswer, (self.x, self.y + self.y * 0.2))
+        surface.blit(self.wanswer1, (self.x, self.y + self.y * 0.4))
+        surface.blit(self.wanswer2, (self.x, self.y + self.y * 0.6))
