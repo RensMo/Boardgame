@@ -1,7 +1,7 @@
 import pygame
 
 ###BACKGROUNDS
-BG0 = pygame.image.load("Assets/Background_S0.jpg")
+BG0 = pygame.image.load("Assets/Startmenu_bg.jpg")
 BG1 = pygame.image.load("Assets/Play/p1_bg.jpg")
 BG2 = pygame.image.load("Assets/Play/p2_bg.jpg")
 BG3 = pygame.image.load("Assets/Help/help_bg.jpg")
