@@ -8,7 +8,7 @@ from Button import *
 from Menu import *
 from Player import *
 from Tile import *
-from Sounds import *
+#from Sounds import *
 from Image import *
 from Dice import *
 from IText import *
@@ -180,14 +180,14 @@ class Game:
                                 self.P4.Tile = getstart(self.P4.StartCat)
 
                 # Turns
-                elif 1 >= self.turn:
+                elif self.turn >= 1:
                     players_array = [None, self.P1, self.P2, self.P3, self.P4]
                     currentplayer = players_array[self.turn]
 
                     # Player throws the dice
                     if self.action == 0:
                         if self.D1.rcI > 0 and self.D1.DiceRolled == 1:
-                            steps_array = [1, 1, 2, 2, 3, 3]
+                            steps_array = [0, 1, 1, 2, 2, 3, 3]
                             self.steps = steps_array[self.D1.rcI]
                             self.action += 2
 
@@ -205,13 +205,11 @@ class Game:
                             currentplayer.Tile = getattr(currentplayer.Tile, self.stepdirection)
                             self.stepcount += 1
                         if self.stepcount == self.steps:
-                            self.action += 1
-
-                    elif self.action == 3:
-                        self.turn_end = True
+                            self.turn_end = True
 
                 # Prepare for next turn:
-                # First players turn.
+
+                # First player turn.
                 if self.turn == 0:
                     self.turn = 1
 
@@ -222,6 +220,7 @@ class Game:
                     self.stepcount = 0
                     self.stepdirection = None
                     self.turn_end = False
+                    self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
                     if self.turn == self.players:
                         self.turn = 1
                     else:
@@ -292,13 +291,11 @@ class Game:
                 self.Cbg.draw(self.screen)
                 self.Cross2.draw(self.screen)
 
-
         pygame.display.update()
 
     def process_events(self):
         keys = pygame.key.get_pressed()
         events = pygame.event.get()
-
 
         self.M1 = Menu(self.width, self.height, BG0)
         self.Pbg1 = Backg(self.width, self.height, BG1)
@@ -551,14 +548,14 @@ class Game:
                     self.settings_pagenr = 0
                     
                 # Player move with direction pad demo
-                elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
+                elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2 and self.action == 2:
                     #self.P1.Tile = self.P1.Tile.Left
                     self.stepdirection = "Left"
-                elif self.AR_U.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
+                elif self.AR_U.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2 and self.action == 2:
                     if self.P1.Tile.Up != None:
                         #self.P1.Tile = self.P1.Tile.Up
                         self.stepdirection = "Up"
-                elif self.AR_R.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
+                elif self.AR_R.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2 and self.action == 2:
                     #self.P1.Tile = self.P1.Tile.Right
                     self.stepdirection = "Right"
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 3 and self.D1.rect.collidepoint(pygame.mouse.get_pos()) and self.D1.rc == 0:
