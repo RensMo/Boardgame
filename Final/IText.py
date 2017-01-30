@@ -9,7 +9,6 @@ class Textbg:
         self.I = I
         self.I = pygame.transform.scale(self.I, (int(sx), int(sy)))
         self.rect = pygame.Rect((x,y), (sx,sy))
-        self.screct = pygame.Surface((int(sx), int(sy)))
 
     def draw(self, surface):
         surface.blit(self.I, (self.rect))

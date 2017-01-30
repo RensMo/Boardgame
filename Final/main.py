@@ -19,9 +19,11 @@ from Settings import *
 
 class Game:
     def __init__(self):
-        self.width = 1280
-        self.height = 720
-        self.size = (self.width, self.height)
+        self.res = [(800,600),(1280,720),(1366,768)]
+        self.resc = 1
+        self.size = self.res[self.resc]
+        self.width = self.size[0]
+        self.height = self.size[1]
         self.caption = "Opseilen"
         self.S0 = [1, 0, 0, 0]
         self.help_pages = 2
@@ -512,15 +514,23 @@ class Game:
                 if self.RES.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.RES.cc > 0:
                         self.RES.cc -= 1
+                        self.resc -= 1
+                        self.size = self.res[self.resc]
+                        self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
+                        self.TO3.cc = 1
                 elif self.RES.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.RES.cc < 2:
                         self.RES.cc += 1
+                        self.resc += 1
+                        self.size = self.res[self.resc]
+                        self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
+                        self.TO3.cc = 1
                 if self.Credits.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.settings_pagenr < self.settings_pages:
                         self.settings_pagenr += 1
                 elif self.Cross2.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 1:
                     self.settings_pagenr = 0
-
+                    
                 # Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1 and self.play_pagenr == 2:
                     self.P1.Tile = self.P1.Tile.Left
