@@ -42,6 +42,8 @@ class Game:
         self.stepdirection = None
         self.turn_end = False
 
+        self.blink = False
+
         pygame.init()
         pygame.mixer.init()
 
@@ -188,6 +190,12 @@ class Game:
 
                     # Player throws the dice
                     if self.action == 0:
+                        if self.blink == True:
+                            self.CD.draw(self.screen) #should be switched with TD
+                            self.blink = False
+                        else:
+                            self.blink = True
+
                         if self.D1.rcI > 0 and self.D1.DiceRolled == 1:
                             steps_array = [0, 1, 1, 2, 2, 3, 3]
                             self.steps = steps_array[self.D1.rcI]
@@ -202,8 +210,13 @@ class Game:
 
                     # Player chooses moving position
                     elif self.action == 2:
+                        if self.blink == True:
+                            self.TD.draw(self.screen) #Should be switched to CD
+                            self.blink = False
+                        else:
+                            self.blink = True
+
                         if self.stepcount <= self.steps and self.stepdirection != None:
-                            #print(self.stepdirection)
                             currentplayer.Tile = getattr(currentplayer.Tile, self.stepdirection)
                             self.stepcount += 1
                         if self.stepcount == self.steps:
@@ -227,7 +240,6 @@ class Game:
                         self.turn = 1
                     else:
                         self.turn += 1
-
 
                 # Update and draw Players
                 self.P1.Update()
