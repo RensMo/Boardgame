@@ -40,6 +40,6 @@ class Button2:
             surface.blit(self.I, (self.rect))
         elif self.rect.collidepoint(pygame.mouse.get_pos()):
             self.I = pygame.transform.scale(self.I, (int(self.sx * 1.05), int(self.sy * 1.05)))
-            self.rect = pygame.Rect((int(self.x - (self.sx * 1.05 - self.sx)), int(self.y - (self.sy * 1.05 - self.sy))), (int(self.sx), int(self.sy)))
+            self.rect = pygame.Rect((int(self.x - (self.sx * 1.025 - self.sx)), int(self.y - (self.sy * 1.025 - self.sy))), (int(self.sx), int(self.sy)))
             surface.blit(self.I, (self.rect))
 
