@@ -93,13 +93,12 @@ class Game:
         self.TO2 = Toggle1(self.width * 0.572, self.height * 0.442, self.width * 0.068, self.height * 0.05)
         self.TO3 = Toggle2(self.width * 0.572, self.height * 0.61, self.width * 0.068, self.height * 0.05)
         self.RES = Resolution(self.width * 0.54, self.height * 0.553, self.width * 0.1, self.height * 0.05)
-        self.Ques= Questions(self.width * 0.5, self.height * 0.5, 50)
+        self.Ques= Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
 
     def draw(self):
         # Menu
         if self.S0[0] == 1:
             self.M1.draw(self.screen)
-            self.Ques.draw(self.screen)
         # Play
         elif self.S0[1] == 1:
             # Choose Players
@@ -301,6 +300,8 @@ class Game:
                 # Questions screen
                 if self.play_pagenr == 3:
                     self.Q.draw(self.screen)
+                    self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+                    self.Ques.draw(self.screen)
         # Help
         elif self.S0[2] == 1:
             self.Helpbg.draw(self.screen)
