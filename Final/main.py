@@ -446,6 +446,7 @@ class Game:
                 if self.D1.rc == 1:
                     self.D1.rc = 2
                 if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:  #and self.play_pagenr != 3
+                    self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
                     if self.play_pagenr < self.play_pages:
                         if self.players >= 2 and self.play_pagenr == 1:
                             self.P1.Name = self.T1_2.atext
