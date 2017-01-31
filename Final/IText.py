@@ -14,12 +14,19 @@ class Textbg:
         surface.blit(self.I, (self.rect))
 
 class IText:
-    def __init__(self, x, y, btext, size, width, rI, color=pygame.Color("black")):
+    def __init__(self, x, y, btext, size, width, rI, color=pygame.Color("black"), underline=None):
         self.x = x
         self.y = y
         self.size = size
         self.width = width
         self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", self.size)
+        self.underline = underline
+        if self.underline == True:
+            print("underline = true")
+            self.font.set_underline(True)
+        elif self.underline == False:
+            print("underline = true")
+            self.font.set_underline(False)
         self.color = color
         self.btext = btext
         self.atext = ""
@@ -39,6 +46,13 @@ class IText:
         self.rect = pygame.Rect((self.x, self.y), (self.width, self.size))
         self.srect = pygame.Surface((int(self.width), int(self.size)))
         self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", self.size)
+
+        if self.underline == True:
+            print("underline = true")
+            self.font.set_underline(True)
+        elif self.underline == False:
+            print("underline = true")
+            self.font.set_underline(False)
 
         if self.rI == 0:
             if self.focus == 0:
@@ -156,7 +170,7 @@ class IText:
                             elif event.key == pygame.K_PERIOD: self.atext += '>'
                             elif event.key == pygame.K_SLASH: self.atext += '?'
 
-        if len(self.atext) > self.maxlength and self.maxlength >= 0: self.atext = self.atext[:-1]  
+        if len(self.atext) > self.maxlength and self.maxlength >= 0: self.atext = self.atext[:-1]
         self.etext = self.font.render(self.btext + self.atext, 1, (self.color))
 
     def draw(self, surface):
@@ -164,4 +178,3 @@ class IText:
         self.srect.set_alpha(68)
         surface.blit(self.srect, (int(self.x), int(self.y)))
         surface.blit(self.etext, (self.x, self.y))
-        

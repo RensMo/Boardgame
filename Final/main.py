@@ -168,6 +168,18 @@ class Game:
                 self.Next2.draw(self.screen)            # Next and previous button
                 self.Prev2.draw(self.screen)
 
+                if self.players >= 2:
+                    self.P1.Nametext = IText(self.width * 0.75, self.height * 0.20, "#1 " + self.P1.Name,
+                                             int(self.width * 0.03), 0, 0, self.P1.Colour)
+                    self.P2.Nametext = IText(self.width * 0.75, self.height * 0.255, "#2 " + self.P2.Name,
+                                             int(self.width * 0.03), 0, 0, self.P2.Colour)
+                    if self.players >= 3:
+                        self.P3.Nametext = IText(self.width * 0.75, self.height * 0.310, "#3 " + self.P3.Name,
+                                                 int(self.width * 0.03), 0, 0, self.P3.Colour)
+                        if self.players == 4:
+                            self.P4.Nametext = IText(self.width * 0.75, self.height * 0.365, "#4 " + self.P4.Name,
+                                                     int(self.width * 0.03), 0, 0, self.P4.Colour)
+
                 # At turn 0, place players
                 if self.turn == 0:
                     def getstart(category):
@@ -181,7 +193,7 @@ class Game:
                         elif category == "Sport":
                             to_right = 3
                         start = self.entry_tile
-                        for i in range(to_right):
+                        for rangeright in range(to_right):
                             start = start.Right
                         return start
 
@@ -197,6 +209,34 @@ class Game:
                 elif self.turn >= 1:
                     players_array = [None, self.P1, self.P2, self.P3, self.P4]
                     self.currentplayer = players_array[self.turn]
+
+                    if self.sameposition == False:
+                        if self.currentplayer == self.P1:
+                            self.P1.Nametext = IText(self.width * 0.75, self.height * 0.20, "#1 " + self.P1.Name,
+                                                     int(self.width * 0.03), 0, 0, self.P1.Colour, True)
+                        elif self.currentplayer == self.P2:
+                            self.P2.Nametext = IText(self.width * 0.75, self.height * 0.255, "#2 " + self.P2.Name,
+                                                     int(self.width * 0.03), 0, 0, self.P2.Colour, True)
+                        elif self.currentplayer == self.P3:
+                            self.P3.Nametext = IText(self.width * 0.75, self.height * 0.310, "#3 " + self.P3.Name,
+                                                     int(self.width * 0.03), 0, 0, self.P3.Colour, True)
+                        elif self.currentplayer == self.P4:
+                            self.P4.Nametext = IText(self.width * 0.75, self.height * 0.365, "#4 " + self.P4.Name,
+                                                     int(self.width * 0.03), 0, 0, self.P4.Colour, True)
+
+                    if self.sameposition == True:
+                        if self.downplayer == self.P1:
+                            self.P1.Nametext = IText(self.width * 0.75, self.height * 0.20, "#1 " + self.P1.Name,
+                                                     int(self.width * 0.03), 0, 0, self.P1.Colour, True)
+                        elif self.downplayer == self.P2:
+                            self.P2.Nametext = IText(self.width * 0.75, self.height * 0.255, "#2 " + self.P2.Name,
+                                                     int(self.width * 0.03), 0, 0, self.P2.Colour, True)
+                        elif self.downplayer == self.P3:
+                            self.P3.Nametext = IText(self.width * 0.75, self.height * 0.310, "#3 " + self.P3.Name,
+                                                     int(self.width * 0.03), 0, 0, self.P3.Colour, True)
+                        elif self.downplayer == self.P4:
+                            self.P4.Nametext = IText(self.width * 0.75, self.height * 0.365, "#4 " + self.P4.Name,
+                                                     int(self.width * 0.03), 0, 0, self.P4.Colour, True)
 
                     # Player throws the dice
                     if self.action == 0:
@@ -217,8 +257,8 @@ class Game:
                                         self.stepcount_down += 1
                                     else:
                                         self.sameposition = False
+                                        self.downplayer = None
                                         self.turn_end = True
-                                        self.stepcount_down
                             else:
                                 self.action += 2  # MUST BE 1 AFTER QUESTIONS ARE FINISHED
 
@@ -267,6 +307,10 @@ class Game:
                     self.stepcount = 0
                     self.stepdirection = None
                     self.turn_end = False
+                    self.currentplayer.Nametext.underline = False
+                    if self.downplayer != None:
+                        self.downplayer.Nametext.underline = False
+
                     self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
                     if self.sameposition == False:
                         if self.turn == self.players:
@@ -277,25 +321,20 @@ class Game:
                 # Update and draw Players
                 self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                              self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                p1name = IText(self.width * 0.75, self.height * 0.20, "#1 " + self.P1.Name, int(self.width * 0.03), 0, 0, self.P1.Colour)
-                p1name.draw(self.screen)
+                self.P1.Nametext.draw(self.screen)
+
                 self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                              self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                p2name = IText(self.width * 0.75, self.height * 0.255, "#2 " + self.P2.Name, int(self.width * 0.03), 0, 0,
-                               self.P2.Colour)
-                p2name.draw(self.screen)
+                self.P2.Nametext.draw(self.screen)
+
                 if self.players >= 3:
                     self.P3.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                  self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                    p3name = IText(self.width * 0.75, self.height * 0.310, "#3 " + self.P3.Name, int(self.width * 0.03),
-                                   0, 0, self.P3.Colour)
-                    p3name.draw(self.screen)
+                    self.P3.Nametext.draw(self.screen)
                     if self.players == 4:
                         self.P4.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
-                        p4name = IText(self.width * 0.75, self.height * 0.365, "#4 " + self.P4.Name, int(self.width * 0.03),
-                                   0, 0, self.P4.Colour)
-                        p4name.draw(self.screen)
+                        self.P4.Nametext.draw(self.screen)
 
                 # Questions screen
                 if self.play_pagenr == 3:
@@ -345,7 +384,6 @@ class Game:
                 self.M1.draw(self.screen)
                 self.Cbg.draw(self.screen)
                 self.Cross2.draw(self.screen)
-
         pygame.display.update()
 
     def process_events(self):
