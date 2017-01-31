@@ -39,6 +39,11 @@ class Questions:
         self.size = size
         self.maxsize = 26
 
+    def update(self, x, y, size):
+        self.x = x
+        self.y = y
+        self.size = size
+
     def draw(self, surface):
         if len(res[0][1]) > self.maxsize:
             self.Questions1 = self.font.render(res[0][1][:self.maxsize], 1, (0,0,0))
