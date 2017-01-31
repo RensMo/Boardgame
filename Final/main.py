@@ -549,9 +549,11 @@ class Game:
                 if self.TO1.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO1.cc > 0:
                         self.TO1.cc -= 1
+                        Sound1.set_volume(1)
                 elif self.TO1.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO1.cc < 1:
                         self.TO1.cc += 1
+                        Sound1.set_volume(0)
                 if self.TO2.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO2.cc > 0:
                         self.TO2.cc -= 1
