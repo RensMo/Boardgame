@@ -8,6 +8,7 @@ BG3 = pygame.image.load("Assets/Help/help_bg.jpg")
 BG4 = pygame.image.load("Assets/Play/p3_bg.jpg")
 BG5 = pygame.image.load("Assets/Settings/settings_bg.png")
 BG6 = pygame.image.load("Assets/Settings/credits_bg.png")
+BG7 = pygame.image.load("Assets/Play/won_bg.png")
 
 ###BUTTONS
 I1 = pygame.image.load("Assets/Play_Button.jpg")

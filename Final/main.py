@@ -28,7 +28,7 @@ class Game:
         self.S0 = [1, 0, 0, 0]
         self.help_pages = 2
         self.help_pagenr = 0
-        self.play_pages = 3
+        self.play_pages = 4
         self.play_pagenr = 0
         self.settings_pages = 1
         self.settings_pagenr = 0
@@ -302,6 +302,16 @@ class Game:
                     self.Q.draw(self.screen)
                     self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
                     self.Ques.draw(self.screen)
+                    self.Next2.draw(self.screen)
+                    self.Prev2.draw(self.screen)
+
+                # Won screen
+            if self.play_pagenr == 4:
+                self.Wonbg.draw(self.screen)
+                self.Cross3.draw(self.screen)
+                self.Next2.draw(self.screen)
+                self.Prev2.draw(self.screen)
+
         # Help
         elif self.S0[2] == 1:
             self.Helpbg.draw(self.screen)
@@ -350,6 +360,7 @@ class Game:
         self.Q = Backg(self.width, self.height, I19)
         self.Sbg = Backg(self.width, self.height, BG5)
         self.Cbg = Backg(self.width, self.height, BG6)
+        self.Wonbg = Backg(self.width, self.height, BG7)
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
@@ -380,6 +391,7 @@ class Game:
         self.CA4_R = Textbg(self.width * 0.58, self.height * 0.447, self.width * 0.028, self.height * 0.051, I21)
         self.Cross1 = Button2(self.width * 0.63, self.height * 0.185, self.width * 0.044, self.height * 0.075, S1)
         self.Cross2 = Button2(self.width * 0.63, self.height * 0.0745, self.width * 0.044, self.height * 0.075, S1)
+        self.Cross3 = Button2(self.width * 0.681, self.height * 0.396, self.width * 0.044, self.height * 0.075, S1)
         self.Credits = Button2(self.width * 0.36, self.height * 0.7, self.width * 0.13, self.height * 0.07, S2)
 
 
@@ -594,6 +606,9 @@ class Game:
                         self.settings_pagenr += 1
                 elif self.Cross2.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 1:
                     self.settings_pagenr = 0
+                if self.Cross3.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 4:
+                    self.S0 = [1, 0, 0, 0]
+                    self.play_pagenr = int(0)
                     
                 # Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 2 and self.action == 2:
