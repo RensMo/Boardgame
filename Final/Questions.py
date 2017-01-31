@@ -44,7 +44,7 @@ class Questions:
         self.y = y
         self.size = size
         self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", size)
-        self.Questions = self.font.render(res[0][1] + "?", 1, (0,0,0))
+        self.Questions = self.font.render(res[0][1], 1, (0,0,0))
         self.categ = self.font.render(res[0][2], 1, (0,0,0))
         self.ranswer = self.font.render(res[0][3], 1, (0,0,0))
         self.wanswer1 = self.font.render(res[0][4], 1, (0,0,0))
@@ -53,7 +53,7 @@ class Questions:
     def draw(self, surface):
         if len(res[0][1]) > self.maxsize:
             self.Questions1 = self.font.render(res[0][1][:self.maxsize], 1, (0,0,0))
-            self.Questions2 = self.font.render(res[0][1][self.maxsize:] + "?", 1, (0,0,0))
+            self.Questions2 = self.font.render(res[0][1][self.maxsize:], 1, (0,0,0))
             surface.blit(self.Questions1, (self.x, self.y))
             surface.blit(self.Questions2, (self.x, self.y + self.size))
         else:
