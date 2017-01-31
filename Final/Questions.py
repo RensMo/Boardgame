@@ -37,9 +37,16 @@ class Questions:
         self.x = x
         self.y = y
         self.size = size
+        self.maxsize = 26
 
     def draw(self, surface):
-        surface.blit(self.Questions, (self.x, self.y))
-        surface.blit(self.ranswer, (self.x, self.y + self.y * 0.2))
-        surface.blit(self.wanswer1, (self.x, self.y + self.y * 0.4))
-        surface.blit(self.wanswer2, (self.x, self.y + self.y * 0.6))
+        if len(res[0][1]) > self.maxsize:
+            self.Questions1 = self.font.render(res[0][1][:self.maxsize], 1, (0,0,0))
+            self.Questions2 = self.font.render(res[0][1][self.maxsize:], 1, (0,0,0))
+            surface.blit(self.Questions1, (self.x, self.y))
+            surface.blit(self.Questions2, (self.x, self.y + self.size))
+        else:
+            surface.blit(self.Questions, (self.x, self.y))
+        surface.blit(self.ranswer, (self.x, self.y + self.y * 0.3))
+        surface.blit(self.wanswer1, (self.x, self.y + self.y * 0.3 + self.size))
+        surface.blit(self.wanswer2, (self.x, self.y + self.y * 0.3 + self.size * 2))
