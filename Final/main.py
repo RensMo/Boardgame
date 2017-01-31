@@ -23,7 +23,7 @@ class Game:
         self.size = self.res[self.resc]
         self.width = self.size[0]
         self.height = self.size[1]
-        self.caption = "Opseilen"
+        self.caption = "Dice'to'the'Top"
         self.S0 = [1, 0, 0, 0]
         self.help_pages = 2
         self.help_pagenr = 0
