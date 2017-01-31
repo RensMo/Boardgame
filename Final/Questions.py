@@ -25,7 +25,6 @@ questions = res[0][1]
 answer = res[0][3]
 wrongans = res[0][4]
 wrongans2 = res[0][5]
-print(questions)
 
 class Questions:
     def __init__(self, x, y, size):
