@@ -24,7 +24,7 @@ class Game:
         self.size = self.res[self.resc]
         self.width = self.size[0]
         self.height = self.size[1]
-        self.caption = "Opseilen"
+        self.caption = "Dice'to'the'Top"
         self.S0 = [1, 0, 0, 0]
         self.help_pages = 2
         self.help_pagenr = 0
@@ -552,9 +552,11 @@ class Game:
                 if self.TO1.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO1.cc > 0:
                         self.TO1.cc -= 1
+                        Sound1.set_volume(1)
                 elif self.TO1.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO1.cc < 1:
                         self.TO1.cc += 1
+                        Sound1.set_volume(0)
                 if self.TO2.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO2.cc > 0:
                         self.TO2.cc -= 1
