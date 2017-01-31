@@ -14,6 +14,7 @@ from IText import *
 from PColor import *
 from PCat import *
 from Settings import *
+from Questions import *
 
 
 class Game:
@@ -92,11 +93,13 @@ class Game:
         self.TO2 = Toggle1(self.width * 0.572, self.height * 0.442, self.width * 0.068, self.height * 0.05)
         self.TO3 = Toggle2(self.width * 0.572, self.height * 0.61, self.width * 0.068, self.height * 0.05)
         self.RES = Resolution(self.width * 0.54, self.height * 0.553, self.width * 0.1, self.height * 0.05)
+        self.Ques= Questions(self.width * 0.5, self.height * 0.5, 50)
 
     def draw(self):
         # Menu
         if self.S0[0] == 1:
             self.M1.draw(self.screen)
+            self.Ques.draw(self.screen)
         # Play
         elif self.S0[1] == 1:
             # Choose Players
