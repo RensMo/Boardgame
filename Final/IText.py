@@ -28,6 +28,7 @@ class IText:
         self.maxlength = 16
         self.focus = 0
         self.rect = pygame.Rect((self.x, self.y), (self.width, self.size))
+        self.srect = pygame.Surface((int(self.width), int(self.size)))
         self.rI = rI
 
     def update(self, events, x, y, size, width):
@@ -36,6 +37,7 @@ class IText:
         self.size = size
         self.width = width
         self.rect = pygame.Rect((self.x, self.y), (self.width, self.size))
+        self.srect = pygame.Surface((int(self.width), int(self.size)))
         self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", self.size)
 
         if self.rI == 0:
@@ -158,6 +160,8 @@ class IText:
         self.etext = self.font.render(self.btext + self.atext, 1, (self.color))
 
     def draw(self, surface):
-        surface.fill(pygame.Color("Light Grey"), self.rect)
+        self.srect.fill(pygame.Color("Black"))
+        self.srect.set_alpha(68)
+        surface.blit(self.srect, (int(self.x), int(self.y)))
         surface.blit(self.etext, (self.x, self.y))
         
