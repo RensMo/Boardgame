@@ -260,11 +260,16 @@ class Game:
                                         self.downplayer = None
                                         self.turn_end = True
                             else:
-                                self.action += 2  # MUST BE 1 AFTER QUESTIONS ARE FINISHED
+                                self.action += 1  # MUST BE 1 AFTER QUESTIONS ARE FINISHED
 
 
                     # Player gets question
-                    #elif self.action == 1:
+                    elif self.action == 1:
+                        self.Q.draw(self.screen)
+                        self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+                        self.Ques.draw(self.screen)
+                        self.Next2.draw(self.screen)
+                        self.Prev2.draw(self.screen)
                         #if answer_right == True:
                         #    self.action += 1
                         #elif answer_right == False:
@@ -338,18 +343,14 @@ class Game:
 
                 # Questions screen
                 if self.play_pagenr == 3:
-                    self.Q.draw(self.screen)
-                    self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
-                    self.Ques.draw(self.screen)
+                    return
+
+                # Winscreen
+                if self.play_pagenr == 4:
+                    self.Wonbg.draw(self.screen)
+                    self.Cross3.draw(self.screen)
                     self.Next2.draw(self.screen)
                     self.Prev2.draw(self.screen)
-
-                # Won screen
-            if self.play_pagenr == 4:
-                self.Wonbg.draw(self.screen)
-                self.Cross3.draw(self.screen)
-                self.Next2.draw(self.screen)
-                self.Prev2.draw(self.screen)
 
         # Help
         elif self.S0[2] == 1:
