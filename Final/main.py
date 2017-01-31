@@ -468,28 +468,28 @@ class Game:
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if self.D1.rc == 0:
                     self.D1.check_click(event.pos)
-                if self.T1_2.rect.collidepoint(pygame.mouse.get_pos()):
+                if self.T1_2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     self.T1_1.focus = 1
                     self.T1_2.focus = 1
-                elif not self.T1_2.rect.collidepoint(pygame.mouse.get_pos()):
+                elif not self.T1_2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     self.T1_1.focus = 0
                     self.T1_2.focus = 0
-                if self.T2_2.rect.collidepoint(pygame.mouse.get_pos()):
+                if self.T2_2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     self.T2_1.focus = 1
                     self.T2_2.focus = 1
-                elif not self.T2_2.rect.collidepoint(pygame.mouse.get_pos()):
+                elif not self.T2_2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     self.T2_1.focus = 0
                     self.T2_2.focus = 0
-                if self.T3_2.rect.collidepoint(pygame.mouse.get_pos()):
+                if self.T3_2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     self.T3_1.focus = 1
                     self.T3_2.focus = 1
-                elif not self.T3_2.rect.collidepoint(pygame.mouse.get_pos()):
+                elif not self.T3_2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     self.T3_1.focus = 0
                     self.T3_2.focus = 0
-                if self.T4_2.rect.collidepoint(pygame.mouse.get_pos()):
+                if self.T4_2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     self.T4_1.focus = 1
                     self.T4_2.focus = 1
-                elif not self.T4_2.rect.collidepoint(pygame.mouse.get_pos()):
+                elif not self.T4_2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     self.T4_1.focus = 0
                     self.T4_2.focus = 0
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
