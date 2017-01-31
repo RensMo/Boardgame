@@ -346,11 +346,11 @@ class Game:
                     return
 
                 # Winscreen
-                if self.play_pagenr == 4:
-                    self.Wonbg.draw(self.screen)
-                    self.Cross3.draw(self.screen)
-                    self.Next2.draw(self.screen)
-                    self.Prev2.draw(self.screen)
+            if self.play_pagenr == 4:
+                self.Wonbg.draw(self.screen)
+                self.Cross3.draw(self.screen)
+                self.Next2.draw(self.screen)
+                self.Prev2.draw(self.screen)
 
         # Help
         elif self.S0[2] == 1:
