@@ -1,5 +1,6 @@
 import pygame
 from Image import *
+from Sounds import *
 
 class Button:
     def __init__(self, x, y, sx, sy, I):
@@ -11,11 +12,12 @@ class Button:
         self.I = pygame.transform.scale(self.I, (int(sx), int(sy)))
         self.rect = pygame.Rect((x, y), (sx, sy))
         self.srect = pygame.Surface((int(sx), int(sy)))
-        self.sound = pygame.mixer.Sound('Assets/click.wav')
+        self.sound = Sound1
 
 
     def draw(self, surface):
         mouse = pygame.mouse.get_pressed()
+        self.sound = Sound1
 
         if not self.rect.collidepoint(pygame.mouse.get_pos()):
             surface.blit(self.I, (self.rect))
@@ -39,11 +41,12 @@ class Button2:
         self.I = I
         self.I = pygame.transform.scale(self.I, (int(sx), int(sy)))
         self.rect = pygame.Rect((x, y), (sx, sy))
-        self.sound = pygame.mixer.Sound('Assets/click.wav')
+        self.sound = Sound1
 
 
     def draw(self, surface):
         mouse = pygame.mouse.get_pressed()
+        self.sound = Sound1
 
         if not self.rect.collidepoint(pygame.mouse.get_pos()):
             surface.blit(self.I, (self.rect))
