@@ -43,6 +43,12 @@ class Questions:
         self.x = x
         self.y = y
         self.size = size
+        self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", size)
+        self.Questions = self.font.render(res[0][1], 1, (0,0,0))
+        self.categ = self.font.render(res[0][2], 1, (0,0,0))
+        self.ranswer = self.font.render(res[0][3], 1, (0,0,0))
+        self.wanswer1 = self.font.render(res[0][4], 1, (0,0,0))
+        self.wanswer2 = self.font.render(res[0][5], 1, (0,0,0))
 
     def draw(self, surface):
         if len(res[0][1]) > self.maxsize:
