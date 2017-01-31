@@ -1,6 +1,8 @@
 import MySQLdb
 import pygame
 
+import random
+
 def question(category):
     query = """select * from Vragen WHERE Category = '%s'  ORDER BY RAND() LIMIT 1  """ % (category)
 
@@ -40,6 +42,13 @@ class Questions:
         self.y = y
         self.size = size
         self.maxsize = 39
+        self.answers = [self.ranswer, self.wanswer1, self.wanswer2]
+        self.a1 = random.choice(self.answers)
+        self.answers.remove(self.a1)
+        self.a2 = random.choice(self.answers)
+        self.answers.remove(self.a2)
+        self.a3 = self.answers[0]
+
 
     def update(self, x, y, size):
         self.x = x
@@ -60,6 +69,6 @@ class Questions:
             surface.blit(self.Questions2, (self.x, self.y + self.size))
         else:
             surface.blit(self.Questions, (self.x, self.y))
-        surface.blit(self.ranswer, (self.x * 1.25, self.y * 1.315 + self.y * 0.3))
-        surface.blit(self.wanswer1, (self.x * 1.25, self.y * 1.451 + self.y * 0.3 + self.size))
-        surface.blit(self.wanswer2, (self.x * 1.25, self.y * 1.582 + self.y * 0.3 + self.size * 2))
+        surface.blit(self.a1, (self.x * 1.25, self.y * 1.315 + self.y * 0.3))
+        surface.blit(self.a2, (self.x * 1.25, self.y * 1.451 + self.y * 0.3 + self.size))
+        surface.blit(self.a3, (self.x * 1.25, self.y * 1.582 + self.y * 0.3 + self.size * 2))
