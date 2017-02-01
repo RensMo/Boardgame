@@ -498,6 +498,15 @@ class Game:
                 return True
             elif keys[pygame.K_LALT] and keys[pygame.K_F4]:
                 return True
+            elif keys[pygame.K_F11]:
+                if self.fs == 0:
+                    self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | FULLSCREEN)
+                    self.fs = 1
+                    self.TO3.cc = 0
+                elif self.fs ==  1:
+                    self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
+                    self.fs = 0
+                    self.TO3.cc = 1
             elif keys[pygame.K_ESCAPE]:
                 if self.S0[1] == 1 or self.S0[2] == 1 or self.S0[3] == 1:
                     self.S0 = [1, 0, 0, 0]
@@ -674,13 +683,15 @@ class Game:
                     if self.TO2.cc < 1:
                         self.TO2.cc += 1
                         pygame.mixer.music.pause()
-                if self.TO3.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
+                if self.TO3.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO3.cc > 0:
                         self.TO3.cc -= 1
+                        self.fs = 1
                         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | FULLSCREEN)
-                elif self.TO3.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
+                elif self.TO3.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO3.cc < 1:
                         self.TO3.cc += 1
+                        self.fs = 0
                         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
                 if self.RES.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     if self.RES.cc > 0:
