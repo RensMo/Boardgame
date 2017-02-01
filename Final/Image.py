@@ -39,6 +39,9 @@ IC2 = pygame.image.load("Assets/Play/his.png")
 IC3 = pygame.image.load("Assets/Play/geo.png")
 IC4 = pygame.image.load("Assets/Play/spor.png")
 
+IQ1 = pygame.image.load("Assets/Play/question_good.png")
+IQ2 = pygame.image.load("Assets/Play/question_wrong.png")
+
 ID1 = pygame.image.load("Assets/Play/dice1.png")
 ID2 = pygame.image.load("Assets/Play/dice2.png")
 ID3 = pygame.image.load("Assets/Play/dice3.png")
