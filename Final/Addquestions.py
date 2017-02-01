@@ -1,3 +1,5 @@
+import MySQLdb
+
 def Add_question(Q_id,Question,Category,Right_answer,Wrong_answer,Wrong_answer2):
     query = ( "INSERT INTO Vragen VALUES (%s, %s, %s, %s, %s, %s)")
 
