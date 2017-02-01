@@ -9,6 +9,7 @@ BG4 = pygame.image.load("Assets/Play/p3_bg.jpg")
 BG5 = pygame.image.load("Assets/Settings/settings_bg.png")
 BG6 = pygame.image.load("Assets/Settings/credits_bg.png")
 BG7 = pygame.image.load("Assets/Play/won_bg.png")
+BG8 = pygame.image.load("Assets/Settings/addq_bg.png")
 
 ###BUTTONS
 I1 = pygame.image.load("Assets/Play_Button.jpg")
@@ -58,3 +59,5 @@ S4 = pygame.image.load("Assets/Settings/toggle_off.png")
 S5 = pygame.image.load("Assets/Settings/res_800.png")
 S6 = pygame.image.load("Assets/Settings/res_1280.png")
 S7 = pygame.image.load("Assets/Settings/res_1366.png")
+S8 = pygame.image.load("Assets/Settings/addq.png")
+S9 = pygame.image.load("Assets/Settings/add.png")

@@ -29,7 +29,7 @@ class Game:
         self.help_pagenr = 0
         self.play_pages = 4
         self.play_pagenr = 0
-        self.settings_pages = 1
+        self.settings_pages = 2
         self.settings_pagenr = 0
         self.players = 0
         self.turn = 0
@@ -88,10 +88,11 @@ class Game:
         self.P2CA = PCat(self.width * 0.67, self.height * 0.245, self.width * 0.18, self.height * 0.05)
         self.P3CA = PCat(self.width * 0.67, self.height * 0.345, self.width * 0.18, self.height * 0.05)
         self.P4CA = PCat(self.width * 0.67, self.height * 0.445, self.width * 0.18, self.height * 0.05)
-        self.TO1 = Toggle1(self.width * 0.572, self.height * 0.381, self.width * 0.068, self.height * 0.05)
-        self.TO2 = Toggle1(self.width * 0.572, self.height * 0.442, self.width * 0.068, self.height * 0.05)
-        self.TO3 = Toggle2(self.width * 0.572, self.height * 0.61, self.width * 0.068, self.height * 0.05)
-        self.RES = Resolution(self.width * 0.54, self.height * 0.553, self.width * 0.1, self.height * 0.05)
+        self.Addqc = PCat(self.width * 0.232, self.height * 0.318, self.width * 0.18, self.height * 0.044)
+        self.TO1 = Toggle1(self.width * 0.572, self.height * 0.343, self.width * 0.068, self.height * 0.05)
+        self.TO2 = Toggle1(self.width * 0.572, self.height * 0.403, self.width * 0.068, self.height * 0.05)
+        self.TO3 = Toggle2(self.width * 0.572, self.height * 0.57, self.width * 0.068, self.height * 0.05)
+        self.RES = Resolution(self.width * 0.54, self.height * 0.513, self.width * 0.1, self.height * 0.05)
         self.Ques= Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
 
     def draw(self):
@@ -372,18 +373,26 @@ class Game:
                 self.Sbg.draw(self.screen)
                 self.Cross1.draw(self.screen)
                 self.Credits.draw(self.screen)
-                self.TO1.update(self.width * 0.572, self.height * 0.381, self.width * 0.068, self.height * 0.05)
+                self.TO1.update(self.width * 0.572, self.height * 0.343, self.width * 0.068, self.height * 0.05)
                 self.TO1.draw(self.screen)
-                self.TO2.update(self.width * 0.572, self.height * 0.442, self.width * 0.068, self.height * 0.05)
+                self.TO2.update(self.width * 0.572, self.height * 0.403, self.width * 0.068, self.height * 0.05)
                 self.TO2.draw(self.screen)
-                self.TO3.update(self.width * 0.572, self.height * 0.61, self.width * 0.068, self.height * 0.05)
+                self.TO3.update(self.width * 0.572, self.height * 0.57, self.width * 0.068, self.height * 0.05)
                 self.TO3.draw(self.screen)
-                self.RES.update(self.width * 0.54, self.height * 0.553, self.width * 0.1, self.height * 0.05)
+                self.RES.update(self.width * 0.54, self.height * 0.513, self.width * 0.1, self.height * 0.05)
                 self.RES.draw(self.screen)
+                self.Addq.draw(self.screen)
             elif self.settings_pagenr == 1:
                 self.M1.draw(self.screen)
                 self.Cbg.draw(self.screen)
                 self.Cross2.draw(self.screen)
+            elif self.settings_pagenr == 2:
+                self.M1.draw(self.screen)
+                self.Addq_bg.draw(self.screen)
+                self.Cross4.draw(self.screen)
+                self.Add.draw(self.screen)
+                self.Addqc.update(self.width * 0.232, self.height * 0.318, self.width * 0.18, self.height * 0.044)
+                self.Addqc.draw(self.screen)
         pygame.display.update()
 
     def process_events(self):
@@ -399,6 +408,7 @@ class Game:
         self.Sbg = Backg(self.width, self.height, BG5)
         self.Cbg = Backg(self.width, self.height, BG6)
         self.Wonbg = Backg(self.width, self.height, BG7)
+        self.Addq_bg = Backg(self.width, self.height, BG8)
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
@@ -427,11 +437,13 @@ class Game:
         self.CA3_R = Textbg(self.width * 0.58, self.height * 0.347, self.width * 0.028, self.height * 0.051, I21)
         self.CA4_L = Textbg(self.width * 0.46, self.height * 0.447, self.width * 0.028, self.height * 0.051, I20)
         self.CA4_R = Textbg(self.width * 0.58, self.height * 0.447, self.width * 0.028, self.height * 0.051, I21)
-        self.Cross1 = Button2(self.width * 0.63, self.height * 0.185, self.width * 0.044, self.height * 0.075, S1)
+        self.Cross1 = Button2(self.width * 0.63, self.height * 0.161, self.width * 0.044, self.height * 0.075, S1)
         self.Cross2 = Button2(self.width * 0.63, self.height * 0.0745, self.width * 0.044, self.height * 0.075, S1)
         self.Cross3 = Button2(self.width * 0.681, self.height * 0.396, self.width * 0.044, self.height * 0.075, S1)
-        self.Credits = Button2(self.width * 0.36, self.height * 0.7, self.width * 0.13, self.height * 0.07, S2)
-
+        self.Cross4 = Button2(self.width * 0.763, self.height * 0.168, self.width * 0.044, self.height * 0.075, S1)
+        self.Credits = Button2(self.width * 0.36, self.height * 0.747, self.width * 0.13, self.height * 0.065, S2)
+        self.Addq = Button2(self.width * 0.36, self.height * 0.679, self.width * 0.24, self.height * 0.065, S8)
+        self.Add = Button2(self.width * 0.653, self.height * 0.726, self.width * 0.122, self.height * 0.071, S9)
 
         self.screen_rect = self.screen.get_rect()
         self.T1_1.update(events, self.width * 0.031, self.height * 0.145, int(self.width * 0.03), 0)
@@ -600,6 +612,7 @@ class Game:
                     if self.P4CA.cc < 3:
                         self.P4CA.cc += 1
 
+
                 # SETTINGS toggles for setting options
                 if self.TO1.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO1.cc > 0:
@@ -641,12 +654,22 @@ class Game:
                         self.TO3.cc = 1
                 if self.Credits.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.settings_pagenr < self.settings_pages:
-                        self.settings_pagenr += 1
-                elif self.Cross2.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 1:
+                        self.settings_pagenr = 1
+                elif self.Addq.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                    self.settings_pagenr = 2
+                if self.Cross2.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 1:
                     self.settings_pagenr = 0
-                if self.Cross3.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 4:
+                elif self.Cross3.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 4:
                     self.S0 = [1, 0, 0, 0]
                     self.play_pagenr = int(0)
+                elif self.Cross4.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    self.settings_pagenr = 0
+                if self.Addqc.rect1.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    if self.Addqc.cc > 0:
+                        self.Addqc.cc -= 1
+                elif self.Addqc.rect2.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    if self.Addqc.cc < 3:
+                        self.Addqc.cc += 1
                     
                 # Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 2 and self.action == 2:
