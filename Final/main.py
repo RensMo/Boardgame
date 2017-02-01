@@ -93,7 +93,8 @@ class Game:
         self.TO2 = Toggle1(self.width * 0.572, self.height * 0.442, self.width * 0.068, self.height * 0.05)
         self.TO3 = Toggle2(self.width * 0.572, self.height * 0.61, self.width * 0.068, self.height * 0.05)
         self.RES = Resolution(self.width * 0.54, self.height * 0.553, self.width * 0.1, self.height * 0.05)
-        self.Ques= Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+        #self.Ques= Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+        self.Ques = None
 
     def draw(self):
         # Menu
@@ -264,16 +265,25 @@ class Game:
 
 
                     # Player gets question
-                    elif self.action == 1:
-                        self.Q.draw(self.screen)
-                        self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
-                        self.Ques.draw(self.screen)
+                    elif self.action == 1 and self.D1.vcc2 == 0:
+                        if self.Ques == None:
+                            #print("ques none")
+                            pygame.time.wait(2000)
+                            self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023), self.currentplayer.Tile.Category)
+                            self.Q.draw(self.screen)
+                            self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+                            self.Ques.draw(self.screen)
+                        else:
+                            #print("ques else")
+                            self.Q.draw(self.screen)
+                            self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+                            self.Ques.draw(self.screen)
                         self.Next2.draw(self.screen)
                         self.Prev2.draw(self.screen)
                         #if answer_right == True:
                         #    self.action += 1
                         #elif answer_right == False:
-                        #    self.action += 2
+                        #    self.turn_end = True
 
                     # Player chooses moving position
                     elif self.action == 2:
@@ -284,11 +294,9 @@ class Game:
                             self.blink = True
 
                         if (self.stepcount < self.steps) and (self.stepdirection != None) and self.D1.vcc2 == 0:
-                            print(1)
                             if self.currentplayer.Tile.Position.Y == 0 and (self.stepdirection != "Up"):
-                                print(2)
+                                return
                             elif (getattr(self.currentplayer.Tile, self.stepdirection) != None):
-                                print(3)
                                 self.currentplayer.Tile = getattr(self.currentplayer.Tile, self.stepdirection)
                                 self.stepcount += 1
 
@@ -311,10 +319,8 @@ class Game:
                     self.steps = 0
                     self.stepcount = 0
                     self.stepdirection = None
+                    self.Ques = None
                     self.turn_end = False
-                    self.currentplayer.Nametext.underline = False
-                    if self.downplayer != None:
-                        self.downplayer.Nametext.underline = False
 
                     self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
                     if self.sameposition == False:
@@ -345,7 +351,7 @@ class Game:
                 if self.play_pagenr == 3:
                     return
 
-                # Winscreen
+                # Win screen
                 if self.play_pagenr == 4:
                     self.Wonbg.draw(self.screen)
                     self.Cross3.draw(self.screen)
@@ -497,7 +503,7 @@ class Game:
                 if self.D1.rc == 1:
                     self.D1.rc = 2
                 if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:  #and self.play_pagenr != 3
-                    self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+                    #self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023), "Entertainment")
                     if self.play_pagenr < self.play_pages:
                         if self.players >= 2 and self.play_pagenr == 1:
                             self.P1.Name = self.T1_2.atext

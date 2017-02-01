@@ -29,8 +29,8 @@ wrongans = res[0][4]
 wrongans2 = res[0][5]
 
 class Questions:
-    def __init__(self, x, y, size):
-        self.category = "Sport"
+    def __init__(self, x, y, size, category):
+        self.category = category
         self.res = question(self.category)
         self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", size)
         self.Questions = self.font.render(self.res[0][1], 1, (0,0,0))
