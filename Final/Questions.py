@@ -76,7 +76,7 @@ class Questions:
         self.srect3 = pygame.Surface((int(self.size * 14), int(self.size * 1.5)))
 
     def draw(self, surface, width, height):
-        print(self.ra1, self.ra2, self.ra3, self.answer_correct)
+        #print(self.ra1, self.ra2, self.ra3, self.answer_correct)
         mouse = pygame.mouse.get_pressed()
         self.IQ1 = pygame.transform.scale(IQ1, (int(width), int(height)))
         self.IQ2 = pygame.transform.scale(IQ2, (int(width), int(height)))
