@@ -658,48 +658,48 @@ class Game:
 
 
                 # SETTINGS toggles for setting options
-                if self.TO1.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                if self.TO1.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     if self.TO1.cc > 0:
                         self.TO1.cc -= 1
                         Sound1.set_volume(1)
-                elif self.TO1.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.TO1.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     if self.TO1.cc < 1:
                         self.TO1.cc += 1
                         Sound1.set_volume(0)
-                if self.TO2.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                if self.TO2.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     if self.TO2.cc > 0:
                         self.TO2.cc -= 1
                         pygame.mixer.music.unpause()
-                elif self.TO2.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.TO2.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     if self.TO2.cc < 1:
                         self.TO2.cc += 1
                         pygame.mixer.music.pause()
-                if self.TO3.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                if self.TO3.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     if self.TO3.cc > 0:
                         self.TO3.cc -= 1
                         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | FULLSCREEN)
-                elif self.TO3.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.TO3.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     if self.TO3.cc < 1:
                         self.TO3.cc += 1
                         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
-                if self.RES.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                if self.RES.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     if self.RES.cc > 0:
                         self.RES.cc -= 1
                         self.resc -= 1
                         self.size = self.res[self.resc]
                         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
                         self.TO3.cc = 1
-                elif self.RES.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.RES.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     if self.RES.cc < 2:
                         self.RES.cc += 1
                         self.resc += 1
                         self.size = self.res[self.resc]
                         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
                         self.TO3.cc = 1
-                if self.Credits.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                if self.Credits.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     if self.settings_pagenr < self.settings_pages:
                         self.settings_pagenr = 1
-                elif self.Addq.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.Addq.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1 and self.settings_pagenr == 0:
                     self.settings_pagenr = 2
                 if self.Cross2.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 1:
                     self.settings_pagenr = 0
