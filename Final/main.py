@@ -17,6 +17,7 @@ from PCat import *
 from Settings import *
 from Questions import *
 from Checkplayers import *
+from Addquestions import *
 
 class Game:
     def __init__(self):
