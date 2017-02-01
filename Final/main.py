@@ -267,27 +267,11 @@ class Game:
                                         self.downplayer = None
                                         self.turn_end = True
                             else:
-                                self.action += 1
+                                self.action += 2 #MUST BE 1
 
                     # Player gets question
                     elif self.action == 1 and self.D1.vcc2 == 0:
-                        if self.Ques == None:
-                            pygame.time.wait(1500)
-                            self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023), self.currentplayer.Tile.Category)
-                        self.Q.draw(self.screen)
-                        self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
-                        self.Ques.draw(self.screen, self.width, self.height)
-                        self.Next2.draw(self.screen)
-                        self.Prev2.draw(self.screen)
-
-                        if self.Ques.answer_correct != None:
-                            self.timer += 1
-                            if self.timer == 20:
-                                if self.Ques.answer_correct == True:
-                                    self.action += 1
-                                if self.Ques.answer_correct == False:
-                                    self.turn_end = True
-                                self.timer = 0
+                        self.play_pagenr = 3
 
                     # Player chooses moving position
                     elif self.action == 2:
@@ -302,11 +286,9 @@ class Game:
                                 return
                             elif (getattr(self.currentplayer.Tile, self.stepdirection) != None):
                                 self.currentplayer.Tile = getattr(self.currentplayer.Tile, self.stepdirection)
-                                self.stepcount += 1
+                                self.stepcount += 0.25 #MUST BE 1
                             else:
-                                # Check if player reached the end.
-                                if self.currentplayer.Tile.Category == "Finish":
-                                    self.play_pagenr = 4
+                                self.turn_end = True
 
                         if self.stepcount == self.steps:
                             for i in range(1, self.players + 1):
@@ -315,19 +297,17 @@ class Game:
                                     self.downplayer = players_array[i]
                             self.turn_end = True
 
-                # Prepare for next turn:
 
+                # Prepare for next turn:
                 # First player turn.
                 if self.turn == 0:
                     self.turn = 1
 
                 # Next players turn
                 if self.turn_end == True:
-                    # Check if player reached the end.
-                    if self.currentplayer.Tile.Category == "Finish":
+                    if self.currentplayer.Tile.Category == "Finish":  # Check if player reached the end.
                         self.play_pagenr = 4
-                        return
-                    self.action = 0 #MAKE 2 AGAIN
+                    self.action = 0
                     self.steps = 0
                     self.stepcount = 0
                     self.stepdirection = None
@@ -357,13 +337,39 @@ class Game:
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                         self.P4.Nametext.draw(self.screen)
 
+                # Questions
+                elif self.play_pagenr == 3:
+                    if self.Ques == None:
+                        pygame.time.wait(1500)
+                        self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023),
+                                              self.currentplayer.Tile.Category)
+                    self.Q.draw(self.screen)
+                    self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+                    self.Ques.draw(self.screen, self.width, self.height)
+                    self.Next2.draw(self.screen)
+                    self.Prev2.draw(self.screen)
+
+                    if self.Ques.answer_correct != None:
+                        self.timer += 1
+                        if self.timer == 20:
+                            if self.Ques.answer_correct == True:
+                                self.play_pagenr = 2
+                                self.action += 1
+                            if self.Ques.answer_correct == False:
+                                self.play_pagenr = 2
+                                self.turn_end = True
+                            self.timer = 0
+
                 # Win screen
-                if self.play_pagenr == 4:
-                    print(self.currentplayer.Name, "won.")
+                elif self.play_pagenr == 4:
+                    #print(self.currentplayer.Name, "won.")
                     self.Wonbg.draw(self.screen)
                     self.Cross3.draw(self.screen)
                     self.Next2.draw(self.screen)
                     self.Prev2.draw(self.screen)
+                    self.Wintext = IText(self.width * 0.33, self.height * 0.47, self.currentplayer.Name + " won!", int(self.width * 0.03), 0, 0)
+                    self.Wintext.draw(self.screen)
+
 
         # Help
         elif self.S0[2] == 1:
