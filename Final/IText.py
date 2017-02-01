@@ -194,7 +194,7 @@ class IText2:
         self.atext = ""
         self.etext = self.font.render(self.btext + self.atext, 1, (self.color))
         self.shifted = False
-        self.maxlength = 47
+        self.maxlength = 60
         self.focus = 0
         self.rect = pygame.Rect((self.x, self.y), (self.width, self.size))
         self.srect = pygame.Surface((int(self.width), int(self.size)))
