@@ -15,7 +15,7 @@ from PColor import *
 from PCat import *
 from Settings import *
 from Questions import *
-
+from Checkplayers import *
 
 class Game:
     def __init__(self):
@@ -551,7 +551,7 @@ class Game:
                 self.D1.click = False
                 if self.D1.rc == 1:
                     self.D1.rc = 2
-                if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
+                if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1  and Checkplayers(self.T1_2, self.T2_2, self.T3_2, self.T4_2, self.P1C, self.P2C, self.P3C, self.P4C, self.P1CA, self.P2CA, self.P3CA, self.P4CA, self.players):
                     if self.play_pagenr < self.play_pages:
                         if self.players >= 2 and self.play_pagenr == 1:
                             self.P1.Name = self.T1_2.atext
