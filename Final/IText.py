@@ -22,10 +22,8 @@ class IText:
         self.font = pygame.font.Font("Assets/Berlin Sans FB.ttf", self.size)
         self.underline = underline
         if self.underline == True:
-            print("underline = true")
             self.font.set_underline(True)
         elif self.underline == False:
-            print("underline = true")
             self.font.set_underline(False)
         self.color = color
         self.btext = btext

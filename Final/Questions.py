@@ -56,7 +56,7 @@ class Questions:
         self.answersc.remove(self.ra2)
         self.ra3 = self.answersc[0]
         self.a3 = self.answers[self.ra3]
-        self.answer_correct = "Nothing"
+        self.answer_correct = None
 
     def update(self, x, y, size):
         self.x = x

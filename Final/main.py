@@ -50,8 +50,7 @@ class Game:
         self.downplayer = None
         self.stepcount_down = 0
 
-        self.counter_limit = 500
-        self.counter = 0
+        self.timer = 0
 
         pygame.init()
         pygame.mixer.init()
@@ -268,24 +267,27 @@ class Game:
                                         self.downplayer = None
                                         self.turn_end = True
                             else:
-                                self.action += 2 #MAKE ONE AGAIN
+                                self.action += 1
 
                     # Player gets question
                     elif self.action == 1 and self.D1.vcc2 == 0:
                         if self.Ques == None:
-                            #print("ques none")
-                            pygame.time.wait(2000)
+                            pygame.time.wait(1500)
                             self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023), self.currentplayer.Tile.Category)
-                        #print("ques else")
                         self.Q.draw(self.screen)
                         self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
-                        self.Ques.draw(self.screen)
+                        self.Ques.draw(self.screen, self.width, self.height)
                         self.Next2.draw(self.screen)
                         self.Prev2.draw(self.screen)
-                        #if answer_right == True:
-                        #    self.action += 1
-                        #elif answer_right == False:
-                        #    self.turn_end = True
+
+                        if self.Ques.answer_correct != None:
+                            self.timer += 1
+                            if self.timer == 20:
+                                if self.Ques.answer_correct == True:
+                                    self.action += 1
+                                if self.Ques.answer_correct == False:
+                                    self.turn_end = True
+                                self.timer = 0
 
                     # Player chooses moving position
                     elif self.action == 2:
@@ -321,7 +323,7 @@ class Game:
                     if self.currentplayer.Tile.Category == "Finish":
                         self.play_pagenr = 4
                         return
-                    self.action = 0
+                    self.action = 0 #MAKE 2 AGAIN
                     self.steps = 0
                     self.stepcount = 0
                     self.stepdirection = None
@@ -351,10 +353,11 @@ class Game:
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                         self.P4.Nametext.draw(self.screen)
 
+                """
                 # Questions screen
                 if self.play_pagenr == 3:
                     #See action 1 now.
-                    return
+                    return"""
 
                 # Win screen
                 if self.play_pagenr == 4:
@@ -651,27 +654,27 @@ class Game:
 
 
                 # SETTINGS toggles for setting options
-                if self.TO1.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                if self.TO1.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO1.cc > 0:
                         self.TO1.cc -= 1
                         Sound1.set_volume(1)
-                elif self.TO1.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.TO1.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO1.cc < 1:
                         self.TO1.cc += 1
                         Sound1.set_volume(0)
-                if self.TO2.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                if self.TO2.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO2.cc > 0:
                         self.TO2.cc -= 1
                         pygame.mixer.music.unpause()
-                elif self.TO2.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.TO2.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO2.cc < 1:
                         self.TO2.cc += 1
                         pygame.mixer.music.pause()
-                if self.TO3.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                if self.TO3.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO3.cc > 0:
                         self.TO3.cc -= 1
                         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | FULLSCREEN)
-                elif self.TO3.rect1.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
+                elif self.TO3.rect2.collidepoint(pygame.mouse.get_pos()) and self.S0[3] == 1:
                     if self.TO3.cc < 1:
                         self.TO3.cc += 1
                         self.screen = pygame.display.set_mode((self.size), HWSURFACE | DOUBLEBUF | RESIZABLE)
