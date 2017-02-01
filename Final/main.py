@@ -1,4 +1,5 @@
 import random
+
 import pygame
 from pygame.locals import *
 
@@ -260,11 +261,15 @@ class Game:
                                         self.downplayer = None
                                         self.turn_end = True
                             else:
-                                self.action += 1  # MUST BE 1 AFTER QUESTIONS ARE FINISHED
-
+                                self.action += 1
 
                     # Player gets question
-                    elif self.action == 1:
+                    elif self.action == 1 and self.D1.vcc2 == 0:
+                        if self.Ques == None:
+                            #print("ques none")
+                            pygame.time.wait(2000)
+                            self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023), self.currentplayer.Tile.Category)
+                        #print("ques else")
                         self.Q.draw(self.screen)
                         self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
                         self.Ques.draw(self.screen)
@@ -273,7 +278,7 @@ class Game:
                         #if answer_right == True:
                         #    self.action += 1
                         #elif answer_right == False:
-                        #    self.action += 2
+                        #    self.turn_end = True
 
                     # Player chooses moving position
                     elif self.action == 2:
@@ -284,11 +289,9 @@ class Game:
                             self.blink = True
 
                         if (self.stepcount < self.steps) and (self.stepdirection != None) and self.D1.vcc2 == 0:
-                            print(1)
                             if self.currentplayer.Tile.Position.Y == 0 and (self.stepdirection != "Up"):
-                                print(2)
+                                return
                             elif (getattr(self.currentplayer.Tile, self.stepdirection) != None):
-                                print(3)
                                 self.currentplayer.Tile = getattr(self.currentplayer.Tile, self.stepdirection)
                                 self.stepcount += 1
 
@@ -311,10 +314,8 @@ class Game:
                     self.steps = 0
                     self.stepcount = 0
                     self.stepdirection = None
+                    self.Ques = None
                     self.turn_end = False
-                    self.currentplayer.Nametext.underline = False
-                    if self.downplayer != None:
-                        self.downplayer.Nametext.underline = False
 
                     self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
                     if self.sameposition == False:
@@ -324,12 +325,10 @@ class Game:
                             self.turn += 1
 
                 # Update and draw Players
-                self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
-                             self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height, self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                 self.P1.Nametext.draw(self.screen)
 
-                self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
-                             self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height, self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                 self.P2.Nametext.draw(self.screen)
 
                 if self.players >= 3:
@@ -345,12 +344,12 @@ class Game:
                 if self.play_pagenr == 3:
                     return
 
-                # Winscreen
-            if self.play_pagenr == 4:
-                self.Wonbg.draw(self.screen)
-                self.Cross3.draw(self.screen)
-                self.Next2.draw(self.screen)
-                self.Prev2.draw(self.screen)
+                # Win screen
+                if self.play_pagenr == 4:
+                    self.Wonbg.draw(self.screen)
+                    self.Cross3.draw(self.screen)
+                    self.Next2.draw(self.screen)
+                    self.Prev2.draw(self.screen)
 
         # Help
         elif self.S0[2] == 1:
@@ -670,7 +669,7 @@ class Game:
                 elif self.Addqc.rect2.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
                     if self.Addqc.cc < 3:
                         self.Addqc.cc += 1
-                    
+
                 # Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 2 and self.action == 2:
                     #self.P1.Tile = self.P1.Tile.Left
