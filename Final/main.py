@@ -713,6 +713,8 @@ class Game:
                 elif self.Addqc.rect2.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
                     if self.Addqc.cc < 3:
                         self.Addqc.cc += 1
+                if self.Add.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    Add_question(self.Add_Q.atext, self.Add_AG, self.Add_AW1, self.Add_AW2):
 
                 # Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 2 and self.action == 2:
