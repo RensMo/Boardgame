@@ -303,6 +303,10 @@ class Game:
                             elif (getattr(self.currentplayer.Tile, self.stepdirection) != None):
                                 self.currentplayer.Tile = getattr(self.currentplayer.Tile, self.stepdirection)
                                 self.stepcount += 1
+                            else:
+                                # Check if player reached the end.
+                                if self.currentplayer.Tile.Category == "Finish":
+                                    self.play_pagenr = 4
 
                         if self.stepcount == self.steps:
                             for i in range(1, self.players + 1):
@@ -352,12 +356,6 @@ class Game:
                         self.P4.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
                                      self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                         self.P4.Nametext.draw(self.screen)
-
-                """
-                # Questions screen
-                if self.play_pagenr == 3:
-                    #See action 1 now.
-                    return"""
 
                 # Win screen
                 if self.play_pagenr == 4:
@@ -553,8 +551,7 @@ class Game:
                 self.D1.click = False
                 if self.D1.rc == 1:
                     self.D1.rc = 2
-                if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:  #and self.play_pagenr != 3
-                    #self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+                if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
                     if self.play_pagenr < self.play_pages:
                         if self.players >= 2 and self.play_pagenr == 1:
                             self.P1.Name = self.T1_2.atext
