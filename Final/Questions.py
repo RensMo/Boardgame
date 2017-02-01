@@ -38,9 +38,6 @@ class Questions:
         self.ranswer = self.font.render(self.res[0][3], 1, (0,0,0))
         self.wanswer1 = self.font.render(self.res[0][4], 1, (0,0,0))
         self.wanswer2 = self.font.render(self.res[0][5], 1, (0,0,0))
-        self.x = x
-        self.y = y
-        self.size = size
         self.maxsize = 39
         self.answers = [self.ranswer, self.wanswer1, self.wanswer2]
         self.a1 = random.choice(self.answers)
@@ -48,7 +45,6 @@ class Questions:
         self.a2 = random.choice(self.answers)
         self.answers.remove(self.a2)
         self.a3 = self.answers[0]
-
 
     def update(self, x, y, size):
         self.x = x
@@ -60,6 +56,12 @@ class Questions:
         self.ranswer = self.font.render(self.res[0][3], 1, (0,0,0))
         self.wanswer1 = self.font.render(self.res[0][4], 1, (0,0,0))
         self.wanswer2 = self.font.render(self.res[0][5], 1, (0,0,0))
+        self.rect1 = pygame.Rect(self.x * 1.2, self.y * 1.305 + self.y * 0.3, int(self.size * 14), int(self.size * 1.5))
+        self.rect2 = pygame.Rect(self.x * 1.2, self.y * 1.450 + self.y * 0.3 + self.size, int(self.size * 14), int(self.size * 1.5))
+        self.rect3 = pygame.Rect(self.x * 1.2, self.y * 1.595 + self.y * 0.3 + self.size * 2, int(self.size * 14), int(self.size * 1.5))
+        self.srect1 = pygame.Surface((int(self.size * 14), int(self.size * 1.5)))
+        self.srect2 = pygame.Surface((int(self.size * 14), int(self.size * 1.5)))
+        self.srect3 = pygame.Surface((int(self.size * 14), int(self.size * 1.5)))
 
     def draw(self, surface):
         if len(self.res[0][1]) > self.maxsize:
@@ -70,5 +72,17 @@ class Questions:
         else:
             surface.blit(self.Questions, (self.x, self.y))
         surface.blit(self.a1, (self.x * 1.25, self.y * 1.315 + self.y * 0.3))
-        surface.blit(self.a2, (self.x * 1.25, self.y * 1.451 + self.y * 0.3 + self.size))
-        surface.blit(self.a3, (self.x * 1.25, self.y * 1.582 + self.y * 0.3 + self.size * 2))
+        surface.blit(self.a2, (self.x * 1.25, self.y * 1.470 + self.y * 0.3 + self.size))
+        surface.blit(self.a3, (self.x * 1.25, self.y * 1.630 + self.y * 0.3 + self.size * 2))
+        if self.rect1.collidepoint(pygame.mouse.get_pos()):
+            self.srect1.fill(pygame.Color("Light Green"))
+            self.srect1.set_alpha(68)
+            surface.blit(self.srect1, (self.x * 1.2, self.y * 1.305 + self.y * 0.3))
+        if self.rect2.collidepoint(pygame.mouse.get_pos()):
+            self.srect2.fill(pygame.Color("Light Green"))
+            self.srect2.set_alpha(68)
+            surface.blit(self.srect2, (self.x * 1.2, self.y * 1.450 + self.y * 0.3 + self.size))
+        if self.rect3.collidepoint(pygame.mouse.get_pos()):
+            self.srect3.fill(pygame.Color("Light Green"))
+            self.srect3.set_alpha(68)
+            surface.blit(self.srect3, (self.x * 1.2, self.y * 1.595 + self.y * 0.3 + self.size * 2))

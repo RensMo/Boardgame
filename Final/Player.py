@@ -1,5 +1,5 @@
 import pygame
-import pickle
+
 #githuphup
 
 class Player:
@@ -9,7 +9,7 @@ class Player:
         self.Colour = (255, 255, 255)
         self.StartCat = None
 
-    def Draw(self, screen, width, height, pos_x, pos_y):
+def Draw(self, screen, width, height, pos_x, pos_y):
         margin_x = 0.1 * width
         margin_y = 0.1 * height
         pygame.draw.ellipse(screen, self.Colour,
