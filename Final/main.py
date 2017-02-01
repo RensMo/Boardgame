@@ -94,7 +94,8 @@ class Game:
         self.TO2 = Toggle1(self.width * 0.572, self.height * 0.403, self.width * 0.068, self.height * 0.05)
         self.TO3 = Toggle2(self.width * 0.572, self.height * 0.57, self.width * 0.068, self.height * 0.05)
         self.RES = Resolution(self.width * 0.54, self.height * 0.513, self.width * 0.1, self.height * 0.05)
-        self.Ques= Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+        #self.Ques= Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+        self.Ques = None
 
     def draw(self):
         # Menu
@@ -261,7 +262,7 @@ class Game:
                                         self.downplayer = None
                                         self.turn_end = True
                             else:
-                                self.action += 1
+                                self.action += 2 #MAKE ONE AGAIN
 
                     # Player gets question
                     elif self.action == 1 and self.D1.vcc2 == 0:
@@ -310,6 +311,10 @@ class Game:
 
                 # Next players turn
                 if self.turn_end == True:
+                    # Check if player reached the end.
+                    if self.currentplayer.Tile.Category == "Finish":
+                        self.play_pagenr = 4
+                        return
                     self.action = 0
                     self.steps = 0
                     self.stepcount = 0
@@ -342,10 +347,12 @@ class Game:
 
                 # Questions screen
                 if self.play_pagenr == 3:
+                    #See action 1 now.
                     return
 
                 # Win screen
                 if self.play_pagenr == 4:
+                    print(self.currentplayer.Name, "won.")
                     self.Wonbg.draw(self.screen)
                     self.Cross3.draw(self.screen)
                     self.Next2.draw(self.screen)
@@ -507,7 +514,7 @@ class Game:
                 if self.D1.rc == 1:
                     self.D1.rc = 2
                 if self.Next2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:  #and self.play_pagenr != 3
-                    self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+                    #self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
                     if self.play_pagenr < self.play_pages:
                         if self.players >= 2 and self.play_pagenr == 1:
                             self.P1.Name = self.T1_2.atext
