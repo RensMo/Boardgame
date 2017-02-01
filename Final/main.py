@@ -261,8 +261,7 @@ class Game:
                                         self.downplayer = None
                                         self.turn_end = True
                             else:
-                                self.action += 1  # MUST BE 1 AFTER QUESTIONS ARE FINISHED
-
+                                self.action += 1
 
                     # Player gets question
                     elif self.action == 1 and self.D1.vcc2 == 0:
@@ -270,14 +269,10 @@ class Game:
                             #print("ques none")
                             pygame.time.wait(2000)
                             self.Ques = Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023), self.currentplayer.Tile.Category)
-                            self.Q.draw(self.screen)
-                            self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
-                            self.Ques.draw(self.screen)
-                        else:
-                            #print("ques else")
-                            self.Q.draw(self.screen)
-                            self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
-                            self.Ques.draw(self.screen)
+                        #print("ques else")
+                        self.Q.draw(self.screen)
+                        self.Ques.update(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+                        self.Ques.draw(self.screen)
                         self.Next2.draw(self.screen)
                         self.Prev2.draw(self.screen)
                         #if answer_right == True:
@@ -330,12 +325,10 @@ class Game:
                             self.turn += 1
 
                 # Update and draw Players
-                self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
-                             self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height, self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                 self.P1.Nametext.draw(self.screen)
 
-                self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height,
-                             self.width * self.grid_pos_x, self.height * self.grid_pos_y)
+                self.P2.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height, self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                 self.P2.Nametext.draw(self.screen)
 
                 if self.players >= 3:
