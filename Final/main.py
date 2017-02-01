@@ -1,6 +1,7 @@
 import random
 
 import pygame
+import MySQLdb
 from pygame.locals import *
 
 from Button import *
@@ -714,7 +715,7 @@ class Game:
                     if self.Addqc.cc < 3:
                         self.Addqc.cc += 1
                 if self.Add.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
-                    Add_question(self.Add_Q.atext, self.Add_AG, self.Add_AW1, self.Add_AW2):
+                    Add_question(self.Add_Q.atext, self.Add_AG, self.Add_AW1, self.Add_AW2)
 
                 # Player move with direction pad demo
                 elif self.AR_L.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 2 and self.action == 2:
@@ -727,7 +728,7 @@ class Game:
                 elif self.AR_R.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 2 and self.action == 2:
                     #self.P1.Tile = self.P1.Tile.Right
                     self.stepdirection = "Right"
-            elif event.type == pygame.MOUSEBUTTONUP and event.button == 3 and self.D1.rect.collidepoint(pygame.mouse.get_pos()) and self.D1.rc == 0
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 3 and self.D1.rect.collidepoint(pygame.mouse.get_pos()) and self.D1.rc == 0:
                 self.D1.rc = 4
         return False
 
