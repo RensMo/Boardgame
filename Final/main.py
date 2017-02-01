@@ -94,7 +94,13 @@ class Game:
         self.TO2 = Toggle1(self.width * 0.572, self.height * 0.403, self.width * 0.068, self.height * 0.05)
         self.TO3 = Toggle2(self.width * 0.572, self.height * 0.57, self.width * 0.068, self.height * 0.05)
         self.RES = Resolution(self.width * 0.54, self.height * 0.513, self.width * 0.1, self.height * 0.05)
-        #self.Ques= Questions(self.width * 0.307, self.height * 0.295, int(self.width * 0.023))
+
+        self.Add_Q = IText2(self.width * 0.232, self.height * 0.412, "", int(self.width * 0.025), self.width * 0.54, 1)
+        self.Add_AG = IText3(self.width * 0.232, self.height * 0.512, "", int(self.width * 0.025), self.width * 0.35, 1)
+        self.Add_AW1 = IText3(self.width * 0.232, self.height * 0.618, "", int(self.width * 0.03), self.width * 0.35, 1)
+        self.Add_AW2 = IText3(self.width * 0.232, self.height * 0.721, "", int(self.width * 0.03), self.width * 0.35, 1)
+
+
         self.Ques = None
 
     def draw(self):
@@ -399,6 +405,10 @@ class Game:
                 self.Add.draw(self.screen)
                 self.Addqc.update(self.width * 0.232, self.height * 0.318, self.width * 0.18, self.height * 0.044)
                 self.Addqc.draw(self.screen)
+                self.Add_Q.draw(self.screen)
+                self.Add_AG.draw(self.screen)
+                self.Add_AW1.draw(self.screen)
+                self.Add_AW2.draw(self.screen)
         pygame.display.update()
 
     def process_events(self):
@@ -460,6 +470,11 @@ class Game:
         self.T3_2.update(events, self.width * 0.095, self.height * 0.345, int(self.width * 0.03), self.width * 0.3)
         self.T4_1.update(events, self.width * 0.031, self.height * 0.445, int(self.width * 0.03), 0)
         self.T4_2.update(events, self.width * 0.095, self.height * 0.445, int(self.width * 0.03), self.width * 0.3)
+        self.Add_Q.update(events, self.width * 0.232, self.height * 0.412, int(self.width * 0.028), self.width * 0.54)
+        self.Add_AG.update(events, self.width * 0.232, self.height * 0.512, int(self.width * 0.03), self.width * 0.35)
+        self.Add_AW1.update(events, self.width * 0.232, self.height * 0.618, int(self.width * 0.03), self.width * 0.35)
+        self.Add_AW2.update(events, self.width * 0.232, self.height * 0.721, int(self.width * 0.03), self.width * 0.35)
+
 
         for event in events:
             if event.type == VIDEORESIZE:
@@ -509,6 +524,22 @@ class Game:
                 elif not self.T4_2.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 1:
                     self.T4_1.focus = 0
                     self.T4_2.focus = 0
+                if self.Add_Q.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    self.Add_Q.focus = 1
+                elif not self.Add_Q.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    self.Add_Q.focus = 0
+                if self.Add_AG.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    self.Add_AG.focus = 1
+                elif not self.Add_AG.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    self.Add_AG.focus = 0
+                if self.Add_AW1.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    self.Add_AW1.focus = 1
+                elif not self.Add_AW1.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    self.Add_AW1.focus = 0
+                if self.Add_AW2.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    self.Add_AW2.focus = 1
+                elif not self.Add_AW2.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
+                    self.Add_AW2.focus = 0
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 self.D1.click = False
                 if self.D1.rc == 1:
