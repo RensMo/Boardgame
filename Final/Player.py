@@ -1,5 +1,5 @@
 import pygame
-import pickle
+
 #githuphup
 
 class Player:
@@ -8,9 +8,6 @@ class Player:
         self.Tile = tile
         self.Colour = (255, 255, 255)
         self.StartCat = None
-
-Game_data = {Player}
-pickle.dump(Game_data, open("Save1.txt", "wb"))
 
 def Draw(self, screen, width, height, pos_x, pos_y):
         margin_x = 0.1 * width
