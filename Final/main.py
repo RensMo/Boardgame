@@ -727,7 +727,7 @@ class Game:
                 elif self.AR_R.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 2 and self.action == 2:
                     #self.P1.Tile = self.P1.Tile.Right
                     self.stepdirection = "Right"
-            elif event.type == pygame.MOUSEBUTTONUP and event.button == 3 and self.D1.rect.collidepoint(pygame.mouse.get_pos()) and self.D1.rc == 0:
+            elif event.type == pygame.MOUSEBUTTONUP and event.button == 3 and self.D1.rect.collidepoint(pygame.mouse.get_pos()) and self.D1.rc == 0
                 self.D1.rc = 4
         return False
 
