@@ -37,6 +37,7 @@ class Game:
         self.turn = 0
         self.action = 0
         self.sound = pygame.mixer.Sound('Assets/click.wav')
+        self.fs = 0
 
         self.steps = 0
         self.stepcount = 0
