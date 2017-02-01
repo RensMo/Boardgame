@@ -66,11 +66,11 @@ class Game:
         self.grid_pos_x = 0.2197
         self.grid_pos_y = 0.9
 
+        ### Playscreen
         self.P1 = Player("", self.entry_tile)
         self.P2 = Player("", self.entry_tile.Right.Right)
         self.P3 = Player("", self.entry_tile.Right.Right.Right.Right)
         self.P4 = Player("", self.entry_tile.Right.Right.Right.Right.Right.Right)
-
         self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
         self.T1_1 = IText(self.width * 0.031, self.height * 0.145, "#1", int(self.width * 0.03), 0, 0)
         self.T1_2 = IText(self.width * 0.095, self.height * 0.145, "", int(self.width * 0.03), self.width * 0.3, 1)
@@ -88,19 +88,19 @@ class Game:
         self.P2CA = PCat(self.width * 0.67, self.height * 0.245, self.width * 0.18, self.height * 0.05)
         self.P3CA = PCat(self.width * 0.67, self.height * 0.345, self.width * 0.18, self.height * 0.05)
         self.P4CA = PCat(self.width * 0.67, self.height * 0.445, self.width * 0.18, self.height * 0.05)
+        self.Ques = None
+
+        ### Settingscreen
         self.Addqc = PCat(self.width * 0.232, self.height * 0.318, self.width * 0.18, self.height * 0.044)
         self.TO1 = Toggle1(self.width * 0.572, self.height * 0.343, self.width * 0.068, self.height * 0.05)
         self.TO2 = Toggle1(self.width * 0.572, self.height * 0.403, self.width * 0.068, self.height * 0.05)
         self.TO3 = Toggle2(self.width * 0.572, self.height * 0.57, self.width * 0.068, self.height * 0.05)
         self.RES = Resolution(self.width * 0.54, self.height * 0.513, self.width * 0.1, self.height * 0.05)
-
         self.Add_Q = IText2(self.width * 0.232, self.height * 0.412, "", int(self.width * 0.028), self.width * 0.54, 1)
         self.Add_AG = IText3(self.width * 0.232, self.height * 0.512, "", int(self.width * 0.028), self.width * 0.35, 1)
         self.Add_AW1 = IText3(self.width * 0.232, self.height * 0.618, "", int(self.width * 0.028), self.width * 0.35, 1)
         self.Add_AW2 = IText3(self.width * 0.232, self.height * 0.721, "", int(self.width * 0.028), self.width * 0.35, 1)
 
-
-        self.Ques = None
 
     def draw(self):
         # Menu
@@ -418,6 +418,7 @@ class Game:
         keys = pygame.key.get_pressed()
         events = pygame.event.get()
 
+        ### Backgrounds
         self.M1 = Menu(self.width, self.height, BG0)
         self.Pbg1 = Backg(self.width, self.height, BG1)
         self.Pbg2 = Backg(self.width, self.height, BG2)
@@ -428,6 +429,8 @@ class Game:
         self.Cbg = Backg(self.width, self.height, BG6)
         self.Wonbg = Backg(self.width, self.height, BG7)
         self.Addq_bg = Backg(self.width, self.height, BG8)
+
+        ### Back/next/previous/cross buttons
         self.B1 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B2 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
         self.B3 = Button(self.width * 0.88, self.height * 0.04, self.width * 0.1, self.height * 0.07, I5)
@@ -435,12 +438,15 @@ class Game:
         self.Next2 = Button(self.width * 0.88, self.height * 0.90, self.width * 0.1, self.height * 0.07, I6)
         self.Prev1 = Button(self.width * 0.77, self.height * 0.90, self.width * 0.1, self.height * 0.07, I7)
         self.Prev2 = Button(self.width * 0.77, self.height * 0.90, self.width * 0.1, self.height * 0.07, I7)
+        self.Cross1 = Button2(self.width * 0.63, self.height * 0.161, self.width * 0.044, self.height * 0.075, S1)
+        self.Cross2 = Button2(self.width * 0.63, self.height * 0.0745, self.width * 0.044, self.height * 0.075, S1)
+        self.Cross3 = Button2(self.width * 0.681, self.height * 0.396, self.width * 0.044, self.height * 0.075, S1)
+        self.Cross4 = Button2(self.width * 0.763, self.height * 0.168, self.width * 0.044, self.height * 0.075, S1)
+
+        ### Play screen
         self.PL2 = Button(self.width * 0.425, self.height * 0.22, self.width * 0.15, self.height * 0.15, I9)
         self.PL3 = Button(self.width * 0.425, self.height * 0.43, self.width * 0.15, self.height * 0.16, I10)
         self.PL4 = Button(self.width * 0.425, self.height * 0.64, self.width * 0.15, self.height * 0.17, I11)
-        self.Text1 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP1)
-        self.Text2 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP2)
-        self.Text3 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP3)
         self.CD = Textbg(self.width * 0.77, self.height * 0.455, self.width * 0.19, self.height * 0.05, I12)
         self.CD_L = Textbg(self.width * 0.77, self.height * 0.455, self.width * 0.19, self.height * 0.05, I13)
         self.TD = Textbg(self.width * 0.77, self.height * 0.755, self.width * 0.19, self.height * 0.05, I14)
@@ -456,15 +462,11 @@ class Game:
         self.CA3_R = Textbg(self.width * 0.58, self.height * 0.347, self.width * 0.028, self.height * 0.051, I21)
         self.CA4_L = Textbg(self.width * 0.46, self.height * 0.447, self.width * 0.028, self.height * 0.051, I20)
         self.CA4_R = Textbg(self.width * 0.58, self.height * 0.447, self.width * 0.028, self.height * 0.051, I21)
-        self.Cross1 = Button2(self.width * 0.63, self.height * 0.161, self.width * 0.044, self.height * 0.075, S1)
-        self.Cross2 = Button2(self.width * 0.63, self.height * 0.0745, self.width * 0.044, self.height * 0.075, S1)
-        self.Cross3 = Button2(self.width * 0.681, self.height * 0.396, self.width * 0.044, self.height * 0.075, S1)
-        self.Cross4 = Button2(self.width * 0.763, self.height * 0.168, self.width * 0.044, self.height * 0.075, S1)
+
+        ### Help screen
         self.Credits = Button2(self.width * 0.36, self.height * 0.747, self.width * 0.13, self.height * 0.065, S2)
         self.Addq = Button2(self.width * 0.36, self.height * 0.679, self.width * 0.24, self.height * 0.065, S8)
         self.Add = Button2(self.width * 0.653, self.height * 0.726, self.width * 0.122, self.height * 0.071, S9)
-
-        self.screen_rect = self.screen.get_rect()
         self.T1_1.update(events, self.width * 0.031, self.height * 0.145, int(self.width * 0.03), 0)
         self.T1_2.update(events, self.width * 0.095, self.height * 0.145, int(self.width * 0.03), self.width * 0.3)
         self.T2_1.update(events, self.width * 0.031, self.height * 0.245, int(self.width * 0.03), 0)
@@ -477,7 +479,11 @@ class Game:
         self.Add_AG.update(events, self.width * 0.232, self.height * 0.512, int(self.width * 0.028), self.width * 0.35)
         self.Add_AW1.update(events, self.width * 0.232, self.height * 0.618, int(self.width * 0.028), self.width * 0.35)
         self.Add_AW2.update(events, self.width * 0.232, self.height * 0.721, int(self.width * 0.028), self.width * 0.35)
+        self.Text1 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP1)
+        self.Text2 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP2)
+        self.Text3 = Textbg(self.width * 0.02, self.height * 0.15, self.width * 0.95, self.height * 0.7, HELP3)
 
+        self.screen_rect = self.screen.get_rect()
 
         for event in events:
             if event.type == VIDEORESIZE:
