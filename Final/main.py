@@ -271,7 +271,7 @@ class Game:
                                         self.downplayer = None
                                         self.turn_end = True
                             else:
-                                self.action += 2 #Must be 1!!!
+                                self.action += 1 #Must be 1!!!
 
                     # Player gets question
                     elif self.action == 1 and self.D1.vcc2 == 0:
