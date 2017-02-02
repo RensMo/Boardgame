@@ -56,6 +56,8 @@ class Game:
 
         self.timer = 0
 
+        self.updatescore = True
+
         pygame.init()
         pygame.mixer.init()
 
@@ -345,6 +347,17 @@ class Game:
                     self.Wintext = IText(self.width * 0.33, self.height * 0.47, self.currentplayer.Name + " won!", int(self.width * 0.03), 0, 0)
                     self.Wintext.draw(self.screen)
 
+                    players_array2 = [self.P1, self.P2, self.P3, self.P4]
+                    i = 0
+                    if self.updatescore == True:
+                        while i < self.players:
+                            if players_array2[i] == self.currentplayer:
+                                High_score(self.currentplayer.Name, 1, 0)
+                            else:
+                                High_score(players_array2[i].Name, 0, 1)
+                            i += 1
+                        self.updatescore = False
+
                 # Prepare for next turn:
                 # First player turn.
                 if self.turn == 0:
@@ -354,19 +367,20 @@ class Game:
                 if self.turn_end == True:
                     if self.currentplayer.Tile.Category == "Finish":  # Check if player reached the end.
                         self.play_pagenr = 4
-                    self.action = 0
-                    self.steps = 0
-                    self.stepcount = 0
-                    self.stepdirection = None
-                    self.Ques = None
-                    self.turn_end = False
+                    else:
+                        self.action = 0
+                        self.steps = 0
+                        self.stepcount = 0
+                        self.stepdirection = None
+                        self.Ques = None
+                        self.turn_end = False
 
-                    self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
-                    if self.sameposition == False:
-                        if self.turn == self.players:
-                            self.turn = 1
-                        else:
-                            self.turn += 1
+                        self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
+                        if self.sameposition == False:
+                            if self.turn == self.players:
+                                self.turn = 1
+                            else:
+                                self.turn += 1
 
         # Help
         elif self.S0[2] == 1:
