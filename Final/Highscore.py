@@ -2,14 +2,18 @@ import pygame
 import MySQLdb
 
 def High_score(Name_player,Player_wins,Player_loses):
-    query = "INSERT INTO High_Score (Name_player, Player_wins, Player_loses) VALUES (%s, %s, %s)"
-    query2 = "INSERT INTO High_Score (Name_player, Player_wins, Player_loses) VALUES (%s, %s, %s) ON DUPLICATE KEY UPDATE"
+    query = "INSERT INTO High_Score (Name_player, Player_wins, Player_loses) VALUES (%s, %s, %s) ON DUPLICATE KEY UPDATE (Player_wins = Player_wins + %s, Player_loses = Player_loses + %s)"
+    query_old = "INSERT INTO High_Score " \
+                "(Name_player, Player_wins, Player_loses) " \
+                "VALUES (%s, %s, %s)"
     print(query)
-    
+
+    #hoi lau
+
     db = MySQLdb.connect("5.79.70.63", "Boardgame", "groep12017", "Boardgame")
     cursor = db.cursor()
 
-    cursor.execute(query, (Name_player,Player_wins,Player_loses))
+    cursor.execute(query, (Name_player, Player_wins, Player_loses, Player_wins, Player_loses))
   
     db.commit()
 
@@ -117,3 +121,5 @@ class Highscore:
         surface.blit(self.p10n, (self.x, self.y + self.size * 9))
         surface.blit(self.p10w, (self.x + self.size * 9.4, self.y + self.size * 9))
         surface.blit(self.p10l, (self.x + self.size * 10.9, self.y + self.size * 9))
+
+High_score("Rens", 1, 88)
