@@ -25,6 +25,10 @@ class Game:
         self.res = [(800,600),(1280,720),(1366,768)]
         self.resc = 1
         self.size = self.res[self.resc]
+        self.fs = 0
+        self.newgame()
+
+    def newgame(self):
         self.width = self.size[0]
         self.height = self.size[1]
         self.caption = "Dice'to'the'Top"
@@ -39,7 +43,6 @@ class Game:
         self.turn = 0
         self.action = 0
         self.sound = pygame.mixer.Sound('Assets/click.wav')
-        self.fs = 0
 
         self.steps = 0
         self.stepcount = 0
@@ -106,7 +109,6 @@ class Game:
         self.Add_AG = IText3(self.width * 0.232, self.height * 0.512, "", int(self.width * 0.028), self.width * 0.35, 1)
         self.Add_AW1 = IText3(self.width * 0.232, self.height * 0.618, "", int(self.width * 0.028), self.width * 0.35, 1)
         self.Add_AW2 = IText3(self.width * 0.232, self.height * 0.721, "", int(self.width * 0.028), self.width * 0.35, 1)
-
 
     def draw(self):
         # Menu
@@ -269,7 +271,7 @@ class Game:
                                         self.downplayer = None
                                         self.turn_end = True
                             else:
-                                self.action += 1
+                                self.action += 2 #Must be 1!!!
 
                     # Player gets question
                     elif self.action == 1 and self.D1.vcc2 == 0:
@@ -607,7 +609,10 @@ class Game:
                         self.help_pagenr -= 1
                 elif self.B1.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[1] == 1:
                     self.S0 = [1, 0, 0, 0]
+                    if self.play_pagenr >= 2:
+                        self.newgame()
                     self.play_pagenr = int(0)
+
                 elif self.B2.rect.collidepoint(pygame.mouse.get_pos()) and self.S0[2] == 1:
                     self.S0 = [1, 0, 0, 0]
                     self.help_pagenr = int(0)
@@ -732,6 +737,7 @@ class Game:
                 if self.Cross2.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 1:
                     self.settings_pagenr = 0
                 elif self.Cross3.rect.collidepoint(pygame.mouse.get_pos()) and self.play_pagenr == 4:
+                    self.newgame()
                     self.S0 = [1, 0, 0, 0]
                     self.play_pagenr = int(0)
                 elif self.Cross4.rect.collidepoint(pygame.mouse.get_pos()) and self.settings_pagenr == 2:
