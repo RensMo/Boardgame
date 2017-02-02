@@ -57,6 +57,7 @@ class Questions:
         self.ra3 = self.answersc[0]
         self.a3 = self.answers[self.ra3]
         self.answer_correct = None
+        self.clicked = False
 
     def update(self, x, y, size):
         self.x = x
@@ -97,27 +98,33 @@ class Questions:
         surface.blit(self.a2, (self.x * 1.25, self.y * 1.470 + self.y * 0.3 + self.size))
         surface.blit(self.a3, (self.x * 1.25, self.y * 1.630 + self.y * 0.3 + self.size * 2))
         
-        if self.rect1.collidepoint(pygame.mouse.get_pos()):
+        if self.rect1.collidepoint(pygame.mouse.get_pos()) and self.clicked == False:
             if mouse[0] and self.ra1 == 0:
                 self.answer_correct = True
+                self.clicked = True
             elif mouse[0] and self.ra1 != 0:
                 self.answer_correct = False
+                self.clicked = True
             self.srect1.fill(pygame.Color("Light Green"))
             self.srect1.set_alpha(68)
             surface.blit(self.srect1, (self.x * 1.2, self.y * 1.305 + self.y * 0.3))
-        if self.rect2.collidepoint(pygame.mouse.get_pos()):
+        if self.rect2.collidepoint(pygame.mouse.get_pos()) and self.clicked == False:
             if mouse[0] and self.ra2 == 0:
                 self.answer_correct = True
+                self.clicked = True
             elif mouse[0] and self.ra2 != 0:
                 self.answer_correct = False
+                self.clicked = True
             self.srect2.fill(pygame.Color("Light Green"))
             self.srect2.set_alpha(68)
             surface.blit(self.srect2, (self.x * 1.2, self.y * 1.450 + self.y * 0.3 + self.size))
-        if self.rect3.collidepoint(pygame.mouse.get_pos()):
+        if self.rect3.collidepoint(pygame.mouse.get_pos()) and self.clicked == False:
             if mouse[0] and self.ra3 == 0:
                 self.answer_correct = True
+                self.clicked = True
             elif mouse[0] and self.ra3 != 0:
                 self.answer_correct = False
+                self.clicked = True
             self.srect3.fill(pygame.Color("Light Green"))
             self.srect3.set_alpha(68)
             surface.blit(self.srect3, (self.x * 1.2, self.y * 1.595 + self.y * 0.3 + self.size * 2))
