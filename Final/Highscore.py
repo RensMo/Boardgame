@@ -1,4 +1,4 @@
-
+import pygame
 import MySQLdb
 
 def High_score(Name_player,Player_wins,Player_loses):
