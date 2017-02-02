@@ -1,7 +1,7 @@
 import MySQLdb
 
-def High_score(Name_player,High_score,Player_wins,Player_loses,Win_loss_ratio):
-    query = ( "INSERT INTO High_Score VALUES (%s, %s, %s, %s, %s)")
+def High_score(Name_player,High_score,Player_wins,Player_loses):
+    query = ( "INSERT INTO High_Score VALUES (%s, %s, %s, %s)")
     print(query)
     
     db = MySQLdb.connect("5.79.70.63", "Boardgame", "groep12017", "Boardgame")
@@ -11,11 +11,7 @@ def High_score(Name_player,High_score,Player_wins,Player_loses,Win_loss_ratio):
   
     db.commit()
 
-   
     db.close()
-
-
-
 
 
 def Overview_score():
@@ -33,7 +29,6 @@ def Overview_score():
 
     return result
 
-print(Overview_score())
 
 Score = Overview_score()
 
