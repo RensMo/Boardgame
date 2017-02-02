@@ -18,6 +18,7 @@ from Settings import *
 from Questions import *
 from Checkplayers import *
 from Addquestions import *
+from Highscore import *
 
 class Game:
     def __init__(self):
@@ -109,6 +110,8 @@ class Game:
         # Menu
         if self.S0[0] == 1:
             self.M1.draw(self.screen)
+            self.Highscores.update()
+            self.Highscores.draw(self.screen)
         # Play
         elif self.S0[1] == 1:
             # Choose Players
@@ -300,6 +303,24 @@ class Game:
                 if self.turn == 0:
                     self.turn = 1
 
+                # Next players turn
+                if self.turn_end == True:
+                    if self.currentplayer.Tile.Category == "Finish":  # Check if player reached the end.
+                        self.play_pagenr = 4
+                    self.action = 0
+                    self.steps = 0
+                    self.stepcount = 0
+                    self.stepdirection = None
+                    self.Ques = None
+                    self.turn_end = False
+
+                    self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
+                    if self.sameposition == False:
+                        if self.turn == self.players:
+                            self.turn = 1
+                        else:
+                            self.turn += 1
+
                 # Update and draw Players
                 self.P1.Draw(self.screen, self.width * self.tile_width, self.height * self.tile_height, self.width * self.grid_pos_x, self.height * self.grid_pos_y)
                 self.P1.Nametext.draw(self.screen)
@@ -348,23 +369,6 @@ class Game:
                     self.Wintext = IText(self.width * 0.33, self.height * 0.47, self.currentplayer.Name + " won!", int(self.width * 0.03), 0, 0)
                     self.Wintext.draw(self.screen)
 
-                # Next players turn
-                if self.turn_end == True:
-                    if self.currentplayer.Tile.Category == "Finish":  # Check if player reached the end.
-                        self.play_pagenr = 4
-                    self.action = 0
-                    self.steps = 0
-                    self.stepcount = 0
-                    self.stepdirection = None
-                    self.Ques = None
-                    self.turn_end = False
-
-                    self.D1 = Dice(self.width * 0.81, self.height * 0.53, self.width * 0.1, self.width * 0.1, ID1)
-                    if self.sameposition == False:
-                        if self.turn == self.players:
-                            self.turn = 1
-                        else:
-                            self.turn += 1
 
         # Help
         elif self.S0[2] == 1:
@@ -441,6 +445,7 @@ class Game:
         self.Cross2 = Button2(self.width * 0.63, self.height * 0.0745, self.width * 0.044, self.height * 0.075, S1)
         self.Cross3 = Button2(self.width * 0.681, self.height * 0.396, self.width * 0.044, self.height * 0.075, S1)
         self.Cross4 = Button2(self.width * 0.763, self.height * 0.168, self.width * 0.044, self.height * 0.075, S1)
+        self.Highscores = Highscore(self.width * 0.2, self.height * 0.2, int(self.width * 0.035))
 
         ### Play screen
         self.PL2 = Button(self.width * 0.425, self.height * 0.22, self.width * 0.15, self.height * 0.15, I9)
