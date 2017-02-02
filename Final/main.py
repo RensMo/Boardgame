@@ -22,7 +22,7 @@ from Highscore import *
 
 class Game:
     def __init__(self):
-        self.res = [(800,600),(1280,720),(1366,768)]
+        self.res = [(800, 600), (1280, 720), (1366, 768)]
         self.resc = 1
         self.size = self.res[self.resc]
         self.width = self.size[0]
