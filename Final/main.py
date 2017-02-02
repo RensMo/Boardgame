@@ -457,7 +457,7 @@ class Game:
         self.Cross2 = Button2(self.width * 0.63, self.height * 0.0745, self.width * 0.044, self.height * 0.075, S1)
         self.Cross3 = Button2(self.width * 0.681, self.height * 0.396, self.width * 0.044, self.height * 0.075, S1)
         self.Cross4 = Button2(self.width * 0.763, self.height * 0.168, self.width * 0.044, self.height * 0.075, S1)
-        self.Highscores = Highscore(self.width * 0.415, self.height * 0.42, int(self.width * 0.0235))
+        self.Highscores = Highscore(self.width * 0.411, self.height * 0.42, int(self.width * 0.0235))
 
         ### Play screen
         self.PL2 = Button(self.width * 0.425, self.height * 0.22, self.width * 0.15, self.height * 0.15, I9)
