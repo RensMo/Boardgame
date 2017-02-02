@@ -52,7 +52,11 @@ class Highscore:
 
     def update(self):
         for i in range(self.playeramount):
-            self.resultLinesn.append("%i %s" % (i +1, Score[i][0]))
+            if i < 9:
+                ic = "0" + str(i + 1)
+            else:
+                ic = str(i + 1)
+            self.resultLinesn.append("%s %s" % (ic, Score[i][0]))
             self.resultLinesw.append("%i" % (Score[i][1]))
             self.resultLinesl.append("%i" % (Score[i][2]))
         self.p1n = self.font.render(self.resultLinesn[0], 1, (0,0,0))
