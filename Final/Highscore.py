@@ -32,12 +32,6 @@ def Overview_score():
     return result
 
 Score = Overview_score()
-resultLines = []
-
-
-playeramount = 10
-for i in range(playeramount):
-    resultLines.append("%s %i %i" % (Score[i][0], Score[i][1], Score[i][2]))
 
 class Highscore:
     def __init__(self, x, y, size):
