@@ -7,6 +7,8 @@ def High_score(Name_player,Player_wins,Player_loses):
                 "(Name_player, Player_wins, Player_loses) " \
                 "VALUES (%s, %s, %s)"
     print(query)
+
+    #hoi lau
     
     db = MySQLdb.connect("5.79.70.63", "Boardgame", "groep12017", "Boardgame")
     cursor = db.cursor()
