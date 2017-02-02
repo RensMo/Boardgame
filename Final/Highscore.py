@@ -2,7 +2,8 @@
 import MySQLdb
 
 def High_score(Name_player,Player_wins,Player_loses):
-    query = ( "INSERT INTO High_Score VALUES (%s, %s, %s)")
+    query = "INSERT INTO High_Score (Name_player, Player_wins, Player_loses) VALUES (%s, %s, %s)"
+    query2 = "INSERT INTO High_Score (Name_player, Player_wins, Player_loses) VALUES (%s, %s, %s) ON DUPLICATE KEY UPDATE"
     print(query)
     
     db = MySQLdb.connect("5.79.70.63", "Boardgame", "groep12017", "Boardgame")
@@ -12,11 +13,7 @@ def High_score(Name_player,Player_wins,Player_loses):
   
     db.commit()
 
-   
     db.close()
-
-
-
 
 
 def Overview_score():
@@ -34,11 +31,7 @@ def Overview_score():
 
     return result
 
-
-
 Score = Overview_score()
-
-
 resultLines = []
 
 
@@ -48,3 +41,5 @@ for i in range(playeramount):
 
 
 print(resultLines)
+
+High_score("Rens", 1, 34875)
